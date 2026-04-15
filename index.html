@@ -8,53 +8,93 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e3d59, #16324f);
+      color: #fff;
+      scroll-behavior: smooth;
     }
 
     header {
-      background: #1e3d59;
-      color: white;
-      padding: 30px;
       text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
 
     nav {
-      background: #16324f;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(0,0,0,0.2);
       padding: 15px;
-      text-align: center;
+      position: sticky;
+      top: 0;
     }
 
     nav a {
       color: white;
-      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      margin: 30px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: 0.6s;
+    }
+
+    .card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    h2 {
+      color: #00d4ff;
+    }
+
+    ul {
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #00d4ff;
+      color: #000;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 40px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      margin: 20px auto;
-      border-radius: 12px;
-      max-width: 900px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      background: #1e3d59;
-      color: white;
-      text-align: center;
-      padding: 15px;
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8em; }
     }
   </style>
 </head>
@@ -76,7 +116,7 @@
 <section id="client">
   <div class="card">
     <h2>Présentation du client</h2>
-    <p>Ajoute ici la description de ton client (entreprise, activité, contexte).</p>
+    <p>Entreprise spécialisée dans le domaine du froid industriel. Le projet consiste à concevoir une installation fiable et performante répondant aux exigences du client.</p>
   </div>
 </section>
 
@@ -85,8 +125,10 @@
     <h2>Besoins du client</h2>
     <ul>
       <li>Simplicité d'exploitation</li>
-      <li>Maintenance facile</li>
+      <li>Maintenance rapide et efficace</li>
       <li>Connexion à distance</li>
+      <li>Continuité de service</li>
+      <li>Réduction de la consommation énergétique</li>
     </ul>
   </div>
 </section>
@@ -94,20 +136,34 @@
 <section id="dimensionnement">
   <div class="card">
     <h2>Dimensionnement</h2>
-    <p>Ajoute ici tes calculs, choix des équipements, etc.</p>
+    <p>Le dimensionnement a été réalisé en prenant en compte les puissances frigorifiques nécessaires, les pertes de charges ainsi que les caractéristiques des équipements sélectionnés.</p>
   </div>
 </section>
 
 <section id="automate">
   <div class="card">
     <h2>Automate</h2>
-    <p>Explique ici ton programme automate et son fonctionnement.</p>
+    <p>Un programme automate a été développé afin d'assurer la gestion des groupes froids, la sécurité de l'installation et l'optimisation énergétique.</p>
+    <a class="btn" href="#">Voir le programme</a>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 - Projet BTS</p>
+  <p>© 2026 - Projet BTS | Maxime Chevalier</p>
 </footer>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+
+  window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+      const top = card.getBoundingClientRect().top;
+      if (top < window.innerHeight - 50) {
+        card.classList.add('visible');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
