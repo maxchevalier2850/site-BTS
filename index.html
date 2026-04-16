@@ -119,6 +119,33 @@ font-size:14px;
 color:#ddd;
 line-height:1.6;
 }
+121 }
+
+/* LIGNE LUMINEUSE */
+.header-line{
+height:3px;
+width:100%;
+background:linear-gradient(90deg,#00d4ff,#ffffff,#00d4ff);
+background-size:200%;
+animation:lineMove 3s infinite linear;
+}
+
+@keyframes lineMove{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+/* ANIMATION HEADER */
+header{
+animation:fadeHeader 1s ease;
+}
+
+@keyframes fadeHeader{
+from{opacity:0; transform:translateY(-30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+122 </style>
 </style>
 </head>
 
