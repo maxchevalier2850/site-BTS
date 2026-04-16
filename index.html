@@ -133,7 +133,6 @@ line-height:1.6;
 <button onclick="show('accueil')">Accueil</button>
 <button onclick="show('commun')">Partie commune</button>
 <button onclick="show('candidats')">Candidats</button>
-<button onclick="show('dossier')">Dossier technique</button>
 </div>
 
 <!-- ACCUEIL -->
@@ -260,9 +259,11 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 
 <div id="devis" class="card sub">
+
 <h2>Analyse financière du projet</h2>
 
 <div class="devis-box">
+
 <img src="devis.png" class="devis-img">
 
 <a href="devis.pdf" download class="btn-devis">
@@ -276,66 +277,11 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 
 </div>
+
 </div>
 
 <button class="back" onclick="show('candidats')">Retour</button>
-</div>
 
-<!-- DOSSIER TECHNIQUE (AJOUT SEUL) -->
-<div id="dossier" class="section">
-
-<div class="menu">
-<button onclick="showSubDoc('gf')">Groupes froids</button>
-<button onclick="showSubDoc('pompes-doc')">Pompes</button>
-<button onclick="showSubDoc('ballon')">Ballon découplage</button>
-<button onclick="showSubDoc('tuyaux')">Tuyauterie</button>
-<button onclick="showSubDoc('vanne-ta')">Vanne TA</button>
-<button onclick="showSubDoc('controleur')">Contrôleur débit</button>
-<button onclick="showSubDoc('isolement')">Vanne isolement</button>
-</div>
-
-<div id="gf" class="card subdoc">
-<h2>Groupes froids</h2>
-<img src="trane.png">
-<img src="trane-2.png">
-</div>
-
-<div id="pompes-doc" class="card subdoc">
-<h2>Pompes</h2>
-<h3>Chaud</h3>
-<img src="pompe-chaud-gf1.png">
-<img src="pompe-chaud-gf2.png">
-<h3>Froid</h3>
-<img src="pompe-froid-gf1.png">
-<img src="pompe-froid-gf2.png">
-</div>
-
-<div id="ballon" class="card subdoc">
-<h2>Ballon</h2>
-<p>Permet de stabiliser les débits hydrauliques.</p>
-</div>
-
-<div id="tuyaux" class="card subdoc">
-<h2>Tuyauterie</h2>
-<p>Réseaux inox résistants et durables.</p>
-</div>
-
-<div id="vanne-ta" class="card subdoc">
-<h2>Vanne TA</h2>
-<p>Équilibrage des débits.</p>
-</div>
-
-<div id="controleur" class="card subdoc">
-<h2>Contrôleur débit</h2>
-<p>Mesure et régulation du débit.</p>
-</div>
-
-<div id="isolement" class="card subdoc">
-<h2>Vanne isolement</h2>
-<p>Permet la maintenance sans arrêt global.</p>
-</div>
-
-<button class="back" onclick="show('accueil')">Retour</button>
 </div>
 
 <!-- ZOOM -->
@@ -351,11 +297,6 @@ document.getElementById(id).style.display="block";
 
 function showSub(id){
 document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
-}
-
-function showSubDoc(id){
-document.querySelectorAll('.subdoc').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
