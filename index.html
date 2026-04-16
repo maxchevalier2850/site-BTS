@@ -3,317 +3,237 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Projet lot N°9 Ouest Frais</title>
 
 <style>
+
+/* GLOBAL */
 body {
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#1e3d59,#16324f);
-  color:white;
-  scroll-behavior:smooth;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1e3d59, #16324f);
+  color: white;
 }
 
 /* HEADER */
 header {
-  text-align:center;
-  padding:60px 20px;
-}
-
-header img {
-  width:180px;
+  text-align: center;
+  padding: 40px 20px;
 }
 
 header h1 {
-  font-size:3em;
+  font-size: 2.8em;
 }
 
-/* IMAGES HAUT */
-.top-images {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin-top:20px;
-}
-
-.top-images img {
-  width:120px;
-  border-radius:10px;
-}
-
-/* NAV */
+/* MENU PRO */
 nav {
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  padding:15px;
-  background:rgba(0,0,0,0.3);
-  position:sticky;
-  top:0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f2a44;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
 }
 
-nav a {
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
+nav .logo {
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
-nav a:hover {
-  color:#00d4ff;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-/* SECTION */
+nav ul li {
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  color: #00d4ff;
+}
+
+/* SECTIONS */
 section {
-  max-width:1100px;
-  margin:auto;
-  padding:60px 20px;
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
 }
 
 /* CARD */
 .card {
-  background:rgba(255,255,255,0.08);
-  padding:30px;
-  border-radius:15px;
-  margin:30px 0;
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 15px;
+  margin: 30px 0;
 }
 
-.card.visible {
-  opacity:1;
-  transform:translateY(0);
+/* IMAGES */
+.logo-client {
+  max-width: 320px;
+  display: block;
+  margin: 20px auto;
 }
 
-h2 {
-  color:#00d4ff;
+.logo-tech {
+  max-width: 220px;
+  margin: 20px;
+}
+
+.carte {
+  max-width: 400px;
+  display: block;
+  margin: 20px auto;
 }
 
 /* GRID */
 .grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* CANDIDATS */
+.candidats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .candidat {
-  background:rgba(255,255,255,0.1);
-  padding:20px;
-  border-radius:10px;
-  text-align:center;
-  cursor:pointer;
-  transition:0.3s;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 200px;
+  text-align: center;
+  transition: 0.3s;
 }
 
 .candidat:hover {
-  transform:scale(1.05);
-  background:#00d4ff;
-  color:black;
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.2);
 }
 
-img {
-  max-width:100%;
-  border-radius:10px;
-  margin-top:15px;
+/* CONTENU CANDIDAT */
+.details {
+  display: none;
+  margin-top: 20px;
 }
 
-/* BOUTON */
-.btn {
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  background:#00d4ff;
-  color:black;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* HIDDEN */
-.hidden {
-  display:none;
-}
-
-/* SOUS MENU */
-.submenu button {
-  margin:5px;
-  padding:10px;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-.subcontent {
-  display:none;
-}
-
-/* MODE PRESENTATION */
-.presentation-mode {
-  background:black !important;
-  color:white !important;
-}
-
+/* FOOTER */
 footer {
-  text-align:center;
-  padding:20px;
-  background:rgba(0,0,0,0.4);
+  text-align: center;
+  padding: 20px;
+  background: #0f2a44;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo-ouestfrais.png">
   <h1>Projet lot N°9 Ouest Frais</h1>
-
-  <div class="top-images">
-    <img src="trane.jpg">
-    <img src="co2.jpg">
-  </div>
-
-  <button class="btn" onclick="presentationMode()">Mode présentation 🎤</button>
 </header>
 
 <nav>
-  <a href="#accueil">Accueil</a>
-  <a href="#candidats">Candidats</a>
+  <div class="logo">BTS Froid</div>
+  <ul>
+    <li onclick="scrollToSection('accueil')">Accueil</li>
+    <li onclick="scrollToSection('candidats')">Candidats</li>
+  </ul>
 </nav>
 
 <!-- ACCUEIL -->
 <section id="accueil">
 
-  <div class="card">
-    <h2>Le client</h2>
-    <img src="logo-ouestfrais.png" style="width:200px">
+<div class="card">
+  <h2>🏢 Client : Ouest Frais</h2>
+  <img src="logo-ouestfrais.png" class="logo-client">
 
-    <p>
-    Ouest Frais est une entreprise spécialisée dans la distribution alimentaire.
-    97 salariés, 22 camions frigorifiques et 45M€ de CA.
-    </p>
+  <p>
+  Ouest frais est une entreprise française spécialisée dans la distribution alimentaire.
+  Le projet se situe à Montaigu en Vendée.
+  </p>
 
-    <img src="carte.png">
+  <img src="carte.png" class="carte">
+</div>
+
+<div class="card">
+  <h2>🎓 Centre de formation</h2>
+  <img src="logo-cci.png" class="logo-client">
+  <p>CCI Formation Cholet</p>
+</div>
+
+<div class="card">
+  <h2>⚙️ Technologies utilisées</h2>
+
+  <div class="grid">
+    <img src="trane.jpg" class="logo-tech">
+    <img src="co2.jpg" class="logo-tech">
+    <img src="scm.png" class="logo-tech">
   </div>
 
-  <div class="card">
-    <h2>Centre de formation</h2>
-    <img src="logo-cci.png" style="width:250px">
-    <p>CCI Formation Cholet</p>
-  </div>
+</div>
 
 </section>
 
 <!-- CANDIDATS -->
 <section id="candidats">
-  <h2>Les candidats</h2>
 
-  <div class="grid">
+<h2 style="text-align:center;">👷 Équipe projet</h2>
 
-    <div class="candidat" onclick="show('maxime')">
-      <h3>Candidat N°1</h3>
-      <p>Maxime Chevalier</p>
-    </div>
+<div class="candidats">
 
-    <div class="candidat" onclick="show('pierre')">
-      <h3>Candidat N°2</h3>
-      <p>Oger Pierre</p>
-    </div>
+<div class="candidat" onclick="toggle('c1')">Candidat N°1</div>
+<div class="candidat" onclick="toggle('c2')">Candidat N°2</div>
+<div class="candidat" onclick="toggle('c3')">Candidat N°3</div>
+<div class="candidat" onclick="toggle('c4')">Candidat N°4</div>
 
-    <div class="candidat" onclick="show('david')">
-      <h3>Candidat N°3</h3>
-      <p>Chiron David</p>
-    </div>
+</div>
 
-    <div class="candidat" onclick="show('antonin')">
-      <h3>Candidat N°4</h3>
-      <p>Barbet Antonin</p>
-    </div>
+<!-- DETAILS -->
+<div id="c1" class="details card">
+  <h3>Maxime Chevalier</h3>
+  <p>➡️ Ajoute ici toutes tes parties : schémas, dimensionnement, etc.</p>
+</div>
 
-  </div>
-</section>
+<div id="c2" class="details card">
+  <h3>Oger Pierre</h3>
+</div>
 
-<!-- MAXIME -->
-<section id="maxime" class="hidden">
+<div id="c3" class="details card">
+  <h3>Chiron David</h3>
+</div>
 
-  <div class="card">
-    <h2>Candidat N°1 - Maxime Chevalier</h2>
-
-    <a href="pdf.pdf" class="btn" target="_blank">Télécharger le rapport 📥</a>
-
-    <div class="submenu">
-      <button onclick="openTab('p1')">Présentation</button>
-      <button onclick="openTab('p2')">Besoins</button>
-      <button onclick="openTab('p3')">Dimensionnement</button>
-      <button onclick="openTab('p4')">Automate</button>
-    </div>
-
-    <div id="p1" class="subcontent">
-      <h3>Présentation</h3>
-      <p>Présentation du site et du client.</p>
-      <img src="carte.png">
-    </div>
-
-    <div id="p2" class="subcontent">
-      <h3>Besoins</h3>
-      <p>Continuité de service, optimisation énergétique…</p>
-    </div>
-
-    <div id="p3" class="subcontent">
-      <h3>Dimensionnement</h3>
-      <p>Calcul des puissances frigorifiques…</p>
-    </div>
-
-    <div id="p4" class="subcontent">
-      <h3>Automate</h3>
-      <p>Gestion automatisée des installations.</p>
-    </div>
-
-  </div>
+<div id="c4" class="details card">
+  <h3>Barbet Antonin</h3>
+</div>
 
 </section>
-
-<!-- AUTRES -->
-<section id="pierre" class="hidden"><div class="card"><h2>Candidat N°2 - Oger Pierre</h2></div></section>
-<section id="david" class="hidden"><div class="card"><h2>Candidat N°3 - Chiron David</h2></div></section>
-<section id="antonin" class="hidden"><div class="card"><h2>Candidat N°4 - Barbet Antonin</h2></div></section>
 
 <footer>
-<p>© 2026 - Projet BTS</p>
+  © 2026 - Projet BTS
 </footer>
 
 <script>
-function show(id){
-  document.querySelectorAll("section").forEach(sec=>{
-    if(sec.id !== "accueil" && sec.id !== "candidats"){
-      sec.classList.add("hidden");
-    }
-  });
-  document.getElementById(id).classList.remove("hidden");
+
+/* SCROLL */
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-function openTab(id){
-  document.querySelectorAll(".subcontent").forEach(el=>el.style.display="none");
-  document.getElementById(id).style.display="block";
+/* CANDIDATS */
+function toggle(id){
+  let el = document.getElementById(id);
+  el.style.display = (el.style.display === "block") ? "none" : "block";
 }
 
-/* ANIMATION */
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll', () => {
-  cards.forEach(card => {
-    const top = card.getBoundingClientRect().top;
-    if (top < window.innerHeight - 50) {
-      card.classList.add('visible');
-    }
-  });
-});
-
-/* MODE PRESENTATION */
-function presentationMode(){
-  document.body.classList.toggle("presentation-mode");
-}
 </script>
 
 </body>
