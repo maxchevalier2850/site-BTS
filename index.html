@@ -2,45 +2,34 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projet BTS - Maxime Chevalier</title>
+<title>Projet lot N°9 Ouest Frais</title>
 
 <style>
 body {
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#1e3d59,#16324f);
+  font-family:Arial;
+  background:linear-gradient(135deg,#1e3d59,#16324f);
   color:white;
+  scroll-behavior:smooth;
 }
 
-/* HEADER */
 header {
   text-align:center;
-  padding:80px 20px;
+  padding:40px;
 }
 
-header h1 {
-  font-size:3em;
+header img {
+  width:120px;
 }
 
-header p {
-  opacity:0.8;
-}
-
-/* NAVBAR */
 nav {
   display:flex;
-  justify-content:space-between;
-  align-items:center;
+  justify-content:center;
+  gap:30px;
   background:rgba(0,0,0,0.3);
-  padding:15px 40px;
+  padding:15px;
   position:sticky;
   top:0;
-}
-
-.menu {
-  display:flex;
-  gap:20px;
 }
 
 nav a {
@@ -53,45 +42,26 @@ nav a:hover {
   color:#00d4ff;
 }
 
-/* SECTION */
 section {
-  max-width:1100px;
+  max-width:1000px;
   margin:auto;
-  padding:60px 20px;
+  padding:50px 20px;
 }
 
 .card {
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.1);
   padding:30px;
   border-radius:15px;
   margin:30px 0;
 }
 
-/* HERO */
-.hero {
-  text-align:center;
-  padding:100px 20px;
+h2 {
+  color:#00d4ff;
 }
 
-.hero h1 {
-  font-size:3.5em;
-}
-
-.btn {
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 25px;
-  background:#00d4ff;
-  color:black;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* CANDIDATS */
 .grid {
   display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:20px;
 }
 
@@ -100,124 +70,142 @@ section {
   padding:20px;
   border-radius:10px;
   text-align:center;
-  transition:0.3s;
+  cursor:pointer;
 }
 
 .candidat:hover {
-  transform:scale(1.05);
+  background:#00d4ff;
+  color:black;
 }
 
-/* FOOTER */
-footer {
-  text-align:center;
-  padding:20px;
-  background:rgba(0,0,0,0.4);
+img {
+  max-width:100%;
+  border-radius:10px;
+  margin-top:15px;
+}
+
+.hidden {
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-  <div><strong>Projet BTS</strong></div>
+<header>
+  <img src="logo.png">
+  <h1>Projet lot N°9 Ouest Frais</h1>
+</header>
 
-  <div class="menu">
-    <a href="#projet">Projet</a>
-    <a href="#formation">Formation</a>
-    <a href="#client">Client</a>
-    <a href="#candidats">Candidats</a>
-  </div>
+<nav>
+  <a href="#accueil">Accueil</a>
+  <a href="#candidats">Candidats</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Projet BTS Froid & Automatisme</h1>
-  <p>Étude et réalisation d’une installation frigorifique</p>
-  <a href="#projet" class="btn">Voir le projet</a>
-</div>
-
-<!-- PROJET -->
-<section id="projet">
+<!-- ACCUEIL -->
+<section id="accueil">
   <div class="card">
     <h2>Présentation du projet</h2>
     <p>
-      Ce projet a pour objectif la conception et l’optimisation d’une installation frigorifique
-      pour l’entreprise Ouest Frais, en intégrant des solutions techniques modernes,
-      une gestion automatisée et une optimisation énergétique.
-    </p>
-  </div>
-</section>
-
-<!-- FORMATION -->
-<section id="formation">
-  <div class="card">
-    <h2>Centre de formation</h2>
-    <p>
-      Ce projet a été réalisé dans le cadre du BTS au sein de la CCI Formation à Cholet,
-      établissement spécialisé dans la formation technique et industrielle.
-    </p>
-  </div>
-</section>
-
-<!-- CLIENT -->
-<section id="client">
-  <div class="card">
-
-    <h2>Présentation du client</h2>
-
-    <img src="Image2.jpg" style="width:100%; border-radius:10px; margin-bottom:20px;">
-
-    <p>
-      Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire.
-      Le projet est situé à Montaigu en Vendée.
+    Projet BTS FED réalisé pour l’entreprise Ouest Frais.
+    Installation frigorifique avec automatisation et optimisation énergétique.
     </p>
 
-    <ul>
-      <li>97 salariés</li>
-      <li>22 camions frigorifiques</li>
-      <li>5600 références</li>
-      <li>Chambres froides positives et négatives</li>
-    </ul>
-
+    <h3>Centre de formation</h3>
+    <p>CCI Formation Cholet</p>
   </div>
 </section>
 
 <!-- CANDIDATS -->
 <section id="candidats">
-  <div class="card">
-    <h2>Les candidats</h2>
+  <h2>Les candidats</h2>
 
-    <div class="grid">
+  <div class="grid">
 
-      <div class="candidat">
-        <h3>Maxime Chevalier</h3>
-        <p>Partie automate</p>
-      </div>
+    <div class="candidat" onclick="show('c1')">
+      <h3>Candidat N°1</h3>
+      <p>Maxime Chevalier</p>
+    </div>
 
-      <div class="candidat">
-        <h3>Candidat 2</h3>
-        <p>Dimensionnement</p>
-      </div>
+    <div class="candidat" onclick="show('c2')">
+      <h3>Candidat N°2</h3>
+      <p>Oger Pierre</p>
+    </div>
 
-      <div class="candidat">
-        <h3>Candidat 3</h3>
-        <p>Schémas</p>
-      </div>
+    <div class="candidat" onclick="show('c3')">
+      <h3>Candidat N°3</h3>
+      <p>Chiron David</p>
+    </div>
 
-      <div class="candidat">
-        <h3>Candidat 4</h3>
-        <p>Documentation</p>
-      </div>
-
+    <div class="candidat" onclick="show('c4')">
+      <h3>Candidat N°4</h3>
+      <p>Barbet Antonin</p>
     </div>
 
   </div>
 </section>
 
-<footer>
-  <p>© 2026 - Projet BTS</p>
-</footer>
+<!-- MAXIME -->
+<section id="c1" class="hidden">
+  <div class="card">
+    <h2>Candidat N°1 - Maxime Chevalier</h2>
+
+    <h3>Présentation du client</h3>
+    <p>
+    Ouest frais est une entreprise française spécialisée dans la distribution alimentaire.
+    Le projet se situe dans le Parc d’Activités des Marches de Bretagne, Saint-Hilaire de Loulay à Montaigu en Vendée (85).
+    Ouest frais existe depuis 1999 et propose une large gamme de produits frais, surgelés et d'épicerie.
+    L'entreprise compte 97 salariés, 22 camions frigorifiques et un chiffre d'affaires de 45M € en 2025.
+    L'entrepôt permet de stocker 5600 références pour 2100 clients avec 190 fournisseurs.
+    </p>
+
+    <img src="image.png">
+
+    <h3>Besoins</h3>
+    <p>Continuité de service, optimisation énergétique, maintenance simple…</p>
+
+    <h3>Dimensionnement</h3>
+    <p>Calcul des puissances frigorifiques, pertes de charges…</p>
+
+    <h3>Automate</h3>
+    <p>Gestion automatique des groupes froids et sécurités.</p>
+
+  </div>
+</section>
+
+<!-- AUTRES CANDIDATS -->
+<section id="c2" class="hidden">
+  <div class="card">
+    <h2>Candidat N°2 - Oger Pierre</h2>
+    <p>À compléter…</p>
+  </div>
+</section>
+
+<section id="c3" class="hidden">
+  <div class="card">
+    <h2>Candidat N°3 - Chiron David</h2>
+    <p>À compléter…</p>
+  </div>
+</section>
+
+<section id="c4" class="hidden">
+  <div class="card">
+    <h2>Candidat N°4 - Barbet Antonin</h2>
+    <p>À compléter…</p>
+  </div>
+</section>
+
+<script>
+function show(id) {
+  document.querySelectorAll("section").forEach(sec => {
+    if(sec.id.startsWith("c")) {
+      sec.classList.add("hidden");
+    }
+  });
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo(0, document.getElementById(id).offsetTop);
+}
+</script>
 
 </body>
 </html>
