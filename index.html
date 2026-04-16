@@ -124,9 +124,58 @@ line-height:1.6;
 
 <body>
 
-<header>
-<h1>Projet lot N°9 Ouest Frais</h1>
-<img src="logo-ouestfrais.png" style="width:200px;">
+<header style="
+position:relative;
+padding:25px 40px;
+background:linear-gradient(135deg,#16324f,#1f4e73);
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+border-bottom:2px solid rgba(255,255,255,0.1);
+">
+
+<img src="logo-ouestfrais.png" style="
+position:absolute;
+left:30px;
+top:50%;
+transform:translateY(-50%);
+width:190px;
+transition:0.3s;
+" 
+onmouseover="this.style.transform='translateY(-50%) scale(1.05)'" 
+onmouseout="this.style.transform='translateY(-50%) scale(1)'">
+
+<h1 style="
+margin:0;
+font-size:36px;
+letter-spacing:1px;
+font-weight:600;
+background:linear-gradient(90deg,#ffffff,#00d4ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+">
+Projet lot N°9 Ouest Frais
+</h1>
+
+<p style="
+margin-top:5px;
+font-size:14px;
+color:#cfd8e3;
+letter-spacing:1px;
+">
+BTS FED - Étude & Conception d’une installation frigorifique
+</p>
+
+<img src="logo-cci.png" style="
+position:absolute;
+right:30px;
+top:50%;
+transform:translateY(-50%);
+width:150px;
+transition:0.3s;
+" 
+onmouseover="this.style.transform='translateY(-50%) scale(1.05)'" 
+onmouseout="this.style.transform='translateY(-50%) scale(1)'">
+
 </header>
 
 <div class="menu">
