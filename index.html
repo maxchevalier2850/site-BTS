@@ -82,7 +82,7 @@ max-width:90%;
 max-height:90%;
 }
 
-/* ===== AJOUT DEVIS ===== */
+/* DEVIS */
 .devis-box{
 background:rgba(255,255,255,0.05);
 padding:30px;
@@ -133,22 +133,14 @@ line-height:1.6;
 <button onclick="show('accueil')">Accueil</button>
 <button onclick="show('commun')">Partie commune</button>
 <button onclick="show('candidats')">Candidats</button>
+<button onclick="show('dossier')">Dossier technique</button>
 </div>
 
 <!-- ACCUEIL -->
 <div id="accueil" class="section" style="display:block;">
 <div class="card">
 <h2>Présentation du client</h2>
-
-<p>
-Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire située à Montaigu en Vendée.
-Créée en 1999, elle compte 97 salariés, 22 camions frigorifiques et réalise un chiffre d'affaires de 45M€.
-</p>
-
-<p>
-L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une chambre négative (-25°C).
-</p>
-
+<p>Ouest Frais est une entreprise spécialisée dans la distribution alimentaire située à Montaigu.</p>
 <img src="carte.png">
 </div>
 </div>
@@ -191,9 +183,6 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 
 <div class="menu">
 <button onclick="show('maxime')">Candidat N°1</button>
-<button>Candidat N°2</button>
-<button>Candidat N°3</button>
-<button>Candidat N°4</button>
 </div>
 
 <button class="back" onclick="show('accueil')">Retour</button>
@@ -212,96 +201,66 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 
 <div id="schema" class="card sub">
-<h2>Schéma de principe</h2>
+<h2>Schéma</h2>
 <img src="schema-principe-rtap.png">
-
-<h3>Nomenclature</h3>
-<img src="nomenclature-rtap.png">
-
-<h3>Diagramme enthalpique</h3>
-<img src="diagramme-enthalpie.png">
 </div>
 
 <div id="formules" class="card sub">
 <h2>Formules</h2>
-<div class="grid">
 <img src="formule-chaud.png">
-<img src="formule-froid.png">
-<img src="kv.png">
-<img src="pui-elec.png">
-<img src="pui-hydrau.png">
-<img src="formule-hmt.png">
-</div>
 </div>
 
 <div id="pompes" class="card sub">
 <h2>Pompes</h2>
-<div class="grid">
 <img src="pompe-chaud-gf1.png">
-<img src="pompe-chaud-gf2.png">
-<img src="pompe-froid-gf1.png">
-<img src="pompe-froid-gf2.png">
-</div>
 </div>
 
 <div id="elec" class="card sub">
-<h2>Schémas électriques</h2>
-<div class="grid">
-<img src="schema-elec-gf1.png" style="transform:rotate(-90deg);">
-<img src="schema-elec-gf2.png" style="transform:rotate(-90deg);">
-</div>
+<h2>Électricité</h2>
+<img src="schema-elec-gf1.png">
 </div>
 
 <div id="regul" class="card sub">
 <h2>Régulation</h2>
-<img src="schema-regul.png" style="transform:rotate(-90deg);">
-<p>Automate CAREL permettant la gestion complète des groupes froids et des sécurités.</p>
+<img src="schema-regul.png">
 </div>
 
-<!-- ===== DEVIS AMÉLIORÉ ===== -->
 <div id="devis" class="card sub">
-
-<h2>Analyse financière du projet</h2>
-
+<h2>Devis</h2>
 <div class="devis-box">
-
 <img src="devis.png" class="devis-img">
-
-<a href="devis.pdf" download class="btn-devis">
-📄 Télécharger le devis
-</a>
-
-<div class="analyse">
-
-<p>
-Le coût total du projet s’élève à <b>1,68 million d’euros TTC</b>.
-Ce montant comprend l’ensemble des équipements frigorifiques,
-l’installation, la régulation ainsi que la mise en service.
-</p>
-
-<p>
-La partie la plus importante du budget concerne la production frigorifique,
-notamment les groupes TRANE et les équipements hydrauliques associés.
-</p>
-
-<p>
-Les systèmes électriques et de régulation permettent d’assurer
-un fonctionnement automatique, sécurisé et optimisé de l’installation.
-</p>
-
-<p>
-Enfin, les prestations de maintenance et de mise en service garantissent
-la performance et la durabilité du système dans le temps.
-</p>
-
 </div>
-
-</div>
-
 </div>
 
 <button class="back" onclick="show('candidats')">Retour</button>
+</div>
 
+<!-- DOSSIER TECHNIQUE -->
+<div id="dossier" class="section">
+
+<div class="menu">
+<button onclick="showSubDoc('gf')">Groupes froids</button>
+<button onclick="showSubDoc('pompes-doc')">Pompes</button>
+<button onclick="showSubDoc('ballon')">Ballon</button>
+<button onclick="showSubDoc('tuyaux')">Tuyauterie</button>
+<button onclick="showSubDoc('vanne-ta')">Vanne TA</button>
+<button onclick="showSubDoc('controleur')">Contrôleur</button>
+<button onclick="showSubDoc('isolement')">Isolement</button>
+</div>
+
+<div id="pompes-doc" class="card subdoc">
+<h2>Pompes</h2>
+
+<h3>Chaud</h3>
+<img src="pompe-chaud-gf1.png">
+<img src="pompe-chaud-gf2.png">
+
+<h3>Froid</h3>
+<img src="pompe-froid-gf1.png">
+<img src="pompe-froid-gf2.png">
+</div>
+
+<button class="back" onclick="show('accueil')">Retour</button>
 </div>
 
 <!-- ZOOM -->
@@ -320,16 +279,10 @@ document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll', () => {
-cards.forEach(card => {
-const top = card.getBoundingClientRect().top;
-if(top < window.innerHeight - 50){
-card.classList.add('visible');
+function showSubDoc(id){
+document.querySelectorAll('.subdoc').forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
 }
-});
-});
 
 function openZoom(src){
 document.getElementById("zoom").style.display="flex";
