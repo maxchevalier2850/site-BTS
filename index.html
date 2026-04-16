@@ -62,19 +62,20 @@ section{
 
 /* IMAGES */
 img{
-  width:100%;
-  margin-top:20px;
+  display:block;
+  margin:20px auto;
   border-radius:10px;
 }
 
-.logo{
-  width:250px;
-  display:block;
-  margin:auto;
-}
+/* tailles */
+.logo{ width:250px; }
+.logo-large{ width:350px; }
+.img-medium{ width:70%; }
+.img-small{ width:50%; }
 
-.logo-large{
-  width:350px;
+/* rotation */
+.rotate{
+  transform:rotate(-90deg);
 }
 
 /* GRID */
@@ -121,29 +122,53 @@ img{
 
 <div class="card">
 <h2>Présentation du client</h2>
+
 <img src="logo-ouestfrais.png" class="logo">
 
 <p>
 Ouest frais est une entreprise française spécialisée dans la distribution alimentaire.
-Le projet se situe à Montaigu en Vendée (85).
+Le projet se situe dans le Parc d’Activités des Marches de Bretagne, Saint-Hilaire de Loulay à Montaigu en Vendée (85).
 </p>
 
-<img src="carte.png" style="width:60%; display:block; margin:auto;">
+<p>
+Ouest frais existe depuis 1999 et propose une large gamme de produits frais, surgelés et d'épicerie pour la restauration traditionnelle, collective et les artisans des métiers de bouche.
+</p>
+
+<p>
+L’entreprise compte 97 salariés, dispose de 22 camions frigorifiques et réalise un chiffre d'affaires de 45M €.
+</p>
+
+<p>
+L’entrepôt permet de stocker 5600 références pour 2100 clients et est approvisionné par 190 fournisseurs.
+</p>
+
+<p>
+Il est composé de :
+- deux quais à +2 / +4 °C  
+- deux chambres froides positives  
+- une chambre froide négative à -25 °C  
+- une future chambre positive  
+</p>
+
+<img src="carte.png" class="img-small">
+
 </div>
 
 <div class="card">
 <h2>Centre de formation</h2>
 <img src="logo-cci.png" class="logo">
 
-<p>CCI formation Cholet – BTS Froid & Automatisme</p>
+<p>
+Formation réalisée à la CCI de Cholet en BTS Froid & Automatisme.
+</p>
 </div>
 
 <div class="card">
 <h2>Technologies utilisées</h2>
 
 <div class="grid">
-  <img src="trane.jpg">
-  <img src="scm.png">
+  <img src="trane.jpg" class="img-medium">
+  <img src="scm.png" class="img-medium">
 </div>
 
 </div>
@@ -157,12 +182,12 @@ Le projet se situe à Montaigu en Vendée (85).
 <h2>Planning du projet</h2>
 
 <p>
-Le projet est organisé en plusieurs phases : études, approvisionnement,
-installation et mise en service.
+Le projet suit différentes phases : études d’exécution, approvisionnement,
+préparation du chantier, installation frigorifique, essais et mise en service.
 </p>
 
-<img src="gantt-simple.png">
-<img src="gantt-detail.png">
+<img src="gantt-simple.png" class="img-medium rotate">
+<img src="gantt-detail.png" class="img-medium rotate">
 
 </div>
 
@@ -175,33 +200,33 @@ installation et mise en service.
 <h2>Bilan frigorifique</h2>
 
 <p>
-Le dimensionnement est basé sur les apports thermiques,
-les volumes et les conditions de fonctionnement.
+Le dimensionnement prend en compte les apports thermiques :
+parois, renouvellement d’air, apports internes et éclairage.
 </p>
 
-<img src="bilan-frigorifique.png">
+<img src="bilan-frigorifique.png" class="img-medium">
 
 </div>
 
 <div class="card">
-<h2>Plans et implantation</h2>
+<h2>Plans du site</h2>
 
-<img src="plan-site.png">
-<img src="plan-3d.jpg">
+<img src="plan-site.png" class="img-medium">
+<img src="plan-3d.jpg" class="img-medium">
 
 </div>
 
 <div class="card">
-<h2>Schéma de l'installation</h2>
+<h2>Schéma de principe</h2>
 
-<img src="schema-installation.png">
+<img src="schema-installation.png" class="img-medium rotate">
 
 </div>
 
 <div class="card">
 <h2>Nomenclature</h2>
 
-<img src="nomenclature.png">
+<img src="nomenclature.png" class="img-medium rotate">
 
 </div>
 
@@ -234,7 +259,10 @@ Candidat N°4
 
 <div id="c1" class="card hidden">
 <h3>Maxime Chevalier</h3>
-<p>Partie personnelle : schémas, dimensionnement, automatisme...</p>
+<p>
+Réalisation du schéma de principe, dimensionnement,
+programmation automate et analyse énergétique.
+</p>
 </div>
 
 <div id="c2" class="card hidden">
