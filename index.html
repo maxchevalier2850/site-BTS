@@ -6,13 +6,83 @@
 
 <style>
 body{margin:0;font-family:Segoe UI;background:#0f2a3d;color:white;text-align:center;}
+
 header{padding:40px;background:#16324f;}
-.menu button{margin:10px;padding:15px;border:none;border-radius:10px;background:#00d4ff;font-weight:bold;cursor:pointer;}
-.section{display:none;padding:40px;max-width:1200px;margin:auto;}
-.card{background:rgba(255,255,255,0.05);padding:25px;border-radius:15px;margin:20px 0;}
-img{max-width:60%;margin:20px auto;display:block;border-radius:10px;}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.back{background:red;color:white;padding:10px;border:none;margin-top:20px;}
+
+.menu button{
+margin:10px;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#00d4ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.section{
+display:none;
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:15px;
+margin:20px 0;
+
+/* ANIMATION */
+opacity:0;
+transform:translateY(40px);
+transition:0.6s;
+}
+
+.card.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+img{
+max-width:60%;
+margin:20px auto;
+display:block;
+border-radius:10px;
+cursor:pointer; /* pour zoom */
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.back{
+background:red;
+color:white;
+padding:10px;
+border:none;
+margin-top:20px;
+}
+
+/* ZOOM */
+.zoom-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+.zoom-overlay img{
+max-width:90%;
+max-height:90%;
+}
 </style>
 </head>
 
@@ -71,7 +141,7 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <div class="card">
 <h2>Réglementation</h2>
 <div class="grid">
-<img src="tableau-hfo.png"> <!-- déplacé ici -->
+<img src="tableau-hfo.png">
 <img src="tableau-regle-1.png">
 <img src="tableau-regle-2.png">
 </div>
@@ -106,10 +176,10 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 
 <div id="schema" class="card sub">
 <h2>Schéma de principe</h2>
-<img src="schema-principe-rtap.png"> <!-- corrigé -->
+<img src="schema-principe-rtap.png">
 
 <h3>Nomenclature</h3>
-<img src="nomenclature-rtap.png"> <!-- corrigé -->
+<img src="nomenclature-rtap.png">
 
 <h3>Diagramme enthalpique</h3>
 <img src="diagramme-enthalpie.png">
@@ -147,22 +217,58 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 
 <div id="regul" class="card sub">
 <h2>Régulation</h2>
-<img src="schema-regul.png" style="transform:rotate(-90deg);"> <!-- déplacé -->
+<img src="schema-regul.png" style="transform:rotate(-90deg);">
 <p>Automate CAREL avec gestion des pompes et sécurité.</p>
 </div>
 
 <button class="back" onclick="show('candidats')">Retour</button>
 </div>
 
+<!-- ZOOM -->
+<div id="zoom" class="zoom-overlay" onclick="closeZoom()">
+<img id="zoom-img">
+</div>
+
 <script>
+
 function show(id){
 document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
+
 function showSub(id){
 document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
+
+/* ANIMATION */
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+cards.forEach(card => {
+const top = card.getBoundingClientRect().top;
+if(top < window.innerHeight - 50){
+card.classList.add('visible');
+}
+});
+});
+
+/* ZOOM */
+function openZoom(src){
+document.getElementById("zoom").style.display="flex";
+document.getElementById("zoom-img").src=src;
+}
+
+function closeZoom(){
+document.getElementById("zoom").style.display="none";
+}
+
+document.querySelectorAll("img").forEach(img=>{
+img.addEventListener("click",()=>{
+openZoom(img.src);
+});
+});
+
 </script>
 
 </body>
