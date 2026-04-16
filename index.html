@@ -5,68 +5,56 @@
 <title>Projet lot N°9 Ouest Frais</title>
 
 <style>
+
 body{
 margin:0;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI;
 background:#0f2a3d;
 color:white;
 }
 
 /* HEADER */
 header{
-background:linear-gradient(135deg,#1e3d59,#16324f);
-padding:40px;
 text-align:center;
+padding:40px;
+background:#16324f;
 }
 
-/* NAVBAR */
+/* MENU */
 nav{
 display:flex;
 justify-content:center;
-gap:25px;
+gap:30px;
 background:#122b40;
 padding:15px;
 position:sticky;
 top:0;
-z-index:1000;
 }
 
 nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
-transition:0.3s;
-}
-
-nav a:hover{
-color:#00d4ff;
-}
-
-/* BOUTON MENU */
-.menu-box{
-position:fixed;
-top:20px;
-left:20px;
-background:#00d4ff;
-padding:10px;
-border-radius:10px;
-cursor:pointer;
-color:black;
-font-weight:bold;
 }
 
 /* SECTIONS */
 section{
-padding:60px;
-max-width:1300px;
+max-width:1200px;
 margin:auto;
+padding:60px 20px;
 }
 
+h2{
+border-bottom:2px solid #00d4ff;
+padding-bottom:10px;
+}
+
+/* CARDS */
 .card{
 background:rgba(255,255,255,0.05);
 padding:25px;
 border-radius:15px;
-margin:25px 0;
+margin:30px 0;
 }
 
 /* IMAGES */
@@ -77,76 +65,76 @@ border-radius:10px;
 }
 
 .small{width:30%;}
-.medium{width:60%;}
-.large{width:85%;}
+.medium{width:55%;}
+.large{width:75%;}
 
-/* FLEX */
-.flex{
-display:flex;
-gap:30px;
+/* ROTATIONS */
+.rotate-left{
+transform:rotate(-90deg);
+width:45%;
 }
 
-/* SIDEBAR */
-.sidebar{
-width:250px;
-background:#16324f;
-padding:20px;
-border-radius:10px;
+.rotate-right{
+transform:rotate(90deg);
+width:45%;
 }
 
-.sidebar a{
-display:block;
-color:white;
-margin:10px 0;
-text-decoration:none;
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
-
-.content{flex:1;}
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
 <h1>Projet lot N°9 Ouest Frais</h1>
 <img src="logo-ouestfrais.png" class="small">
-<img src="logo-cci.png" class="small">
 </header>
 
-<!-- NAV -->
 <nav>
 <a href="#accueil">Accueil</a>
 <a href="#commun">Partie commune</a>
-<a href="#candidats">Candidats</a>
 <a href="#maxime">Candidat N°1</a>
 </nav>
 
 <!-- ACCUEIL -->
 <section id="accueil">
 
+<h2>Présentation du projet</h2>
+
 <div class="card">
-<h2>Présentation du client</h2>
 <p>
 Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
-(👉 colle ici ton texte Word complet)
+👉 (colle ton texte Word ici)
 </p>
 
 <img src="carte.png" class="small">
 </div>
 
 <div class="card">
-<h2>Implantation du site</h2>
+<h3>Implantation</h3>
+
+<div class="grid">
 <img src="implantation.png" class="medium">
-<img src="plan-3d.jpg" class="medium">
 <img src="plan-site.png" class="medium">
 </div>
 
+</div>
+
 <div class="card">
-<h2>Groupes froids</h2>
+<h3>Groupes froids</h3>
+
+<div class="grid">
 <img src="trane.png" class="medium">
 <img src="trane-2.png" class="medium">
+</div>
+
 </div>
 
 </section>
@@ -158,12 +146,12 @@ Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
 
 <div class="card">
 <h3>Schéma de principe</h3>
-<img src="schema-principe-rtap.png" style="width:50%; transform:rotate(-90deg);">
+<img src="schema-principe-rtap.png" class="rotate-left">
 </div>
 
 <div class="card">
 <h3>Nomenclature</h3>
-<img src="nomenclature-rtap.png" style="width:50%; transform:rotate(-90deg);">
+<img src="nomenclature-rtap.png" class="rotate-left">
 </div>
 
 <div class="card">
@@ -172,32 +160,16 @@ Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
 </div>
 
 <div class="card">
-<h3>Diagrammes de Gantt</h3>
-<img src="gantt-simple.png" class="medium">
-<img src="gantt-detail.png" class="medium">
+<h3>Comparaison des fluides</h3>
+
+<div class="grid">
+<img src="tableau-r1234ze.png">
+<img src="tableau-hfo.png">
+<img src="tableau-nh3.png">
+<img src="tableau-r290.png">
+<img src="tableau-co2.png">
 </div>
 
-<div class="card">
-<h3>Comparaison fluides</h3>
-<img src="tableau-r1234ze.png" class="medium">
-<img src="tableau-hfo.png" class="medium">
-<img src="tableau-nh3.png" class="medium">
-<img src="tableau-r290.png" class="medium">
-<img src="tableau-co2.png" class="medium">
-</div>
-
-</section>
-
-<!-- CANDIDATS -->
-<section id="candidats">
-
-<h2>Les candidats</h2>
-
-<div class="card">
-<p>Candidat N°1 : Chevalier Maxime</p>
-<p>Candidat N°2 : Oger Pierre</p>
-<p>Candidat N°3 : Chiron David</p>
-<p>Candidat N°4 : Barbet Antonin</p>
 </div>
 
 </section>
@@ -205,67 +177,72 @@ Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
 <!-- PARTIE MAXIME -->
 <section id="maxime">
 
-<div class="flex">
+<h2>Candidat N°1 – Chevalier Maxime</h2>
 
-<div class="sidebar">
-<h3>Sommaire</h3>
-<a href="#bilan">Bilan</a>
-<a href="#abaque">Abaque</a>
-<a href="#pompes">Pompes</a>
-<a href="#elec">Électricité</a>
-<a href="#regul">Régulation</a>
-<a href="#devis">Devis</a>
+<div class="card">
+<h3>Bilan frigorifique</h3>
+
+<div class="grid">
+<img src="bilan-frigo.png">
+<img src="bilan-detail.png">
 </div>
 
-<div class="content">
-
-<div class="card" id="bilan">
-<h2>Bilan frigorifique</h2>
-<img src="bilan-frigo.png" class="medium">
-<img src="bilan-detail.png" class="medium">
 </div>
 
 <div class="card">
-<h2>Formules</h2>
-<img src="formule-chaud.png" class="small">
-<img src="formule-froid.png" class="small">
-<img src="kv.png" class="small">
-<img src="pui-elec.png" class="small">
-<img src="pui-hydrau.png" class="small">
-<img src="formule-hmt.png" class="small">
+<h3>Formules</h3>
+
+<div class="grid">
+<img src="formule-chaud.png">
+<img src="formule-froid.png">
+<img src="kv.png">
+<img src="pui-elec.png">
+<img src="pui-hydrau.png">
+<img src="formule-hmt.png">
 </div>
 
-<div class="card" id="abaque">
-<h2>Abaque</h2>
+</div>
+
+<div class="card">
+<h3>Abaque</h3>
 <img src="abaque.png" class="large">
 </div>
 
-<div class="card" id="pompes">
-<h2>Dimensionnement des pompes</h2>
-<img src="pompe-chaud-gf1.png" class="medium">
-<img src="pompe-chaud-gf2.png" class="medium">
-<img src="pompe-froid-gf1.png" class="medium">
-<img src="pompe-froid-gf2.png" class="medium">
-</div>
+<div class="card">
+<h3>Dimensionnement des pompes</h3>
 
-<div class="card" id="elec">
-<h2>Schémas électriques</h2>
-<img src="schema-elec-gf1.png" style="width:45%; transform:rotate(-90deg);">
-<img src="schema-elec-gf2.png" style="width:45%; transform:rotate(-90deg);">
-</div>
-
-<div class="card" id="regul">
-<h2>Régulation</h2>
-<img src="schema-regul.png" style="width:50%; transform:rotate(-90deg);">
-</div>
-
-<div class="card" id="devis">
-<h2>Devis</h2>
-<img src="tableau-regle-1.png" class="medium">
-<img src="tableau-regle-2.png" class="medium">
+<div class="grid">
+<img src="pompe-chaud-gf1.png">
+<img src="pompe-chaud-gf2.png">
+<img src="pompe-froid-gf1.png">
+<img src="pompe-froid-gf2.png">
 </div>
 
 </div>
+
+<div class="card">
+<h3>Schémas électriques</h3>
+
+<div class="grid">
+<img src="schema-elec-gf1.png" class="rotate-left">
+<img src="schema-elec-gf2.png" class="rotate-left">
+</div>
+
+</div>
+
+<div class="card">
+<h3>Régulation</h3>
+<img src="schema-regul.png" class="rotate-left">
+</div>
+
+<div class="card">
+<h3>Devis</h3>
+
+<div class="grid">
+<img src="tableau-regle-1.png">
+<img src="tableau-regle-2.png">
+</div>
+
 </div>
 
 </section>
