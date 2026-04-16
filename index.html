@@ -10,14 +10,17 @@ margin:0;
 font-family:'Segoe UI',sans-serif;
 background:#0f2a3d;
 color:white;
+scroll-behavior:smooth;
 }
 
+/* HEADER */
 header{
 text-align:center;
 padding:50px;
 background:linear-gradient(135deg,#1e3d59,#16324f);
 }
 
+/* NAV */
 nav{
 display:flex;
 justify-content:center;
@@ -26,86 +29,116 @@ background:#122b40;
 padding:15px;
 position:sticky;
 top:0;
+z-index:10;
 }
 
 nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
+transition:0.3s;
 }
 
+nav a:hover{
+color:#00d4ff;
+}
+
+/* SECTION */
 section{
 padding:60px 20px;
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 }
 
+/* CARD */
 .card{
 background:rgba(255,255,255,0.05);
 padding:30px;
 border-radius:15px;
 margin:30px 0;
+opacity:0;
+transform:translateY(40px);
+transition:0.6s;
 }
 
+.card.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* IMAGES */
 img{
 display:block;
 margin:20px auto;
 border-radius:10px;
+transition:0.3s;
 }
 
-/* tailles images */
-.logo{ width:250px; }
-.logo-large{ width:350px; }
-.img-medium{ width:60%; }
-.img-small{ width:40%; }
-
-/* tableaux */
-.table-box{
-background:#16324f;
-padding:15px;
-border-radius:10px;
-margin:20px 0;
-overflow-x:auto;
+img:hover{
+transform:scale(1.05);
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-}
+.img-small{width:40%;}
+.img-medium{width:60%;}
 
-th, td{
-border:1px solid #00d4ff;
-padding:8px;
-text-align:center;
-}
+/* ROTATION */
+.rotate-left{transform:rotate(-90deg);}
+.rotate-right{transform:rotate(90deg);}
 
-th{
-background:#00d4ff;
-color:black;
-}
-
-/* grid */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
+/* FLEX */
+.flex{
+display:flex;
 gap:30px;
 }
 
-/* candidats */
-.candidat{
+/* SIDEBAR */
+.sidebar{
+width:250px;
+position:sticky;
+top:100px;
 background:#16324f;
 padding:20px;
 border-radius:10px;
-cursor:pointer;
+height:fit-content;
 }
 
-.candidat:hover{
-background:#1e3d59;
+.sidebar a{
+display:block;
+color:white;
+margin:10px 0;
+text-decoration:none;
+transition:0.3s;
 }
 
-.hidden{
-display:none;
+.sidebar a:hover{
+color:#00d4ff;
 }
+
+/* CONTENU */
+.content{flex:1;}
+
+/* BOUTON */
+.btn{
+display:inline-block;
+padding:10px 20px;
+background:#00d4ff;
+color:black;
+border-radius:8px;
+text-decoration:none;
+margin-top:15px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.btn:hover{
+background:white;
+}
+
+/* LISTE */
+ul{
+line-height:1.8;
+}
+
 </style>
 </head>
 
@@ -113,14 +146,13 @@ display:none;
 
 <header>
 <h1>Projet lot N°9 Ouest Frais</h1>
-<img src="logo-ouestfrais.png" class="logo-large">
+<img src="logo-ouestfrais.png" class="img-small">
 </header>
 
 <nav>
 <a href="#accueil">Accueil</a>
 <a href="#projet">Projet</a>
-<a href="#dimensionnement">Dimensionnement</a>
-<a href="#candidats">Candidats</a>
+<a href="#perso">Candidat N°1</a>
 </nav>
 
 <!-- ACCUEIL -->
@@ -128,28 +160,28 @@ display:none;
 
 <div class="card">
 <h2>Présentation du client</h2>
-<img src="logo-ouestfrais.png" class="logo">
 
 <p>
-Ouest frais est une entreprise spécialisée dans la distribution alimentaire située à Montaigu.
-Elle possède plusieurs chambres froides positives et négatives.
+Ouest Frais est une entreprise spécialisée dans la distribution alimentaire,
+située à Montaigu en Vendée. Elle dispose de 97 salariés et de 22 camions frigorifiques.
 </p>
 
 <img src="carte.png" class="img-small">
+
 </div>
 
 <div class="card">
-<h2>Centre de formation</h2>
-<img src="logo-cci.png" class="logo">
-<p>CCI Cholet - BTS FED</p>
-</div>
+<h2>Objectifs du projet</h2>
 
-<div class="card">
-<h2>Technologies</h2>
-<div class="grid">
-<img src="trane.jpg" class="img-medium">
-<img src="scm.png" class="img-medium">
-</div>
+<ul>
+<li>Continuité de service</li>
+<li>Sécurité des installations</li>
+<li>Optimisation énergétique</li>
+<li>Réduction de l’impact environnemental</li>
+</ul>
+
+<a href="pdf.pdf" class="btn">📄 Télécharger le rapport</a>
+
 </div>
 
 </section>
@@ -158,39 +190,9 @@ Elle possède plusieurs chambres froides positives et négatives.
 <section id="projet">
 
 <div class="card">
-<h2>Planning (Gantt)</h2>
-
-<p>Organisation du projet en phases principales.</p>
-
+<h2>Planning</h2>
 <img src="gantt-simple.png" style="width:40%; transform:rotate(90deg);">
 <img src="gantt-detail.png" style="width:40%; transform:rotate(-90deg);">
-
-</div>
-
-</section>
-
-<!-- DIMENSIONNEMENT -->
-<section id="dimensionnement">
-
-<div class="card">
-<h2>Bilan frigorifique</h2>
-<img src="bilan-frigorifique.png" class="img-medium">
-
-<div class="table-box">
-<table>
-<tr><th>Élément</th><th>Valeur</th></tr>
-<tr><td>Puissance</td><td>475 kW</td></tr>
-<tr><td>Température</td><td>-7 / -2 °C</td></tr>
-<tr><td>Fluide</td><td>Glycol MPG</td></tr>
-</table>
-</div>
-
-</div>
-
-<div class="card">
-<h2>Plans</h2>
-<img src="plan-site.png" class="img-medium">
-<img src="plan-3d.jpg" class="img-medium">
 </div>
 
 <div class="card">
@@ -201,61 +203,89 @@ Elle possède plusieurs chambres froides positives et négatives.
 <div class="card">
 <h2>Nomenclature</h2>
 <img src="nomenclature.png" style="width:45%; transform:rotate(-90deg);">
-
-<div class="table-box">
-<table>
-<tr><th>Équipement</th><th>Quantité</th></tr>
-<tr><td>Pompe</td><td>4</td></tr>
-<tr><td>Groupe froid</td><td>3</td></tr>
-<tr><td>Vannes</td><td>Multiple</td></tr>
-</table>
-</div>
-
 </div>
 
 </section>
 
-<!-- CANDIDATS -->
-<section id="candidats">
+<!-- PARTIE PERSO -->
+<section id="perso">
 
-<h2>Les candidats</h2>
+<div class="flex">
 
-<div class="grid">
+<!-- MENU -->
+<div class="sidebar">
+<h3>Sommaire</h3>
+<a href="#dim">Dimensionnement</a>
+<a href="#reseau">Réseaux</a>
+<a href="#pompes">Pompes</a>
+<a href="#auto">Automate</a>
+</div>
 
-<div class="candidat" onclick="toggle('c1')">Candidat N°1</div>
-<div class="candidat" onclick="toggle('c2')">Candidat N°2</div>
-<div class="candidat" onclick="toggle('c3')">Candidat N°3</div>
-<div class="candidat" onclick="toggle('c4')">Candidat N°4</div>
+<!-- CONTENU -->
+<div class="content">
+
+<div class="card" id="dim">
+<h2>Dimensionnement</h2>
+
+<p>
+Les groupes froids ont été dimensionnés avec une puissance de 475 kW
+et une récupération de chaleur de 818 kW.
+</p>
+
+<img src="bilan-frigorifique.png" class="img-medium">
+</div>
+
+<div class="card" id="reseau">
+<h2>Réseaux hydrauliques</h2>
+
+<p>
+Les réseaux sont en inox avec isolation thermique pour limiter les pertes.
+</p>
+
+<img src="plan-3d.jpg" class="img-medium">
+</div>
+
+<div class="card" id="pompes">
+<h2>Pompes</h2>
+
+<ul>
+<li>GF1 froid : 12,36 kW</li>
+<li>GF1 chaud : 19,43 kW</li>
+<li>GF2 froid : 9,30 kW</li>
+<li>GF2 chaud : 23,52 kW</li>
+</ul>
 
 </div>
 
-<div id="c1" class="card hidden">
-<h3>Maxime Chevalier</h3>
+<div class="card" id="auto">
+<h2>Automate</h2>
 
-<p>Travail sur dimensionnement, schéma et automatisme.</p>
+<p>
+Automate CAREL avec alternance automatique et gestion des défauts.
+</p>
 
-<div class="table-box">
-<table>
-<tr><th>Pompe</th><th>Puissance</th></tr>
-<tr><td>P1</td><td>12 kW</td></tr>
-<tr><td>P2</td><td>19 kW</td></tr>
-<tr><td>P3</td><td>9 kW</td></tr>
-</table>
 </div>
 
 </div>
 
-<div id="c2" class="card hidden"><h3>Oger Pierre</h3></div>
-<div id="c3" class="card hidden"><h3>Chiron David</h3></div>
-<div id="c4" class="card hidden"><h3>Barbet Antonin</h3></div>
+</div>
 
 </section>
 
 <script>
-function toggle(id){
-let el = document.getElementById(id);
-el.classList.toggle("hidden");
+
+/* ANIMATION SCROLL */
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+cards.forEach(card => {
+const top = card.getBoundingClientRect().top;
+if(top < window.innerHeight - 50){
+card.classList.add('visible');
 }
+});
+});
+
 </script>
 
 </body>
