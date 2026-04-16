@@ -1,275 +1,203 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Projet lot N°9 Ouest Frais</title>
+<!-- EXEMPLE STRUCTURE AVEC TEXTES AJOUTÉS -->
 
-<style>
-body{margin:0;font-family:Segoe UI;background:#0f2a3d;color:white;text-align:center;}
-
-header{padding:40px;background:#16324f;}
-
-.menu button{
-margin:10px;
-padding:15px;
-border:none;
-border-radius:10px;
-background:#00d4ff;
-font-weight:bold;
-cursor:pointer;
-}
-
-.section{
-display:none;
-padding:40px;
-max-width:1200px;
-margin:auto;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:15px;
-margin:20px 0;
-
-/* ANIMATION */
-opacity:0;
-transform:translateY(40px);
-transition:0.6s;
-}
-
-.card.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-img{
-max-width:60%;
-margin:20px auto;
-display:block;
-border-radius:10px;
-cursor:pointer; /* pour zoom */
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-.back{
-background:red;
-color:white;
-padding:10px;
-border:none;
-margin-top:20px;
-}
-
-/* ZOOM */
-.zoom-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:1000;
-}
-
-.zoom-overlay img{
-max-width:90%;
-max-height:90%;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>Projet lot N°9 Ouest Frais</h1>
-<img src="logo-ouestfrais.png" style="width:200px;">
-</header>
-
-<div class="menu">
-<button onclick="show('accueil')">Accueil</button>
-<button onclick="show('commun')">Partie commune</button>
-<button onclick="show('candidats')">Candidats</button>
-</div>
-
-<!-- ACCUEIL -->
-<div id="accueil" class="section" style="display:block;">
-<div class="card">
-<h2>Présentation du client</h2>
-
-<p>
-Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire située à Montaigu en Vendée.
-Créée en 1999, elle compte 97 salariés, 22 camions frigorifiques et réalise un chiffre d'affaires de 45M€.
-</p>
-
-<p>
-L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une chambre négative (-25°C).
-</p>
-
-<img src="carte.png">
-</div>
-</div>
-
-<!-- PARTIE COMMUNE -->
-<div id="commun" class="section">
-
+<!-- BILAN FRIGO -->
 <div class="card">
 <h2>Bilan frigorifique</h2>
+
 <div class="grid">
+<div>
 <img src="bilan-frigo.png">
+<p>
+Ce bilan permet d’évaluer les apports thermiques de la chambre froide afin de dimensionner les groupes frigorifiques.
+</p>
+</div>
+
+<div>
 <img src="bilan-detail.png">
+<p>
+Ce tableau détaille les différents apports (parois, air, produits) nécessaires au calcul de la puissance frigorifique.
+</p>
 </div>
 </div>
 
+</div>
+
+<!-- FLUIDES -->
 <div class="card">
 <h2>Comparaison des fluides</h2>
+
 <div class="grid">
+
+<div>
 <img src="tableau-r1234ze.png">
+<p>Fluide HFO à faible impact environnemental utilisé pour le froid positif.</p>
+</div>
+
+<div>
 <img src="tableau-nh3.png">
+<p>Ammoniac performant mais contraignant en termes de sécurité.</p>
+</div>
+
+<div>
 <img src="tableau-r290.png">
+<p>Propane écologique avec un bon rendement mais inflammable.</p>
+</div>
+
+<div>
 <img src="tableau-co2.png">
+<p>CO₂ naturel utilisé pour le froid négatif avec faible impact carbone.</p>
+</div>
+
 </div>
 </div>
 
+<!-- REGLEMENTATION -->
 <div class="card">
 <h2>Réglementation</h2>
+
 <div class="grid">
+
+<div>
 <img src="tableau-hfo.png">
+<p>
+Ce tableau présente les limites d’utilisation des fluides HFO selon la réglementation F-Gaz.
+</p>
+</div>
+
+<div>
 <img src="tableau-regle-1.png">
+<p>
+Règles de sécurité concernant l’installation et l’exploitation des systèmes frigorifiques.
+</p>
+</div>
+
+<div>
 <img src="tableau-regle-2.png">
+<p>
+Contraintes environnementales liées aux émissions de gaz à effet de serre.
+</p>
+</div>
+
 </div>
 </div>
 
-<button class="back" onclick="show('accueil')">Retour</button>
-</div>
-
-<!-- CANDIDATS -->
-<div id="candidats" class="section">
-
-<div class="menu">
-<button onclick="show('maxime')">Candidat N°1</button>
-<button>Candidat N°2</button>
-<button>Candidat N°3</button>
-<button>Candidat N°4</button>
-</div>
-
-<button class="back" onclick="show('accueil')">Retour</button>
-</div>
-
-<!-- MAXIME -->
-<div id="maxime" class="section">
-
-<div class="menu">
-<button onclick="showSub('schema')">Schéma</button>
-<button onclick="showSub('formules')">Formules</button>
-<button onclick="showSub('pompes')">Pompes</button>
-<button onclick="showSub('elec')">Élec</button>
-<button onclick="showSub('regul')">Régulation</button>
-</div>
-
-<div id="schema" class="card sub">
+<!-- SCHEMA -->
+<div class="card">
 <h2>Schéma de principe</h2>
+
 <img src="schema-principe-rtap.png">
+<p>
+Ce schéma représente le fonctionnement global de l’installation et la circulation des fluides.
+</p>
 
 <h3>Nomenclature</h3>
 <img src="nomenclature-rtap.png">
+<p>
+Liste complète des équipements utilisés dans le système frigorifique.
+</p>
 
 <h3>Diagramme enthalpique</h3>
 <img src="diagramme-enthalpie.png">
+<p>
+Permet d’analyser les transformations thermodynamiques du fluide frigorigène.
+</p>
+
 </div>
 
-<div id="formules" class="card sub">
+<!-- FORMULES -->
+<div class="card">
 <h2>Formules</h2>
+
 <div class="grid">
+
+<div>
 <img src="formule-chaud.png">
+<p>Calcul de la puissance thermique en mode chaud.</p>
+</div>
+
+<div>
 <img src="formule-froid.png">
+<p>Calcul de la puissance frigorifique nécessaire.</p>
+</div>
+
+<div>
 <img src="kv.png">
+<p>Coefficient Kv utilisé pour le dimensionnement des vannes.</p>
+</div>
+
+<div>
 <img src="pui-elec.png">
+<p>Puissance électrique consommée par les équipements.</p>
+</div>
+
+<div>
 <img src="pui-hydrau.png">
+<p>Puissance hydraulique liée au débit et à la pression.</p>
+</div>
+
+<div>
 <img src="formule-hmt.png">
+<p>Calcul de la hauteur manométrique totale des pompes.</p>
+</div>
+
 </div>
 </div>
 
-<div id="pompes" class="card sub">
-<h2>Pompes</h2>
+<!-- POMPES -->
+<div class="card">
+<h2>Dimensionnement des pompes</h2>
+
 <div class="grid">
+
+<div>
 <img src="pompe-chaud-gf1.png">
+<p>Pompe du circuit chaud du groupe froid n°1.</p>
+</div>
+
+<div>
 <img src="pompe-chaud-gf2.png">
+<p>Pompe du circuit chaud du groupe froid n°2.</p>
+</div>
+
+<div>
 <img src="pompe-froid-gf1.png">
+<p>Pompe du circuit froid du groupe froid n°1.</p>
+</div>
+
+<div>
 <img src="pompe-froid-gf2.png">
+<p>Pompe du circuit froid du groupe froid n°2.</p>
+</div>
+
 </div>
 </div>
 
-<div id="elec" class="card sub">
+<!-- ELECTRICITE -->
+<div class="card">
 <h2>Schémas électriques</h2>
+
 <div class="grid">
-<img src="schema-elec-gf1.png" style="transform:rotate(-90deg);">
-<img src="schema-elec-gf2.png" style="transform:rotate(-90deg);">
+
+<div>
+<img src="schema-elec-gf1.png">
+<p>Schéma électrique du groupe froid n°1.</p>
+</div>
+
+<div>
+<img src="schema-elec-gf2.png">
+<p>Schéma électrique du groupe froid n°2.</p>
+</div>
+
 </div>
 </div>
 
-<div id="regul" class="card sub">
+<!-- REGULATION -->
+<div class="card">
 <h2>Régulation</h2>
-<img src="schema-regul.png" style="transform:rotate(-90deg);">
-<p>Automate CAREL avec gestion des pompes et sécurité.</p>
+
+<img src="schema-regul.png">
+<p>
+La régulation est assurée par un automate permettant la gestion automatique des équipements.
+</p>
+
 </div>
-
-<button class="back" onclick="show('candidats')">Retour</button>
-</div>
-
-<!-- ZOOM -->
-<div id="zoom" class="zoom-overlay" onclick="closeZoom()">
-<img id="zoom-img">
-</div>
-
-<script>
-
-function show(id){
-document.querySelectorAll('.section').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
-}
-
-function showSub(id){
-document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
-}
-
-/* ANIMATION */
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll', () => {
-cards.forEach(card => {
-const top = card.getBoundingClientRect().top;
-if(top < window.innerHeight - 50){
-card.classList.add('visible');
-}
-});
-});
-
-/* ZOOM */
-function openZoom(src){
-document.getElementById("zoom").style.display="flex";
-document.getElementById("zoom-img").src=src;
-}
-
-function closeZoom(){
-document.getElementById("zoom").style.display="none";
-}
-
-document.querySelectorAll("img").forEach(img=>{
-img.addEventListener("click",()=>{
-openZoom(img.src);
-});
-});
-
-</script>
-
-</body>
-</html>
