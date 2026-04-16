@@ -1,220 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projet BTS - Maxime Chevalier</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet BTS - Maxime Chevalier</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1e3d59, #16324f);
-      color: #fff;
-      scroll-behavior: smooth;
-    }
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#1e3d59,#16324f);
+  color:white;
+}
 
-    header {
-      text-align: center;
-      padding: 60px 20px;
-    }
+/* HEADER */
+header {
+  text-align:center;
+  padding:80px 20px;
+}
 
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+header h1 {
+  font-size:3em;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background: rgba(0,0,0,0.2);
-      padding: 15px;
-      position: sticky;
-      top: 0;
-    }
+header p {
+  opacity:0.8;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+/* NAVBAR */
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.3);
+  padding:15px 40px;
+  position:sticky;
+  top:0;
+}
 
-    nav a:hover {
-      color: #00d4ff;
-    }
+.menu {
+  display:flex;
+  gap:20px;
+}
 
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+nav a {
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-    .card {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 15px;
-      margin: 30px 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transform: translateY(20px);
-      opacity: 0;
-      transition: 0.6s;
-    }
+nav a:hover {
+  color:#00d4ff;
+}
 
-    .card.visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
+/* SECTION */
+section {
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+}
 
-    h2 {
-      color: #00d4ff;
-    }
+.card {
+  background:rgba(255,255,255,0.08);
+  padding:30px;
+  border-radius:15px;
+  margin:30px 0;
+}
 
-    ul {
-      line-height: 1.8;
-    }
+/* HERO */
+.hero {
+  text-align:center;
+  padding:100px 20px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.3);
-    }
+.hero h1 {
+  font-size:3.5em;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #00d4ff;
-      color: #000;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.btn {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  background:#00d4ff;
+  color:black;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.8em; }
-    }
-  </style>
+/* CANDIDATS */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.candidat {
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.candidat:hover {
+  transform:scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.4);
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Projet BTS Froid & Automatisme</h1>
-  <p>Maxime Chevalier</p>
-</header>
-
+<!-- NAV -->
 <nav>
-  <a href="#client">Client</a>
-  <a href="#besoin">Besoins</a>
-  <a href="#dimensionnement">Dimensionnement</a>
-  <a href="#automate">Automate</a>
+  <div><strong>Projet BTS</strong></div>
+
+  <div class="menu">
+    <a href="#projet">Projet</a>
+    <a href="#formation">Formation</a>
+    <a href="#client">Client</a>
+    <a href="#candidats">Candidats</a>
+  </div>
 </nav>
 
-<!-- ================= CLIENT ================= -->
+<!-- HERO -->
+<div class="hero">
+  <h1>Projet BTS Froid & Automatisme</h1>
+  <p>Étude et réalisation d’une installation frigorifique</p>
+  <a href="#projet" class="btn">Voir le projet</a>
+</div>
 
+<!-- PROJET -->
+<section id="projet">
+  <div class="card">
+    <h2>Présentation du projet</h2>
+    <p>
+      Ce projet a pour objectif la conception et l’optimisation d’une installation frigorifique
+      pour l’entreprise Ouest Frais, en intégrant des solutions techniques modernes,
+      une gestion automatisée et une optimisation énergétique.
+    </p>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="card">
+    <h2>Centre de formation</h2>
+    <p>
+      Ce projet a été réalisé dans le cadre du BTS au sein de la CCI Formation à Cholet,
+      établissement spécialisé dans la formation technique et industrielle.
+    </p>
+  </div>
+</section>
+
+<!-- CLIENT -->
 <section id="client">
   <div class="card">
 
     <h2>Présentation du client</h2>
 
-    <figure style="margin-bottom:20px;">
-      <img src="carte-france.png" alt="Localisation de l'entreprise Ouest Frais"
-      style="width:100%; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
-
-      <figcaption style="margin-top:10px; font-size:14px; color:#ccc; text-align:center;">
-        Localisation de l’entreprise Ouest Frais dans le Parc d’Activités des Marches de Bretagne (Vendée - 85)
-      </figcaption>
-    </figure>
+    <img src="Image2.jpg" style="width:100%; border-radius:10px; margin-bottom:20px;">
 
     <p>
       Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire.
-      Le projet est situé dans le Parc d’Activités des Marches de Bretagne, à Saint-Hilaire-de-Loulay,
-      à Montaigu en Vendée (85).
-    </p>
-
-    <p>
-      Fondée en 1999, l’entreprise propose une large gamme de produits frais, surgelés et d’épicerie
-      destinés à la restauration traditionnelle, collective ainsi qu’aux artisans des métiers de bouche.
-    </p>
-
-    <p>
-      Ouest Frais compte 97 salariés et dispose de 22 camions frigorifiques.
-      Son chiffre d’affaires atteint 45 millions d’euros en 2025.
-    </p>
-
-    <p>
-      L’entrepôt permet de stocker jusqu’à 5600 références pour 2100 clients,
-      avec un approvisionnement assuré par environ 190 fournisseurs.
+      Le projet est situé à Montaigu en Vendée.
     </p>
 
     <ul>
-      <li>Deux quais de déchargement à +2 / +4 °C</li>
-      <li>Deux chambres froides positives à +2 / +4 °C</li>
-      <li>Une chambre froide négative à -25 °C</li>
-      <li>Une future chambre froide positive en cours de projet</li>
+      <li>97 salariés</li>
+      <li>22 camions frigorifiques</li>
+      <li>5600 références</li>
+      <li>Chambres froides positives et négatives</li>
     </ul>
 
   </div>
 </section>
 
-<!-- ================= BESOINS ================= -->
-
-<section id="besoin">
+<!-- CANDIDATS -->
+<section id="candidats">
   <div class="card">
-    <h2>Besoins du client</h2>
-    <ul>
-      <li>Simplicité d'exploitation</li>
-      <li>Maintenance rapide</li>
-      <li>Connexion à distance</li>
-      <li>Continuité de service</li>
-      <li>Optimisation énergétique</li>
-    </ul>
-  </div>
-</section>
+    <h2>Les candidats</h2>
 
-<!-- ================= DIMENSIONNEMENT ================= -->
+    <div class="grid">
 
-<section id="dimensionnement">
-  <div class="card">
-    <h2>Dimensionnement</h2>
-    <p>
-      Le dimensionnement prend en compte les puissances frigorifiques,
-      les pertes de charges et les caractéristiques des équipements.
-    </p>
-  </div>
-</section>
+      <div class="candidat">
+        <h3>Maxime Chevalier</h3>
+        <p>Partie automate</p>
+      </div>
 
-<!-- ================= AUTOMATE ================= -->
+      <div class="candidat">
+        <h3>Candidat 2</h3>
+        <p>Dimensionnement</p>
+      </div>
 
-<section id="automate">
-  <div class="card">
-    <h2>Automate</h2>
-    <p>
-      Un programme automate permet de gérer les groupes froids,
-      assurer la sécurité et optimiser la consommation énergétique.
-    </p>
+      <div class="candidat">
+        <h3>Candidat 3</h3>
+        <p>Schémas</p>
+      </div>
+
+      <div class="candidat">
+        <h3>Candidat 4</h3>
+        <p>Documentation</p>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
 <footer>
-  <p>© 2026 - Projet BTS | Maxime Chevalier</p>
+  <p>© 2026 - Projet BTS</p>
 </footer>
-
-<script>
-  const cards = document.querySelectorAll('.card');
-
-  window.addEventListener('scroll', () => {
-    cards.forEach(card => {
-      const top = card.getBoundingClientRect().top;
-      if (top < window.innerHeight - 50) {
-        card.classList.add('visible');
-      }
-    });
-  });
-</script>
 
 </body>
 </html>
