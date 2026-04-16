@@ -172,8 +172,10 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <button onclick="showSub('pompes')">Pompes</button>
 <button onclick="showSub('elec')">Élec</button>
 <button onclick="showSub('regul')">Régulation</button>
+<button onclick="showSub('devis')">Devis</button>
 </div>
 
+<!-- SCHEMA -->
 <div id="schema" class="card sub">
 <h2>Schéma de principe</h2>
 <img src="schema-principe-rtap.png">
@@ -185,6 +187,7 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <img src="diagramme-enthalpie.png">
 </div>
 
+<!-- FORMULES -->
 <div id="formules" class="card sub">
 <h2>Formules</h2>
 <div class="grid">
@@ -197,6 +200,7 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 </div>
 
+<!-- POMPES -->
 <div id="pompes" class="card sub">
 <h2>Pompes</h2>
 <div class="grid">
@@ -204,9 +208,11 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <img src="pompe-chaud-gf2.png">
 <img src="pompe-froid-gf1.png">
 <img src="pompe-froid-gf2.png">
+<img src="abaque.png">
 </div>
 </div>
 
+<!-- ELECTRIQUE -->
 <div id="elec" class="card sub">
 <h2>Schémas électriques</h2>
 <div class="grid">
@@ -215,18 +221,27 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 </div>
 
+<!-- REGULATION -->
 <div id="regul" class="card sub">
 <h2>Régulation</h2>
 <img src="schema-regul.png" style="transform:rotate(-90deg);">
-<p>Automate CAREL avec gestion des pompes et sécurité.</p>
+<p>Automate CAREL permettant la gestion complète des groupes froids et des sécurités.</p>
+</div>
+
+<!-- DEVIS -->
+<div id="devis" class="card sub">
+<h2>Devis du projet</h2>
+
+<img src="devis.png" style="max-width:70%; border-radius:10px;">
+
+<p style="max-width:700px; margin:auto;">
+Ce devis regroupe l’ensemble des équipements, études, installations et mises en service nécessaires à la réalisation du projet frigorifique Ouest Frais.
+</p>
+
 </div>
 
 <button class="back" onclick="show('candidats')">Retour</button>
-</div>
 
-<!-- ZOOM -->
-<div id="zoom" class="zoom-overlay" onclick="closeZoom()">
-<img id="zoom-img">
 </div>
 
 <script>
