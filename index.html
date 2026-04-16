@@ -2,34 +2,46 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projet lot N°9 Ouest Frais</title>
 
 <style>
 body {
   margin:0;
-  font-family:Arial;
+  font-family:'Segoe UI',sans-serif;
   background:linear-gradient(135deg,#1e3d59,#16324f);
   color:white;
   scroll-behavior:smooth;
 }
 
+/* HEADER */
 header {
   text-align:center;
-  padding:40px;
+  padding:60px 20px;
 }
 
 header img {
   width:120px;
 }
 
+header h1 {
+  font-size:2.8em;
+}
+
+/* NAVBAR */
 nav {
   display:flex;
-  justify-content:center;
-  gap:30px;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
   background:rgba(0,0,0,0.3);
-  padding:15px;
   position:sticky;
   top:0;
+}
+
+.menu {
+  display:flex;
+  gap:25px;
 }
 
 nav a {
@@ -42,50 +54,84 @@ nav a:hover {
   color:#00d4ff;
 }
 
-section {
-  max-width:1000px;
-  margin:auto;
-  padding:50px 20px;
+/* HERO */
+.hero {
+  text-align:center;
+  padding:100px 20px;
 }
 
+.hero h1 {
+  font-size:3.5em;
+}
+
+.btn {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  background:#00d4ff;
+  color:black;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* SECTION */
+section {
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+/* CARD */
 .card {
-  background:rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
   padding:30px;
   border-radius:15px;
   margin:30px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-h2 {
-  color:#00d4ff;
-}
-
+/* GRID */
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
 }
 
+/* CANDIDAT */
 .candidat {
   background:rgba(255,255,255,0.1);
   padding:20px;
   border-radius:10px;
   text-align:center;
   cursor:pointer;
+  transition:0.3s;
 }
 
 .candidat:hover {
+  transform:scale(1.05);
   background:#00d4ff;
   color:black;
 }
 
+/* IMAGE */
 img {
   max-width:100%;
   border-radius:10px;
   margin-top:15px;
 }
 
+/* HIDDEN */
 .hidden {
   display:none;
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.4);
 }
 </style>
 </head>
@@ -98,9 +144,20 @@ img {
 </header>
 
 <nav>
-  <a href="#accueil">Accueil</a>
-  <a href="#candidats">Candidats</a>
+  <div><strong>BTS FED</strong></div>
+
+  <div class="menu">
+    <a href="#accueil">Accueil</a>
+    <a href="#candidats">Candidats</a>
+  </div>
 </nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Projet Froid Industriel</h1>
+  <p>Conception & automatisation d'une installation frigorifique</p>
+  <a href="#accueil" class="btn">Découvrir</a>
+</div>
 
 <!-- ACCUEIL -->
 <section id="accueil">
@@ -108,7 +165,7 @@ img {
     <h2>Présentation du projet</h2>
     <p>
     Projet BTS FED réalisé pour l’entreprise Ouest Frais.
-    Installation frigorifique avec automatisation et optimisation énergétique.
+    Étude d’une installation frigorifique avec optimisation énergétique et automatisation.
     </p>
 
     <h3>Centre de formation</h3>
@@ -122,22 +179,22 @@ img {
 
   <div class="grid">
 
-    <div class="candidat" onclick="show('c1')">
+    <div class="candidat" onclick="show('maxime')">
       <h3>Candidat N°1</h3>
       <p>Maxime Chevalier</p>
     </div>
 
-    <div class="candidat" onclick="show('c2')">
+    <div class="candidat" onclick="show('pierre')">
       <h3>Candidat N°2</h3>
       <p>Oger Pierre</p>
     </div>
 
-    <div class="candidat" onclick="show('c3')">
+    <div class="candidat" onclick="show('david')">
       <h3>Candidat N°3</h3>
       <p>Chiron David</p>
     </div>
 
-    <div class="candidat" onclick="show('c4')">
+    <div class="candidat" onclick="show('antonin')">
       <h3>Candidat N°4</h3>
       <p>Barbet Antonin</p>
     </div>
@@ -146,59 +203,45 @@ img {
 </section>
 
 <!-- MAXIME -->
-<section id="c1" class="hidden">
+<section id="maxime" class="hidden">
   <div class="card">
+
     <h2>Candidat N°1 - Maxime Chevalier</h2>
 
     <h3>Présentation du client</h3>
     <p>
-    Ouest frais est une entreprise française spécialisée dans la distribution alimentaire.
-    Le projet se situe dans le Parc d’Activités des Marches de Bretagne, Saint-Hilaire de Loulay à Montaigu en Vendée (85).
-    Ouest frais existe depuis 1999 et propose une large gamme de produits frais, surgelés et d'épicerie.
-    L'entreprise compte 97 salariés, 22 camions frigorifiques et un chiffre d'affaires de 45M € en 2025.
-    L'entrepôt permet de stocker 5600 références pour 2100 clients avec 190 fournisseurs.
+    Ouest Frais est une entreprise spécialisée dans la distribution alimentaire.
+    Elle possède 97 salariés, 22 camions frigorifiques et un chiffre d'affaires de 45M€.
+    L'entrepôt comprend plusieurs chambres froides positives et négatives.
     </p>
 
     <img src="image.png">
 
     <h3>Besoins</h3>
-    <p>Continuité de service, optimisation énergétique, maintenance simple…</p>
+    <p>Continuité de service, maintenance simplifiée, optimisation énergétique.</p>
 
     <h3>Dimensionnement</h3>
-    <p>Calcul des puissances frigorifiques, pertes de charges…</p>
+    <p>Calcul des puissances frigorifiques, pertes de charges et choix des équipements.</p>
 
     <h3>Automate</h3>
-    <p>Gestion automatique des groupes froids et sécurités.</p>
+    <p>Gestion automatique des groupes froids avec sécurités et alternance.</p>
 
   </div>
 </section>
 
-<!-- AUTRES CANDIDATS -->
-<section id="c2" class="hidden">
-  <div class="card">
-    <h2>Candidat N°2 - Oger Pierre</h2>
-    <p>À compléter…</p>
-  </div>
-</section>
+<!-- AUTRES -->
+<section id="pierre" class="hidden"><div class="card"><h2>Candidat N°2 - Oger Pierre</h2></div></section>
+<section id="david" class="hidden"><div class="card"><h2>Candidat N°3 - Chiron David</h2></div></section>
+<section id="antonin" class="hidden"><div class="card"><h2>Candidat N°4 - Barbet Antonin</h2></div></section>
 
-<section id="c3" class="hidden">
-  <div class="card">
-    <h2>Candidat N°3 - Chiron David</h2>
-    <p>À compléter…</p>
-  </div>
-</section>
-
-<section id="c4" class="hidden">
-  <div class="card">
-    <h2>Candidat N°4 - Barbet Antonin</h2>
-    <p>À compléter…</p>
-  </div>
-</section>
+<footer>
+<p>© 2026 - Projet BTS</p>
+</footer>
 
 <script>
-function show(id) {
-  document.querySelectorAll("section").forEach(sec => {
-    if(sec.id.startsWith("c")) {
+function show(id){
+  document.querySelectorAll("section").forEach(sec=>{
+    if(sec.id !== "accueil" && sec.id !== "candidats"){
       sec.classList.add("hidden");
     }
   });
