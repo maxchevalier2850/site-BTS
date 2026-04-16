@@ -2,164 +2,207 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projet lot N°9 Ouest Frais</title>
 
 <style>
 body{
-margin:0;
-font-family:Arial;
-background:#1e3d59;
-color:white;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#0f2a3d;
+  color:white;
 }
 
+/* HEADER */
 header{
-text-align:center;
-padding:40px;
-background:#16324f;
+  text-align:center;
+  padding:50px;
+  background:linear-gradient(135deg,#1e3d59,#16324f);
 }
 
-header img{
-height:80px;
+header h1{
+  font-size:2.5em;
 }
 
+/* MENU */
 nav{
-background:#0f2235;
-padding:15px;
-text-align:center;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  background:#122b40;
+  padding:15px;
+  position:sticky;
+  top:0;
 }
 
 nav a{
-color:white;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
 }
 
+nav a:hover{
+  color:#00d4ff;
+}
+
+/* SECTION */
 section{
-padding:40px;
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
 }
 
+/* CARD */
 .card{
-background:#2e4f6e;
-padding:25px;
-border-radius:15px;
-margin-bottom:30px;
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:15px;
+  margin:30px 0;
 }
 
+/* IMAGES */
 img{
-max-width:100%;
-border-radius:10px;
+  width:100%;
+  margin-top:20px;
+  border-radius:10px;
 }
 
+.logo{
+  width:250px;
+  display:block;
+  margin:auto;
+}
+
+.logo-large{
+  width:350px;
+}
+
+/* GRID */
 .grid{
-display:flex;
-gap:30px;
-flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
 }
 
-.col{
-flex:1;
-min-width:300px;
+/* CANDIDATS */
+.candidat{
+  background:#16324f;
+  padding:20px;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-h2{
-color:#00d4ff;
+.candidat:hover{
+  background:#1e3d59;
+}
+
+.hidden{
+  display:none;
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
-<img src="logo-ouestfrais.png">
-<h1>Projet lot N°9 Ouest Frais</h1>
-<p>BTS FED - Froid & Automatisme</p>
+  <h1>Projet lot N°9 Ouest Frais</h1>
+  <img src="logo-ouestfrais.png" class="logo-large">
 </header>
 
 <nav>
-<a href="#accueil">Accueil</a>
-<a href="#projet">Projet</a>
-<a href="#candidats">Candidats</a>
+  <a href="#accueil">Accueil</a>
+  <a href="#projet">Projet</a>
+  <a href="#dimensionnement">Dimensionnement</a>
+  <a href="#candidats">Candidats</a>
 </nav>
 
 <!-- ACCUEIL -->
 <section id="accueil">
 
-<div class="card grid">
+<div class="card">
+<h2>Présentation du client</h2>
+<img src="logo-ouestfrais.png" class="logo">
 
-<div class="col">
-<h2>Client</h2>
-<img src="logo-ouestfrais.png">
 <p>
-Entreprise de distribution alimentaire spécialisée dans les produits frais et surgelés.
-Entrepôt avec chambres froides positives (+2°C) et négatives (-25°C).
+Ouest frais est une entreprise française spécialisée dans la distribution alimentaire.
+Le projet se situe à Montaigu en Vendée (85).
 </p>
-<img src="carte.png" style="width:60%;">
+
+<img src="carte.png" style="width:60%; display:block; margin:auto;">
 </div>
 
-<div class="col">
+<div class="card">
 <h2>Centre de formation</h2>
-<img src="logo-cci.png">
-<p>CCI Formation Cholet</p>
-</div>
+<img src="logo-cci.png" class="logo">
 
+<p>CCI formation Cholet – BTS Froid & Automatisme</p>
 </div>
 
 <div class="card">
 <h2>Technologies utilisées</h2>
 
 <div class="grid">
-
-<div class="col">
-<img src="trane.jpg">
-<p>Groupes froid Trane R1234ze</p>
-</div>
-
-<div class="col">
-<img src="co2.jpg">
-<p>Groupe CO2 subcritique</p>
-</div>
-
-<div class="col">
-<img src="scm.png">
-<p>Système de supervision</p>
-</div>
-
+  <img src="trane.jpg">
+  <img src="scm.png">
 </div>
 
 </div>
 
 </section>
 
-<!-- PARTIE COMMUNE -->
+<!-- PROJET -->
 <section id="projet">
 
 <div class="card">
-<h2>Besoin du client</h2>
+<h2>Planning du projet</h2>
+
 <p>
-Installation frigorifique complète avec production de froid positif et négatif.
-Utilisation de glycol MPG conforme réglementation CE.
-Stockage jusqu’à 500 000 kg de produits.
+Le projet est organisé en plusieurs phases : études, approvisionnement,
+installation et mise en service.
 </p>
+
+<img src="gantt-simple.png">
+<img src="gantt-detail.png">
+
+</div>
+
+</section>
+
+<!-- DIMENSIONNEMENT -->
+<section id="dimensionnement">
+
+<div class="card">
+<h2>Bilan frigorifique</h2>
+
+<p>
+Le dimensionnement est basé sur les apports thermiques,
+les volumes et les conditions de fonctionnement.
+</p>
+
+<img src="bilan-frigorifique.png">
+
 </div>
 
 <div class="card">
-<h2>Solution technique</h2>
-<p>
-Deux groupes froids R1234ze pour le positif.
-Un groupe CO2 pour le négatif.
-Récupération de chaleur pour optimisation énergétique.
-</p>
-<img src="schema.jpg">
+<h2>Plans et implantation</h2>
+
+<img src="plan-site.png">
+<img src="plan-3d.jpg">
+
 </div>
 
 <div class="card">
-<h2>Contraintes</h2>
-<p>
-Techniques, réglementaires, économiques et environnementales.
-Respect des normes EN 378 et F-Gaz.
-</p>
+<h2>Schéma de l'installation</h2>
+
+<img src="schema-installation.png">
+
+</div>
+
+<div class="card">
+<h2>Nomenclature</h2>
+
+<img src="nomenclature.png">
+
 </div>
 
 </section>
@@ -167,73 +210,51 @@ Respect des normes EN 378 et F-Gaz.
 <!-- CANDIDATS -->
 <section id="candidats">
 
-<div class="card">
-<h2>Choix du candidat</h2>
+<h2>Les candidats</h2>
 
-<button onclick="show('c1')">Candidat 1</button>
-<button onclick="show('c2')">Candidat 2</button>
-<button onclick="show('c3')">Candidat 3</button>
-<button onclick="show('c4')">Candidat 4</button>
+<div class="grid">
+
+<div class="candidat" onclick="toggle('c1')">
+Candidat N°1
+</div>
+
+<div class="candidat" onclick="toggle('c2')">
+Candidat N°2
+</div>
+
+<div class="candidat" onclick="toggle('c3')">
+Candidat N°3
+</div>
+
+<div class="candidat" onclick="toggle('c4')">
+Candidat N°4
+</div>
 
 </div>
 
-<!-- MAXIME -->
-<div id="c1" class="card" style="display:none">
-
-<h2>Candidat N°1 - Maxime Chevalier</h2>
-
-<h3>Dimensionnement</h3>
-<p>
-Groupes froid 475 kW avec récupération 818 kW.
-Fonctionnement glycol -7°C / -2°C.
-</p>
-
-<h3>Pompes</h3>
-<p>
-Puissances :
-12 kW, 19 kW, 9 kW, 23 kW selon circuits.
-Optimisation rendement et sécurité.
-</p>
-<img src="pompe.jpg">
-
-<h3>Réseaux hydrauliques</h3>
-<p>
-Tuyauterie inox, isolation thermique, pertes de charge maîtrisées.
-</p>
-
-<h3>Schéma et régulation</h3>
-<p>
-Automate CAREL avec alternance pompes et sécurité débit.
-Supervision complète installation.
-</p>
-
+<div id="c1" class="card hidden">
+<h3>Maxime Chevalier</h3>
+<p>Partie personnelle : schémas, dimensionnement, automatisme...</p>
 </div>
 
-<!-- AUTRES -->
-<div id="c2" class="card" style="display:none">
-<h2>Candidat N°2 - Oger Pierre</h2>
-<p>Production CO2 + chauffage sol</p>
+<div id="c2" class="card hidden">
+<h3>Oger Pierre</h3>
 </div>
 
-<div id="c3" class="card" style="display:none">
-<h2>Candidat N°3 - Chiron David</h2>
-<p>Distribution et dégivrage positif</p>
+<div id="c3" class="card hidden">
+<h3>Chiron David</h3>
 </div>
 
-<div id="c4" class="card" style="display:none">
-<h2>Candidat N°4 - Barbet Antonin</h2>
-<p>Distribution CO2 négatif</p>
+<div id="c4" class="card hidden">
+<h3>Barbet Antonin</h3>
 </div>
 
 </section>
 
 <script>
-function show(id){
-document.getElementById("c1").style.display="none";
-document.getElementById("c2").style.display="none";
-document.getElementById("c3").style.display="none";
-document.getElementById("c4").style.display="none";
-document.getElementById(id).style.display="block";
+function toggle(id){
+  let el = document.getElementById(id);
+  el.classList.toggle("hidden");
 }
 </script>
 
