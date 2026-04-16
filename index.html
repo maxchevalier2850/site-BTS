@@ -31,8 +31,6 @@ background:rgba(255,255,255,0.05);
 padding:25px;
 border-radius:15px;
 margin:20px 0;
-
-/* animation */
 opacity:0;
 transform:translateY(40px);
 transition:0.6s;
@@ -82,6 +80,44 @@ z-index:1000;
 .zoom-overlay img{
 max-width:90%;
 max-height:90%;
+}
+
+/* ===== AJOUT DEVIS ===== */
+.devis-box{
+background:rgba(255,255,255,0.05);
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+.devis-img{
+max-width:65%;
+border-radius:10px;
+transition:0.3s;
+}
+
+.devis-img:hover{
+transform:scale(1.03);
+}
+
+.btn-devis{
+display:inline-block;
+margin-top:20px;
+padding:12px 20px;
+background:#00d4ff;
+color:black;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.analyse{
+max-width:700px;
+margin:30px auto;
+font-size:14px;
+color:#ddd;
+line-height:1.6;
 }
 </style>
 </head>
@@ -175,7 +211,6 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <button onclick="showSub('devis')">Devis</button>
 </div>
 
-<!-- SCHEMA -->
 <div id="schema" class="card sub">
 <h2>Schéma de principe</h2>
 <img src="schema-principe-rtap.png">
@@ -187,7 +222,6 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <img src="diagramme-enthalpie.png">
 </div>
 
-<!-- FORMULES -->
 <div id="formules" class="card sub">
 <h2>Formules</h2>
 <div class="grid">
@@ -200,7 +234,6 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 </div>
 
-<!-- POMPES -->
 <div id="pompes" class="card sub">
 <h2>Pompes</h2>
 <div class="grid">
@@ -208,11 +241,9 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 <img src="pompe-chaud-gf2.png">
 <img src="pompe-froid-gf1.png">
 <img src="pompe-froid-gf2.png">
-<img src="abaque.png">
 </div>
 </div>
 
-<!-- ELECTRIQUE -->
 <div id="elec" class="card sub">
 <h2>Schémas électriques</h2>
 <div class="grid">
@@ -221,22 +252,51 @@ L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une ch
 </div>
 </div>
 
-<!-- REGULATION -->
 <div id="regul" class="card sub">
 <h2>Régulation</h2>
 <img src="schema-regul.png" style="transform:rotate(-90deg);">
 <p>Automate CAREL permettant la gestion complète des groupes froids et des sécurités.</p>
 </div>
 
-<!-- DEVIS -->
+<!-- ===== DEVIS AMÉLIORÉ ===== -->
 <div id="devis" class="card sub">
-<h2>Devis du projet</h2>
 
-<img src="devis.png" style="max-width:70%; border-radius:10px;">
+<h2>Analyse financière du projet</h2>
 
-<p style="max-width:700px; margin:auto;">
-Ce devis regroupe l’ensemble des équipements, études, installations et mises en service nécessaires à la réalisation du projet frigorifique Ouest Frais.
+<div class="devis-box">
+
+<img src="devis.png" class="devis-img">
+
+<a href="devis.pdf" download class="btn-devis">
+📄 Télécharger le devis
+</a>
+
+<div class="analyse">
+
+<p>
+Le coût total du projet s’élève à <b>1,68 million d’euros TTC</b>.
+Ce montant comprend l’ensemble des équipements frigorifiques,
+l’installation, la régulation ainsi que la mise en service.
 </p>
+
+<p>
+La partie la plus importante du budget concerne la production frigorifique,
+notamment les groupes TRANE et les équipements hydrauliques associés.
+</p>
+
+<p>
+Les systèmes électriques et de régulation permettent d’assurer
+un fonctionnement automatique, sécurisé et optimisé de l’installation.
+</p>
+
+<p>
+Enfin, les prestations de maintenance et de mise en service garantissent
+la performance et la durabilité du système dans le temps.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
@@ -244,8 +304,12 @@ Ce devis regroupe l’ensemble des équipements, études, installations et mises
 
 </div>
 
-<script>
+<!-- ZOOM -->
+<div id="zoom" class="zoom-overlay" onclick="closeZoom()">
+<img id="zoom-img">
+</div>
 
+<script>
 function show(id){
 document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
@@ -256,7 +320,6 @@ document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-/* ANIMATION */
 const cards = document.querySelectorAll('.card');
 
 window.addEventListener('scroll', () => {
@@ -268,7 +331,6 @@ card.classList.add('visible');
 });
 });
 
-/* ZOOM */
 function openZoom(src){
 document.getElementById("zoom").style.display="flex";
 document.getElementById("zoom-img").src=src;
@@ -283,7 +345,6 @@ img.addEventListener("click",()=>{
 openZoom(img.src);
 });
 });
-
 </script>
 
 </body>
