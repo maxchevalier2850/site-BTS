@@ -20,27 +20,17 @@ background:#16324f;
 }
 
 /* MENU */
-.menu{
-margin-top:20px;
-}
-
 .menu button{
 margin:10px;
-padding:15px 25px;
+padding:15px;
 border:none;
 border-radius:10px;
 background:#00d4ff;
-color:black;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
 }
 
-.menu button:hover{
-background:white;
-}
-
-/* SECTIONS */
+/* SECTION */
 .section{
 display:none;
 padding:40px;
@@ -56,7 +46,7 @@ border-radius:15px;
 margin:20px 0;
 }
 
-/* IMAGES */
+/* IMAGE */
 img{
 max-width:60%;
 margin:20px auto;
@@ -64,15 +54,20 @@ display:block;
 border-radius:10px;
 }
 
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
 /* RETOUR */
 .back{
-margin-top:20px;
-padding:10px 20px;
-background:#ff4d4d;
+background:red;
 color:white;
+padding:10px;
 border:none;
-border-radius:8px;
-cursor:pointer;
+margin-top:20px;
 }
 
 </style>
@@ -82,27 +77,22 @@ cursor:pointer;
 
 <header>
 <h1>Projet lot N°9 Ouest Frais</h1>
-<img src="logo-ouestfrais.png" style="width:200px;">
 </header>
 
 <!-- MENU PRINCIPAL -->
 <div class="menu">
-<button onclick="show('accueil')">🏠 Accueil</button>
-<button onclick="show('commun')">📁 Partie commune</button>
-<button onclick="show('candidats')">👷 Candidats</button>
+<button onclick="show('accueil')">Accueil</button>
+<button onclick="show('commun')">Partie commune</button>
+<button onclick="show('candidats')">Candidats</button>
 </div>
 
 <!-- ACCUEIL -->
 <div id="accueil" class="section" style="display:block;">
-
 <div class="card">
-<h2>Présentation du projet</h2>
-<p>
-Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
-</p>
+<h2>Présentation</h2>
+<p>👉 colle ton texte client ici</p>
 <img src="carte.png">
 </div>
-
 </div>
 
 <!-- PARTIE COMMUNE -->
@@ -119,12 +109,21 @@ Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
 </div>
 
 <div class="card">
-<h2>Tableaux fluides</h2>
-<img src="tableau-r1234ze.png">
-<img src="tableau-co2.png">
+<h2>Diagramme enthalpique</h2>
+<img src="diagramme-enthalpie.png">
 </div>
 
-<button class="back" onclick="show('accueil')">⬅ Retour</button>
+<div class="card">
+<h2>Comparaison fluides</h2>
+<div class="grid">
+<img src="tableau-r1234ze.png">
+<img src="tableau-co2.png">
+<img src="tableau-nh3.png">
+<img src="tableau-r290.png">
+</div>
+</div>
+
+<button class="back" onclick="show('accueil')">Retour</button>
 
 </div>
 
@@ -138,42 +137,73 @@ Ouest Frais est une entreprise spécialisée dans la distribution alimentaire...
 <button>Candidat N°4</button>
 </div>
 
-<button class="back" onclick="show('accueil')">⬅ Retour</button>
+<button class="back" onclick="show('accueil')">Retour</button>
 
 </div>
 
 <!-- MAXIME -->
 <div id="maxime" class="section">
 
-<div class="card">
+<div class="menu">
+<button onclick="showSub('bilan')">Bilan</button>
+<button onclick="showSub('formules')">Formules</button>
+<button onclick="showSub('pompes')">Pompes</button>
+<button onclick="showSub('elec')">Élec</button>
+<button onclick="showSub('regul')">Régulation</button>
+<button onclick="showSub('devis')">Devis</button>
+</div>
+
+<div id="bilan" class="card sub">
 <h2>Bilan frigorifique</h2>
 <img src="bilan-frigo.png">
 <img src="bilan-detail.png">
 </div>
 
-<div class="card">
+<div id="formules" class="card sub">
 <h2>Formules</h2>
 <img src="formule-chaud.png">
 <img src="formule-froid.png">
+<img src="kv.png">
 </div>
 
-<div class="card">
+<div id="pompes" class="card sub">
 <h2>Pompes</h2>
 <img src="pompe-chaud-gf1.png">
 <img src="pompe-froid-gf1.png">
 </div>
 
-<button class="back" onclick="show('candidats')">⬅ Retour</button>
+<div id="elec" class="card sub">
+<h2>Schémas électriques</h2>
+<img src="schema-elec-gf1.png" style="transform:rotate(-90deg);">
+</div>
+
+<div id="regul" class="card sub">
+<h2>Régulation</h2>
+<img src="schema-regul.png" style="transform:rotate(-90deg);">
+</div>
+
+<div id="devis" class="card sub">
+<h2>Devis</h2>
+<img src="tableau-regle-1.png">
+<img src="tableau-regle-2.png">
+</div>
+
+<button class="back" onclick="show('candidats')">Retour</button>
 
 </div>
 
 <script>
+
 function show(id){
-document.querySelectorAll('.section').forEach(sec=>{
-sec.style.display="none";
-});
+document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
+
+function showSub(id){
+document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
 </script>
 
 </body>
