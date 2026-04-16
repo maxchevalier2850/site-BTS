@@ -5,71 +5,14 @@
 <title>Projet lot N°9 Ouest Frais</title>
 
 <style>
-body{
-margin:0;
-font-family:Segoe UI;
-background:#0f2a3d;
-color:white;
-text-align:center;
-}
-
-/* HEADER */
-header{
-padding:40px;
-background:#16324f;
-}
-
-/* MENU */
-.menu button{
-margin:10px;
-padding:15px;
-border:none;
-border-radius:10px;
-background:#00d4ff;
-font-weight:bold;
-cursor:pointer;
-}
-
-/* SECTION */
-.section{
-display:none;
-padding:40px;
-max-width:1200px;
-margin:auto;
-}
-
-/* CARD */
-.card{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:15px;
-margin:20px 0;
-}
-
-/* IMAGE */
-img{
-max-width:60%;
-margin:20px auto;
-display:block;
-border-radius:10px;
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-/* RETOUR */
-.back{
-background:red;
-color:white;
-padding:10px;
-border:none;
-margin-top:20px;
-}
-
+body{margin:0;font-family:Segoe UI;background:#0f2a3d;color:white;text-align:center;}
+header{padding:40px;background:#16324f;}
+.menu button{margin:10px;padding:15px;border:none;border-radius:10px;background:#00d4ff;font-weight:bold;cursor:pointer;}
+.section{display:none;padding:40px;max-width:1200px;margin:auto;}
+.card{background:rgba(255,255,255,0.05);padding:25px;border-radius:15px;margin:20px 0;}
+img{max-width:60%;margin:20px auto;display:block;border-radius:10px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.back{background:red;color:white;padding:10px;border:none;margin-top:20px;}
 </style>
 </head>
 
@@ -79,7 +22,6 @@ margin-top:20px;
 <h1>Projet lot N°9 Ouest Frais</h1>
 </header>
 
-<!-- MENU PRINCIPAL -->
 <div class="menu">
 <button onclick="show('accueil')">Accueil</button>
 <button onclick="show('commun')">Partie commune</button>
@@ -89,8 +31,23 @@ margin-top:20px;
 <!-- ACCUEIL -->
 <div id="accueil" class="section" style="display:block;">
 <div class="card">
-<h2>Présentation</h2>
-<p>👉 colle ton texte client ici</p>
+<h2>Présentation du client</h2>
+
+<p>
+Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire.
+Le projet se situe à Montaigu en Vendée.
+</p>
+
+<p>
+Créée en 1999, l’entreprise propose des produits frais, surgelés et d’épicerie.
+Elle compte 97 salariés, 22 camions frigorifiques et un chiffre d’affaires de 45M€.
+</p>
+
+<p>
+L’entrepôt permet de stocker 5600 références pour 2100 clients avec 190 fournisseurs.
+Il comprend des chambres froides positives (+2/+4°C) et négatives (-25°C).
+</p>
+
 <img src="carte.png">
 </div>
 </div>
@@ -99,32 +56,33 @@ margin-top:20px;
 <div id="commun" class="section">
 
 <div class="card">
-<h2>Schéma de principe</h2>
-<img src="schema-principe-rtap.png" style="transform:rotate(-90deg); width:50%;">
+<h2>Bilan frigorifique</h2>
+<div class="grid">
+<img src="bilan-frigo.png">
+<img src="bilan-detail.png">
+</div>
 </div>
 
 <div class="card">
-<h2>Nomenclature</h2>
-<img src="nomenclature-rtap.png" style="transform:rotate(-90deg); width:50%;">
-</div>
-
-<div class="card">
-<h2>Diagramme enthalpique</h2>
-<img src="diagramme-enthalpie.png">
-</div>
-
-<div class="card">
-<h2>Comparaison fluides</h2>
+<h2>Comparaison des fluides</h2>
 <div class="grid">
 <img src="tableau-r1234ze.png">
-<img src="tableau-co2.png">
+<img src="tableau-hfo.png">
 <img src="tableau-nh3.png">
 <img src="tableau-r290.png">
+<img src="tableau-co2.png">
+</div>
+</div>
+
+<div class="card">
+<h2>Réglementation</h2>
+<div class="grid">
+<img src="tableau-regle-1.png">
+<img src="tableau-regle-2.png">
 </div>
 </div>
 
 <button class="back" onclick="show('accueil')">Retour</button>
-
 </div>
 
 <!-- CANDIDATS -->
@@ -138,72 +96,76 @@ margin-top:20px;
 </div>
 
 <button class="back" onclick="show('accueil')">Retour</button>
-
 </div>
 
 <!-- MAXIME -->
 <div id="maxime" class="section">
 
 <div class="menu">
-<button onclick="showSub('bilan')">Bilan</button>
+<button onclick="showSub('schema')">Schéma</button>
 <button onclick="showSub('formules')">Formules</button>
 <button onclick="showSub('pompes')">Pompes</button>
 <button onclick="showSub('elec')">Élec</button>
 <button onclick="showSub('regul')">Régulation</button>
-<button onclick="showSub('devis')">Devis</button>
 </div>
 
-<div id="bilan" class="card sub">
-<h2>Bilan frigorifique</h2>
-<img src="bilan-frigo.png">
-<img src="bilan-detail.png">
+<div id="schema" class="card sub">
+<h2>Schéma de principe</h2>
+<img src="schema-principe-rtap.png" style="transform:rotate(-90deg); width:50%;">
+<h3>Nomenclature</h3>
+<img src="nomenclature-rtap.png" style="transform:rotate(-90deg); width:50%;">
+<h3>Diagramme enthalpique</h3>
+<img src="diagramme-enthalpie.png">
 </div>
 
 <div id="formules" class="card sub">
 <h2>Formules</h2>
+<div class="grid">
 <img src="formule-chaud.png">
 <img src="formule-froid.png">
 <img src="kv.png">
+<img src="pui-elec.png">
+<img src="pui-hydrau.png">
+<img src="formule-hmt.png">
+</div>
 </div>
 
 <div id="pompes" class="card sub">
 <h2>Pompes</h2>
+<div class="grid">
 <img src="pompe-chaud-gf1.png">
+<img src="pompe-chaud-gf2.png">
 <img src="pompe-froid-gf1.png">
+<img src="pompe-froid-gf2.png">
+</div>
 </div>
 
 <div id="elec" class="card sub">
 <h2>Schémas électriques</h2>
+<div class="grid">
 <img src="schema-elec-gf1.png" style="transform:rotate(-90deg);">
+<img src="schema-elec-gf2.png" style="transform:rotate(-90deg);">
+<img src="schema-regul.png" style="transform:rotate(-90deg);">
+</div>
 </div>
 
 <div id="regul" class="card sub">
 <h2>Régulation</h2>
-<img src="schema-regul.png" style="transform:rotate(-90deg);">
-</div>
-
-<div id="devis" class="card sub">
-<h2>Devis</h2>
-<img src="tableau-regle-1.png">
-<img src="tableau-regle-2.png">
+<p>Automate CAREL avec gestion des pompes et sécurité.</p>
 </div>
 
 <button class="back" onclick="show('candidats')">Retour</button>
-
 </div>
 
 <script>
-
 function show(id){
 document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
-
 function showSub(id){
 document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
-
 </script>
 
 </body>
