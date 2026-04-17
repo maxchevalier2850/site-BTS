@@ -2,470 +2,1127 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projet lot N°9 Ouest Frais</title>
-
 <style>
-body{margin:0;font-family:Segoe UI;background:#0f2a3d;color:white;text-align:center;}
-
-header{padding:40px;background:#16324f;}
-
-.menu button{
-margin:10px;
-padding:15px;
-border:none;
-border-radius:10px;
-background:#00d4ff;
-font-weight:bold;
-cursor:pointer;
+:root{
+  --bg:#08131f;
+  --bg-soft:#112236;
+  --panel:rgba(10, 24, 40, 0.78);
+  --panel-strong:rgba(15, 33, 55, 0.92);
+  --line:rgba(132, 196, 255, 0.16);
+  --text:#eef6ff;
+  --muted:#afc3d9;
+  --accent:#65d9ff;
+  --accent-strong:#00a8e8;
+  --warm:#ffb866;
+  --success:#7df0c6;
+  --shadow:0 24px 60px rgba(0, 0, 0, 0.28);
+  --radius:24px;
+  --radius-sm:16px;
+  --max-width:1220px;
 }
 
-.section{
-display:none;
-padding:40px;
-max-width:1200px;
-margin:auto;
+*{
+  box-sizing:border-box;
 }
 
-.card{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:15px;
-margin:20px 0;
-opacity:0;
-transform:translateY(40px);
-transition:0.6s;
+html{
+  scroll-behavior:smooth;
 }
 
-.card.visible{
-opacity:1;
-transform:translateY(0);
+body{
+  margin:0;
+  font-family:Bahnschrift, "Segoe UI Variable", "Trebuchet MS", sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(0, 168, 232, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 184, 102, 0.14), transparent 25%),
+    linear-gradient(180deg, #0a1624 0%, #08131f 48%, #06101a 100%);
+  min-height:100vh;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,0.55), transparent 92%);
+  pointer-events:none;
 }
 
 img{
-max-width:60%;
-margin:20px auto;
-display:block;
-border-radius:10px;
-cursor:pointer;
+  max-width:100%;
+  display:block;
+}
+
+button,
+a{
+  font:inherit;
+}
+
+.shell{
+  position:relative;
+  z-index:1;
+}
+
+.hero{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:32px 24px 24px;
+}
+
+.hero-panel{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:32px;
+  background:
+    linear-gradient(135deg, rgba(21, 45, 70, 0.95), rgba(10, 20, 33, 0.94));
+  box-shadow:var(--shadow);
+}
+
+.hero-panel::before{
+  content:"";
+  position:absolute;
+  inset:auto -10% -30% auto;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(101, 217, 255, 0.22), transparent 65%);
+}
+
+.hero-bar{
+  height:4px;
+  width:100%;
+  background:linear-gradient(90deg, transparent, var(--accent), #ffffff, var(--accent), transparent);
+  background-size:200% 100%;
+  animation:lineMove 6s linear infinite;
+}
+
+.hero-content{
+  display:grid;
+  grid-template-columns:220px minmax(0, 1fr) 180px;
+  align-items:center;
+  gap:24px;
+  padding:28px 32px 34px;
+}
+
+.brand-logo,
+.partner-logo{
+  justify-self:center;
+  filter:drop-shadow(0 16px 30px rgba(0,0,0,0.28));
+  transition:transform 0.3s ease;
+}
+
+.brand-logo{
+  width:min(180px, 100%);
+}
+
+.partner-logo{
+  width:min(140px, 100%);
+}
+
+.brand-logo:hover,
+.partner-logo:hover{
+  transform:translateY(-3px) scale(1.03);
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  padding:8px 14px;
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:999px;
+  background:rgba(255,255,255,0.04);
+  color:var(--muted);
+  font-size:0.92rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+.hero-copy h1{
+  margin:0;
+  font-size:clamp(2.3rem, 5vw, 4.3rem);
+  line-height:0.98;
+  letter-spacing:0.01em;
+}
+
+.hero-copy .gradient{
+  background:linear-gradient(90deg, #ffffff, var(--accent), #d9f6ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero-copy p{
+  max-width:680px;
+  margin:16px auto 0;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:1.05rem;
+}
+
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:22px;
+}
+
+.meta-pill{
+  padding:11px 16px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  color:#d9ecff;
+}
+
+.stats{
+  max-width:var(--max-width);
+  margin:10px auto 0;
+  padding:0 24px;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:16px;
+}
+
+.stat{
+  padding:22px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.07);
+  background:rgba(7, 18, 30, 0.78);
+  backdrop-filter:blur(10px);
+  box-shadow:var(--shadow);
+}
+
+.stat strong{
+  display:block;
+  font-size:1.9rem;
+  font-weight:700;
+  color:var(--accent);
+}
+
+.stat span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.nav-wrap{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(12px);
+  background:linear-gradient(180deg, rgba(7,17,28,0.92), rgba(7,17,28,0.66));
+  border-top:1px solid rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+
+.menu{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:14px 24px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
+
+.menu button,
+.back{
+  padding:13px 18px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--accent), #b5efff);
+  color:#062234;
+  font-weight:700;
+  letter-spacing:0.02em;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0, 168, 232, 0.28);
+  transition:transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.menu button:hover,
+.back:hover,
+.btn-devis:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(0, 168, 232, 0.28);
+  filter:saturate(1.08);
+}
+
+.menu button.secondary{
+  background:rgba(255,255,255,0.06);
+  color:var(--text);
+  box-shadow:none;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.secondary{
+  background:rgba(255,255,255,0.06);
+  color:var(--text);
+  box-shadow:none;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+main{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:32px 24px 64px;
+}
+
+.section{
+  display:none;
+  animation:fadeIn 0.5s ease;
+}
+
+.section.active{
+  display:block;
+}
+
+.section-intro{
+  margin:0 0 24px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+
+.section-intro h2{
+  margin:0;
+  font-size:2rem;
+}
+
+.section-intro p{
+  margin:12px 0 0;
+  max-width:760px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.card{
+  margin-bottom:22px;
+  padding:28px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, var(--panel), var(--panel-strong));
+  box-shadow:var(--shadow);
+  text-align:left;
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.55s ease, transform 0.55s ease, border-color 0.25s ease;
+}
+
+.card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card:hover{
+  border-color:rgba(101, 217, 255, 0.26);
+}
+
+.card h2,
+.card h3{
+  margin-top:0;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.75;
+}
+
+.lead{
+  font-size:1.02rem;
 }
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+  margin-top:18px;
+}
+
+.grid.grid-3{
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+}
+
+.media-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);
+  min-height:160px;
+}
+
+.media-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.35s ease;
+  cursor:pointer;
+}
+
+.media-card:hover img{
+  transform:scale(1.025);
+}
+
+.media-card img.rotated{
+  object-fit:contain;
+  background:#ffffff;
+  transform:rotate(-90deg) scale(0.9);
+}
+
+.media-card:hover img.rotated{
+  transform:rotate(-90deg) scale(0.94);
+}
+
+.media-caption{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.image-plain{
+  width:min(780px, 100%);
+  margin:20px auto 0;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+
+.image-plain.rotated{
+  object-fit:contain;
+  background:#ffffff;
+  transform:rotate(-90deg);
+}
+
+.split{
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:22px;
+  align-items:start;
+}
+
+.info-list{
+  display:grid;
+  gap:14px;
+}
+
+.info-item{
+  padding:18px 20px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.info-item strong{
+  display:block;
+  margin-bottom:6px;
+  color:#ffffff;
+}
+
+.candidate-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:18px;
+}
+
+.candidate-card{
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  text-align:left;
+}
+
+.candidate-card h3{
+  margin:0 0 10px;
+}
+
+.candidate-card p{
+  margin:0 0 18px;
+}
+
+.candidate-card button{
+  width:100%;
+}
+
+.sub,
+.subdoc{
+  display:none;
+}
+
+.sub.active,
+.subdoc.active{
+  display:block;
 }
 
 .back{
-background:red;
-color:white;
-padding:10px;
-border:none;
-margin-top:20px;
+  margin-top:10px;
 }
 
-/* ZOOM */
-.zoom-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:1000;
-}
-
-.zoom-overlay img{
-max-width:90%;
-max-height:90%;
-}
-
-/* DEVIS */
 .devis-box{
-background:rgba(255,255,255,0.05);
-padding:30px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
-text-align:center;
-}
-
-.devis-img{
-max-width:65%;
-border-radius:10px;
-transition:0.3s;
-}
-
-.devis-img:hover{
-transform:scale(1.03);
+  padding:24px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
 }
 
 .btn-devis{
-display:inline-block;
-margin-top:20px;
-padding:12px 20px;
-background:#00d4ff;
-color:black;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
+  padding:13px 22px;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--warm), #ffe0b4);
+  color:#142335;
+  font-weight:800;
+  text-decoration:none;
+  transition:transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+  box-shadow:0 10px 30px rgba(255, 184, 102, 0.28);
 }
 
 .analyse{
-max-width:700px;
-margin:30px auto;
-font-size:14px;
-color:#ddd;
-line-height:1.6;
+  max-width:760px;
+  margin:26px auto 0;
+  color:var(--muted);
+  line-height:1.7;
 }
 
-/* LIGNE LUMINEUSE */
-.header-line{
-height:4px;
-width:100%;
-background:linear-gradient(90deg,#00d4ff,#ffffff,#00d4ff);
-background-size:200%;
-animation:lineMove 2s linear infinite;
-box-shadow:0 0 10px #00d4ff, 0 0 20px #00d4ff;
+.zoom-overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:32px;
+  background:rgba(3, 8, 14, 0.88);
+  backdrop-filter:blur(6px);
+  z-index:1000;
 }
-  
+
+.zoom-box{
+  max-width:min(1180px, 100%);
+  max-height:100%;
+  display:grid;
+  gap:14px;
 }
+
+.zoom-overlay img{
+  max-width:100%;
+  max-height:78vh;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.09);
+  box-shadow:var(--shadow);
+}
+
+.zoom-caption{
+  text-align:center;
+  color:#dcecff;
+}
+
+.helper{
+  color:var(--muted);
+  font-size:0.94rem;
+}
+
 @keyframes lineMove{
-0%{background-position:0%}
-100%{background-position:300%}
+  0%{background-position:0 0;}
+  100%{background-position:200% 0;}
 }
 
-/* ANIMATION HEADER */
-header{
-animation:fadeHeader 1s ease;
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-@keyframes fadeHeader{
-from{opacity:0; transform:translateY(-30px);}
-to{opacity:1; transform:translateY(0);}
+@media (max-width:1080px){
+  .hero-content,
+  .split,
+  .candidate-grid,
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero-copy{
+    grid-column:1 / -1;
+    text-align:center;
+    order:3;
+  }
+
+  .brand-logo{
+    justify-self:start;
+  }
+
+  .partner-logo{
+    justify-self:end;
+  }
 }
 
+@media (max-width:780px){
+  .hero{
+    padding:18px 16px 14px;
+  }
+
+  .hero-content{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding:24px 20px 28px;
+  }
+
+  .brand-logo,
+  .partner-logo{
+    justify-self:center;
+  }
+
+  .stats,
+  .grid,
+  .grid.grid-3,
+  .split,
+  .candidate-grid{
+    grid-template-columns:1fr;
+  }
+
+  .menu{
+    padding:12px 16px;
+    justify-content:flex-start;
+  }
+
+  main{
+    padding:24px 16px 54px;
+  }
+
+  .card,
+  .section-intro{
+    padding:22px;
+  }
+}
 </style>
 </head>
-
 <body>
+<div class="shell">
+  <header class="hero">
+    <div class="hero-panel">
+      <div class="hero-bar"></div>
+      <div class="hero-content">
+        <img src="logo-ouestfrais.png" alt="Logo Ouest Frais" class="brand-logo">
 
-<header style="
-position:relative;
-padding:25px 40px;
-background:linear-gradient(135deg,#16324f,#1f4e73);
-text-align:center;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-border-bottom:2px solid rgba(255,255,255,0.1);
-">
+        <div class="hero-copy">
+          <div class="eyebrow">BTS FED • Soutenance technique</div>
+          <h1>Projet lot N°9 <span class="gradient">Ouest Frais</span></h1>
+          <p>
+            Étude et conception d'une installation frigorifique pour une plateforme logistique alimentaire.
+            Cette présentation met en valeur l'analyse technique, les choix de conception et les éléments de chiffrage du projet.
+          </p>
+          <div class="hero-meta">
+            <span class="meta-pill">Montaigu • Vendée</span>
+            <span class="meta-pill">Chambres froides positives et négatives</span>
+            <span class="meta-pill">Dimensionnement • Régulation • Dossier technique</span>
+          </div>
+        </div>
 
-<!-- LOGO OUEST FRAIS -->
-<img src="logo-ouestfrais.png" style="
-position:absolute;
-left:30px;
-top:50%;
-transform:translateY(-50%);
-width:190px;
-transition:0.3s;
-"
-onmouseover="this.style.transform='translateY(-50%) scale(1.05)'"
-onmouseout="this.style.transform='translateY(-50%) scale(1)'">
+        <img src="logo-cci.png" alt="Logo CCI" class="partner-logo">
+      </div>
+    </div>
+  </header>
 
-<!-- TITRE -->
-<h1 style="
-margin:0;
-font-size:36px;
-letter-spacing:1px;
-font-weight:600;
-background:linear-gradient(90deg,#ffffff,#00d4ff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-">
-Projet lot N°9 Ouest Frais
-</h1>
+  <section class="stats">
+    <article class="stat">
+      <strong>97</strong>
+      <span>salariés au sein de l'entreprise</span>
+    </article>
+    <article class="stat">
+      <strong>22</strong>
+      <span>camions frigorifiques en activité</span>
+    </article>
+    <article class="stat">
+      <strong>45 M€</strong>
+      <span>de chiffre d'affaires annuel</span>
+    </article>
+    <article class="stat">
+      <strong>-25°C</strong>
+      <span>pour la chambre froide négative</span>
+    </article>
+  </section>
 
-<!-- SOUS-TITRE -->
-<p style="
-margin-top:5px;
-font-size:14px;
-color:#cfd8e3;
-letter-spacing:1px;
-">
-BTS FED - Étude & Conception d’une installation frigorifique
-</p>
+  <div class="nav-wrap">
+    <nav class="menu" aria-label="Navigation principale">
+      <button onclick="show('accueil')">Accueil</button>
+      <button onclick="show('commun')">Partie commune</button>
+      <button onclick="show('candidats')">Candidats</button>
+      <button onclick="show('dossier')">Dossier technique</button>
+    </nav>
+  </div>
 
-<!-- LOGO CCI -->
-<img src="logo-cci.png" style="
-position:absolute;
-right:30px;
-top:50%;
-transform:translateY(-50%);
-width:150px;
-transition:0.3s;
-"
-onmouseover="this.style.transform='translateY(-50%) scale(1.05)'"
-onmouseout="this.style.transform='translateY(-50%) scale(1)'">
+  <main>
+    <section id="accueil" class="section active">
+      <div class="section-intro reveal">
+        <h2>Vue d'ensemble du projet</h2>
+        <p>
+          L'objectif est de présenter de manière claire et professionnelle les besoins du client, les contraintes frigorifiques
+          et la logique de conception retenue pour l'installation. L'interface met volontairement l'accent sur la lisibilité,
+          la rigueur technique et l'impact visuel.
+        </p>
+      </div>
 
-</header>
-<div class="header-line"></div>
+      <article class="card reveal">
+        <div class="split">
+          <div>
+            <h2>Présentation du client</h2>
+            <p class="lead">
+              Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire, implantée à Montaigu en Vendée.
+              Créée en 1999, elle développe une activité logistique exigeante qui impose une maîtrise rigoureuse de la chaîne du froid.
+            </p>
+            <p>
+              L'entrepôt comprend plusieurs chambres froides positives entre +2 °C et +4 °C ainsi qu'une chambre froide négative à -25 °C.
+              Le projet vise donc une solution performante, fiable et conforme aux contraintes réglementaires et énergétiques.
+            </p>
+          </div>
 
-<div class="menu">
-<button onclick="show('accueil')">Accueil</button>
-<button onclick="show('commun')">Partie commune</button>
-<button onclick="show('candidats')">Candidats</button>
-<button onclick="show('dossier')">Dossier technique</button>
-</div>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Enjeu principal</strong>
+              Garantir la conservation des produits et la continuité d'exploitation.
+            </div>
+            <div class="info-item">
+              <strong>Approche présentée</strong>
+              Bilan frigorifique, comparaison des fluides, schémas de principe et analyse financière.
+            </div>
+            <div class="info-item">
+              <strong>Attendu de soutenance</strong>
+              Montrer une démarche technique structurée et des choix argumentés.
+            </div>
+          </div>
+        </div>
 
-<!-- ACCUEIL -->
-<div id="accueil" class="section" style="display:block;">
-<div class="card">
-<h2>Présentation du client</h2>
+        <img src="carte.png" alt="Localisation du site Ouest Frais" class="image-plain zoomable" data-caption="Localisation du client et contexte d'implantation">
+      </article>
+    </section>
 
-<p>
-Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire située à Montaigu en Vendée.
-Créée en 1999, elle compte 97 salariés, 22 camions frigorifiques et réalise un chiffre d'affaires de 45M€.
-</p>
+    <section id="commun" class="section">
+      <div class="section-intro reveal">
+        <h2>Partie commune</h2>
+        <p>
+          Cette partie rassemble les éléments techniques partagés : calcul des besoins, étude des fluides et cadre réglementaire.
+          La présentation est conçue pour faire ressortir les comparaisons et faciliter le commentaire oral devant le jury.
+        </p>
+      </div>
 
-<p>
-L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une chambre négative (-25°C).
-</p>
+      <article class="card reveal">
+        <h2>Bilan frigorifique</h2>
+        <p>Évaluation des charges thermiques pour dimensionner l'installation et justifier la puissance frigorifique retenue.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="bilan-frigo.png" alt="Bilan frigorifique global" class="zoomable" data-caption="Bilan frigorifique global">
+            <figcaption class="media-caption"><span>Bilan global</span><span>Clique pour agrandir</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="bilan-detail.png" alt="Détail du bilan frigorifique" class="zoomable" data-caption="Détail du bilan frigorifique">
+            <figcaption class="media-caption"><span>Détail des apports</span><span>Clique pour agrandir</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<img src="carte.png">
-</div>
-</div>
+      <article class="card reveal">
+        <h2>Comparaison des fluides frigorigènes</h2>
+        <p>Analyse comparative pour mettre en évidence les compromis entre performance, sécurité, impact environnemental et réglementation.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="tableau-r1234ze.png" alt="Comparatif R1234ze" class="zoomable" data-caption="Comparatif du fluide R1234ze">
+            <figcaption class="media-caption"><span>R1234ze</span><span>Performance et impact</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="tableau-nh3.png" alt="Comparatif NH3" class="zoomable" data-caption="Comparatif du fluide NH3">
+            <figcaption class="media-caption"><span>NH3</span><span>Solution industrielle</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="tableau-r290.png" alt="Comparatif R290" class="zoomable" data-caption="Comparatif du fluide R290">
+            <figcaption class="media-caption"><span>R290</span><span>Option hydrocarbure</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="tableau-co2.png" alt="Comparatif CO2" class="zoomable" data-caption="Comparatif du fluide CO2">
+            <figcaption class="media-caption"><span>CO2</span><span>Approche bas carbone</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<!-- PARTIE COMMUNE -->
-<div id="commun" class="section">
+      <article class="card reveal">
+        <h2>Réglementation</h2>
+        <p>Les documents ci-dessous synthétisent les obligations et limites réglementaires applicables aux solutions étudiées.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="tableau-hfo.png" alt="Tableau HFO" class="zoomable" data-caption="Synthèse de la réglementation sur les HFO">
+            <figcaption class="media-caption"><span>Cadre HFO</span><span>Conformité</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="tableau-regle-1.png" alt="Tableau réglementaire 1" class="zoomable" data-caption="Tableau réglementaire 1">
+            <figcaption class="media-caption"><span>Règles principales</span><span>Lecture rapide</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="tableau-regle-2.png" alt="Tableau réglementaire 2" class="zoomable" data-caption="Tableau réglementaire 2">
+            <figcaption class="media-caption"><span>Complément</span><span>Exigences associées</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<div class="card">
-<h2>Bilan frigorifique</h2>
-<div class="grid">
-<img src="bilan-frigo.png">
-<img src="bilan-detail.png">
-</div>
-</div>
+      <button class="back" onclick="show('accueil')">Retour à l'accueil</button>
+    </section>
 
-<div class="card">
-<h2>Comparaison des fluides</h2>
-<div class="grid">
-<img src="tableau-r1234ze.png">
-<img src="tableau-nh3.png">
-<img src="tableau-r290.png">
-<img src="tableau-co2.png">
-</div>
-</div>
+    <section id="candidats" class="section">
+      <div class="section-intro reveal">
+        <h2>Espace candidats</h2>
+        <p>
+          Cette zone permet d'isoler le travail individuel de chaque candidat. Pour l'instant, seule la partie du candidat N°1
+          est détaillée afin de servir de démonstration complète pour la soutenance.
+        </p>
+      </div>
 
-<div class="card">
-<h2>Réglementation</h2>
-<div class="grid">
-<img src="tableau-hfo.png">
-<img src="tableau-regle-1.png">
-<img src="tableau-regle-2.png">
-</div>
-</div>
+      <div class="candidate-grid">
+        <article class="candidate-card reveal">
+          <h3>Candidat N°1</h3>
+          <p>Schémas, formules, pompes, électricité, régulation et devis.</p>
+          <button onclick="show('maxime')">Ouvrir la présentation</button>
+        </article>
+        <article class="candidate-card reveal">
+          <h3>Candidat N°2</h3>
+          <p>Emplacement prêt à recevoir les éléments individuels du second candidat.</p>
+          <button class="secondary" type="button">Contenu à venir</button>
+        </article>
+        <article class="candidate-card reveal">
+          <h3>Candidat N°3</h3>
+          <p>Zone réservée pour compléter le dossier et harmoniser la présentation de groupe.</p>
+          <button class="secondary" type="button">Contenu à venir</button>
+        </article>
+        <article class="candidate-card reveal">
+          <h3>Candidat N°4</h3>
+          <p>Structure déjà prête afin d'ajouter rapidement de nouveaux supports si besoin.</p>
+          <button class="secondary" type="button">Contenu à venir</button>
+        </article>
+      </div>
 
-<button class="back" onclick="show('accueil')">Retour</button>
-</div>
+      <button class="back" onclick="show('accueil')">Retour à l'accueil</button>
+    </section>
 
-<!-- CANDIDATS -->
-<div id="candidats" class="section">
+    <section id="maxime" class="section">
+      <div class="section-intro reveal">
+        <h2>Candidat N°1</h2>
+        <p>
+          Cette partie détaille la démarche technique du projet : schéma de principe, outils de calcul,
+          dimensionnement hydraulique, éléments électriques, stratégie de régulation et chiffrage.
+        </p>
+      </div>
 
-<div class="menu">
-<button onclick="show('maxime')">Candidat N°1</button>
-<button>Candidat N°2</button>
-<button>Candidat N°3</button>
-<button>Candidat N°4</button>
-</div>
+      <nav class="menu" aria-label="Navigation sous-sections candidat">
+        <button onclick="showSub('schema')">Schéma</button>
+        <button onclick="showSub('formules')">Formules</button>
+        <button onclick="showSub('pompes')">Pompes</button>
+        <button onclick="showSub('elec')">Électricité</button>
+        <button onclick="showSub('regul')">Régulation</button>
+        <button onclick="showSub('devis')">Devis</button>
+      </nav>
 
-<button class="back" onclick="show('accueil')">Retour</button>
-</div>
+      <article id="schema" class="card sub active reveal">
+        <h2>Schéma de principe</h2>
+        <p>Vue globale de l'installation, identification des composants et support d'explication pour la soutenance orale.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="schema-principe-rtap.png" alt="Schéma de principe" class="zoomable" data-caption="Schéma de principe de l'installation">
+            <figcaption class="media-caption"><span>Schéma de principe</span><span>Architecture générale</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="nomenclature-rtap.png" alt="Nomenclature" class="zoomable" data-caption="Nomenclature des équipements">
+            <figcaption class="media-caption"><span>Nomenclature</span><span>Repérage des équipements</span></figcaption>
+          </figure>
+        </div>
+        <img src="diagramme-enthalpie.png" alt="Diagramme enthalpique" class="image-plain zoomable" data-caption="Diagramme enthalpique du cycle frigorifique">
+      </article>
 
-<!-- MAXIME -->
-<div id="maxime" class="section">
+      <article id="formules" class="card sub reveal">
+        <h2>Formules utilisées</h2>
+        <p>Les expressions retenues servent à justifier le dimensionnement thermique, hydraulique et électrique du projet.</p>
+        <div class="grid grid-3">
+          <figure class="media-card">
+            <img src="formule-chaud.png" alt="Formule chaud" class="zoomable" data-caption="Formule de calcul chaud">
+            <figcaption class="media-caption"><span>Chaud</span><span>Dimensionnement</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="formule-froid.png" alt="Formule froid" class="zoomable" data-caption="Formule de calcul froid">
+            <figcaption class="media-caption"><span>Froid</span><span>Dimensionnement</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="kv.png" alt="Formule Kv" class="zoomable" data-caption="Formule de Kv">
+            <figcaption class="media-caption"><span>Kv</span><span>Hydraulique</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pui-elec.png" alt="Puissance électrique" class="zoomable" data-caption="Calcul de la puissance électrique">
+            <figcaption class="media-caption"><span>Puissance électrique</span><span>Énergie</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pui-hydrau.png" alt="Puissance hydraulique" class="zoomable" data-caption="Calcul de la puissance hydraulique">
+            <figcaption class="media-caption"><span>Puissance hydraulique</span><span>Débit et pression</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="formule-hmt.png" alt="Formule HMT" class="zoomable" data-caption="Calcul de la hauteur manométrique totale">
+            <figcaption class="media-caption"><span>HMT</span><span>Sélection des pompes</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<div class="menu">
-<button onclick="showSub('schema')">Schéma</button>
-<button onclick="showSub('formules')">Formules</button>
-<button onclick="showSub('pompes')">Pompes</button>
-<button onclick="showSub('elec')">Élec</button>
-<button onclick="showSub('regul')">Régulation</button>
-<button onclick="showSub('devis')">Devis</button>
-</div>
+      <article id="pompes" class="card sub reveal">
+        <h2>Pompes</h2>
+        <p>Sélection et vérification des pompes pour les circuits chaud et froid du projet.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="pompe-chaud-gf1.png" alt="Pompe chaud groupe froid 1" class="zoomable" data-caption="Pompe chaud GF1">
+            <figcaption class="media-caption"><span>Pompe chaud GF1</span><span>Courbe constructeur</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pompe-chaud-gf2.png" alt="Pompe chaud groupe froid 2" class="zoomable" data-caption="Pompe chaud GF2">
+            <figcaption class="media-caption"><span>Pompe chaud GF2</span><span>Courbe constructeur</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pompe-froid-gf1.png" alt="Pompe froid groupe froid 1" class="zoomable" data-caption="Pompe froid GF1">
+            <figcaption class="media-caption"><span>Pompe froid GF1</span><span>Courbe constructeur</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pompe-froid-gf2.png" alt="Pompe froid groupe froid 2" class="zoomable" data-caption="Pompe froid GF2">
+            <figcaption class="media-caption"><span>Pompe froid GF2</span><span>Courbe constructeur</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<div id="schema" class="card sub">
-<h2>Schéma de principe</h2>
-<img src="schema-principe-rtap.png">
+      <article id="elec" class="card sub reveal">
+        <h2>Schémas électriques</h2>
+        <p>Supports de compréhension des alimentations, sécurités et logiques de commande des groupes froids.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="schema-elec-gf1.png" alt="Schéma électrique groupe froid 1" class="zoomable rotated" data-caption="Schéma électrique GF1">
+            <figcaption class="media-caption"><span>GF1</span><span>Schéma électrique</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="schema-elec-gf2.png" alt="Schéma électrique groupe froid 2" class="zoomable rotated" data-caption="Schéma électrique GF2">
+            <figcaption class="media-caption"><span>GF2</span><span>Schéma électrique</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<h3>Nomenclature</h3>
-<img src="nomenclature-rtap.png">
+      <article id="regul" class="card sub reveal">
+        <h2>Régulation</h2>
+        <p>Automate CAREL assurant la supervision des groupes froids, des sécurités et des paramètres de fonctionnement.</p>
+        <img src="schema-regul.png" alt="Schéma de régulation" class="image-plain zoomable rotated" data-caption="Schéma de régulation CAREL">
+      </article>
 
-<h3>Diagramme enthalpique</h3>
-<img src="diagramme-enthalpie.png">
-</div>
+      <article id="devis" class="card sub reveal">
+        <h2>Analyse financière du projet</h2>
+        <div class="devis-box">
+          <img src="devis.png" alt="Devis du projet" class="image-plain zoomable" data-caption="Aperçu du devis du projet">
+          <a href="devis.pdf" download class="btn-devis">Télécharger le devis</a>
+          <div class="analyse">
+            <p>Le coût total du projet s'élève à environ 1,68 million d'euros TTC.</p>
+            <p>La production frigorifique constitue la part principale de l'investissement, ce qui confirme son rôle central dans l'équilibre technique et économique du site.</p>
+            <p>Les équipements électriques, hydrauliques et de régulation participent directement à la sécurité, à la disponibilité et à la performance globale de l'installation.</p>
+          </div>
+        </div>
+      </article>
 
-<div id="formules" class="card sub">
-<h2>Formules</h2>
-<div class="grid">
-<img src="formule-chaud.png">
-<img src="formule-froid.png">
-<img src="kv.png">
-<img src="pui-elec.png">
-<img src="pui-hydrau.png">
-<img src="formule-hmt.png">
-</div>
-</div>
+      <button class="back" onclick="show('candidats')">Retour aux candidats</button>
+    </section>
 
-<div id="pompes" class="card sub">
-<h2>Pompes</h2>
-<div class="grid">
-<img src="pompe-chaud-gf1.png">
-<img src="pompe-chaud-gf2.png">
-<img src="pompe-froid-gf1.png">
-<img src="pompe-froid-gf2.png">
-</div>
-</div>
+    <section id="dossier" class="section">
+      <div class="section-intro reveal">
+        <h2>Dossier technique</h2>
+        <p>
+          Regroupement des éléments constructeurs et des composants principaux utilisés dans l'installation.
+          Cette section fonctionne comme une base documentaire rapide pendant la présentation.
+        </p>
+      </div>
 
-<div id="elec" class="card sub">
-<h2>Schémas électriques</h2>
-<div class="grid">
-<img src="schema-elec-gf1.png" style="transform:rotate(-90deg);">
-<img src="schema-elec-gf2.png" style="transform:rotate(-90deg);">
-</div>
-</div>
+      <nav class="menu" aria-label="Navigation dossier technique">
+        <button onclick="showSubDoc('gf')">Groupes froids</button>
+        <button onclick="showSubDoc('pompes-doc')">Pompes</button>
+        <button onclick="showSubDoc('ballon')">Ballon découplage</button>
+        <button onclick="showSubDoc('tuyaux')">Tuyauterie</button>
+        <button onclick="showSubDoc('vanne-ta')">Vanne TA</button>
+        <button onclick="showSubDoc('controleur')">Contrôleur débit</button>
+        <button onclick="showSubDoc('isolement')">Vanne isolement</button>
+      </nav>
 
-<div id="regul" class="card sub">
-<h2>Régulation</h2>
-<img src="schema-regul.png" style="transform:rotate(-90deg);">
-<p>Automate CAREL permettant la gestion complète des groupes froids et des sécurités.</p>
-</div>
+      <article id="gf" class="card subdoc active reveal">
+        <h2>Groupes froids</h2>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="trane.png" alt="Document constructeur Trane 1" class="zoomable" data-caption="Document constructeur Trane">
+            <figcaption class="media-caption"><span>Trane</span><span>Document 1</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="trane-2.png" alt="Document constructeur Trane 2" class="zoomable" data-caption="Document constructeur Trane 2">
+            <figcaption class="media-caption"><span>Trane</span><span>Document 2</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<div id="devis" class="card sub">
-<h2>Analyse financière du projet</h2>
+      <article id="pompes-doc" class="card subdoc reveal">
+        <h2>Pompes</h2>
+        <p>Documentation et courbes des pompes utilisées pour les circuits chaud et froid.</p>
+        <div class="grid">
+          <figure class="media-card">
+            <img src="pompe-chaud-gf1.png" alt="Pompe chaud GF1 dossier technique" class="zoomable" data-caption="Pompe chaud GF1 - dossier technique">
+            <figcaption class="media-caption"><span>Chaud GF1</span><span>Documentation</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pompe-chaud-gf2.png" alt="Pompe chaud GF2 dossier technique" class="zoomable" data-caption="Pompe chaud GF2 - dossier technique">
+            <figcaption class="media-caption"><span>Chaud GF2</span><span>Documentation</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pompe-froid-gf1.png" alt="Pompe froid GF1 dossier technique" class="zoomable" data-caption="Pompe froid GF1 - dossier technique">
+            <figcaption class="media-caption"><span>Froid GF1</span><span>Documentation</span></figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="pompe-froid-gf2.png" alt="Pompe froid GF2 dossier technique" class="zoomable" data-caption="Pompe froid GF2 - dossier technique">
+            <figcaption class="media-caption"><span>Froid GF2</span><span>Documentation</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-<div class="devis-box">
-<img src="devis.png" class="devis-img">
+      <article id="ballon" class="card subdoc reveal">
+        <h2>Ballon de découplage</h2>
+        <p>Le ballon de découplage stabilise les débits hydrauliques et favorise un fonctionnement plus équilibré entre production et distribution.</p>
+      </article>
 
-<a href="devis.pdf" download class="btn-devis">
-📄 Télécharger le devis
-</a>
+      <article id="tuyaux" class="card subdoc reveal">
+        <h2>Tuyauterie</h2>
+        <p>Le réseau de tuyauterie est sélectionné pour assurer durabilité, résistance mécanique et compatibilité avec les contraintes de l'installation.</p>
+      </article>
 
-<div class="analyse">
-<p>Le coût total du projet s’élève à environ 1,68 million d’euros TTC.</p>
-<p>La production frigorifique représente la part principale du budget.</p>
-<p>Les systèmes électriques et de régulation assurent sécurité et performance.</p>
-</div>
+      <article id="vanne-ta" class="card subdoc reveal">
+        <h2>Vanne TA</h2>
+        <p>Les vannes d'équilibrage permettent d'ajuster les débits et de garantir un fonctionnement homogène sur l'ensemble du réseau.</p>
+      </article>
 
-</div>
-</div>
+      <article id="controleur" class="card subdoc reveal">
+        <h2>Contrôleur de débit</h2>
+        <p>Le contrôleur de débit assure le suivi du fonctionnement hydraulique et participe au maintien des performances de l'installation.</p>
+      </article>
 
-<button class="back" onclick="show('candidats')">Retour</button>
-</div>
+      <article id="isolement" class="card subdoc reveal">
+        <h2>Vanne d'isolement</h2>
+        <p>Elle facilite la maintenance des équipements sans immobiliser l'ensemble du système, ce qui améliore l'exploitabilité du site.</p>
+      </article>
 
-<!-- DOSSIER TECHNIQUE (AJOUT SEUL) -->
-<div id="dossier" class="section">
+      <button class="back" onclick="show('accueil')">Retour à l'accueil</button>
+    </section>
+  </main>
 
-<div class="menu">
-<button onclick="showSubDoc('gf')">Groupes froids</button>
-<button onclick="showSubDoc('pompes-doc')">Pompes</button>
-<button onclick="showSubDoc('ballon')">Ballon découplage</button>
-<button onclick="showSubDoc('tuyaux')">Tuyauterie</button>
-<button onclick="showSubDoc('vanne-ta')">Vanne TA</button>
-<button onclick="showSubDoc('controleur')">Contrôleur débit</button>
-<button onclick="showSubDoc('isolement')">Vanne isolement</button>
-</div>
-
-<div id="gf" class="card subdoc">
-<h2>Groupes froids</h2>
-<img src="trane.png">
-<img src="trane-2.png">
-</div>
-
-<div id="pompes-doc" class="card subdoc">
-<h2>Pompes</h2>
-<h3>Chaud</h3>
-<img src="pompe-chaud-gf1.png">
-<img src="pompe-chaud-gf2.png">
-<h3>Froid</h3>
-<img src="pompe-froid-gf1.png">
-<img src="pompe-froid-gf2.png">
-</div>
-
-<div id="ballon" class="card subdoc">
-<h2>Ballon</h2>
-<p>Permet de stabiliser les débits hydrauliques.</p>
-</div>
-
-<div id="tuyaux" class="card subdoc">
-<h2>Tuyauterie</h2>
-<p>Réseaux inox résistants et durables.</p>
-</div>
-
-<div id="vanne-ta" class="card subdoc">
-<h2>Vanne TA</h2>
-<p>Équilibrage des débits.</p>
-</div>
-
-<div id="controleur" class="card subdoc">
-<h2>Contrôleur débit</h2>
-<p>Mesure et régulation du débit.</p>
-</div>
-
-<div id="isolement" class="card subdoc">
-<h2>Vanne isolement</h2>
-<p>Permet la maintenance sans arrêt global.</p>
-</div>
-
-<button class="back" onclick="show('accueil')">Retour</button>
-</div>
-
-<!-- ZOOM -->
-<div id="zoom" class="zoom-overlay" onclick="closeZoom()">
-<img id="zoom-img">
+  <div id="zoom" class="zoom-overlay" role="dialog" aria-modal="true" aria-label="Agrandissement image">
+    <div class="zoom-box">
+      <img id="zoom-img" alt="">
+      <div id="zoom-caption" class="zoom-caption"></div>
+      <div class="helper">Appuie sur Échap ou clique autour de l'image pour fermer.</div>
+    </div>
+  </div>
 </div>
 
 <script>
+const sections = [...document.querySelectorAll(".section")];
+const candidateSubs = [...document.querySelectorAll(".sub")];
+const docSubs = [...document.querySelectorAll(".subdoc")];
+const revealItems = [...document.querySelectorAll(".reveal, .card")];
+const zoomOverlay = document.getElementById("zoom");
+const zoomImg = document.getElementById("zoom-img");
+const zoomCaption = document.getElementById("zoom-caption");
+
 function show(id){
-document.querySelectorAll('.section').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
+  sections.forEach(section => section.classList.remove("active"));
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    revealVisible();
+  }
 }
 
 function showSub(id){
-document.querySelectorAll('.sub').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
+  candidateSubs.forEach(item => item.classList.remove("active"));
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.add("active");
+    target.classList.add("visible");
+  }
 }
 
 function showSubDoc(id){
-document.querySelectorAll('.subdoc').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
+  docSubs.forEach(item => item.classList.remove("active"));
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.add("active");
+    target.classList.add("visible");
+  }
 }
 
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll', () => {
-cards.forEach(card => {
-const top = card.getBoundingClientRect().top;
-if(top < window.innerHeight - 50){
-card.classList.add('visible');
+function revealVisible(){
+  revealItems.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 80){
+      item.classList.add("visible");
+    }
+  });
 }
-});
-});
 
-function openZoom(src){
-document.getElementById("zoom").style.display="flex";
-document.getElementById("zoom-img").src=src;
+function openZoom(src, caption, alt){
+  zoomImg.src = src;
+  zoomImg.alt = alt || "";
+  zoomCaption.textContent = caption || "";
+  zoomOverlay.style.display = "flex";
 }
 
 function closeZoom(){
-document.getElementById("zoom").style.display="none";
+  zoomOverlay.style.display = "none";
+  zoomImg.src = "";
 }
 
-document.querySelectorAll("img").forEach(img=>{
-img.addEventListener("click",()=>{
-openZoom(img.src);
+document.querySelectorAll(".zoomable").forEach(img => {
+  img.addEventListener("click", event => {
+    event.stopPropagation();
+    openZoom(img.src, img.dataset.caption, img.alt);
+  });
 });
+
+zoomOverlay.addEventListener("click", event => {
+  if(event.target === zoomOverlay){
+    closeZoom();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if(event.key === "Escape"){
+    closeZoom();
+  }
+});
+
+window.addEventListener("scroll", revealVisible);
+window.addEventListener("load", () => {
+  revealVisible();
+  showSub("schema");
+  showSubDoc("gf");
 });
 </script>
-
 </body>
-</html> 
+</html>
