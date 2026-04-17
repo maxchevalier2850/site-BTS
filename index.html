@@ -11,24 +11,12 @@ header{padding:40px;background:#16324f;}
 
 .menu button{
 margin:10px;
-padding:15px 25px;
+padding:15px;
 border:none;
-border-radius:12px;
-background:linear-gradient(135deg,#00d4ff,#009ec3);
+border-radius:10px;
+background:#00d4ff;
 font-weight:bold;
 cursor:pointer;
-color:#002b3a;
-transition:0.3s;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-
-.menu button:hover{
-transform:translateY(-3px);
-box-shadow:0 8px 20px rgba(0,212,255,0.4);
-}
-
-.menu button:active{
-transform:scale(0.95);
 }
 
 .section{
@@ -131,14 +119,16 @@ font-size:14px;
 color:#ddd;
 line-height:1.6;
 }
+121 }
 
 /* LIGNE LUMINEUSE */
 .header-line{
-height:6px;
+height:8px;
 width:100%;
-background:#00d4ff;
+background:#00ffff;
 margin-top:5px;
-box-shadow:0 0 15px #00d4ff;
+box-shadow:0 0 20px #00ffff;
+
 }
 
 @keyframes lineMove{
@@ -241,36 +231,10 @@ Créée en 1999, elle compte 97 salariés, 22 camions frigorifiques et réalise 
 L’entrepôt comprend plusieurs chambres froides positives (+2/+4°C) et une chambre négative (-25°C).
 </p>
 
-<img src="entrepot.png" style="
-max-width:80%;
-border-radius:15px;
-margin-top:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
-">
+<img src="carte.png">
+</div>
+</div>
 
-<p style="
-font-size:14px;
-color:#cfd8e3;
-margin-top:10px;
-font-style:italic;
-">
-Vue 3D de l’entrepôt frigorifique étudié – Projet Ouest Frais
-</p>
-
-<p style="
-font-size:14px;
-color:#cfd8e3;
-margin-top:10px;
-font-style:italic;
-max-width:700px;
-margin-left:auto;
-margin-right:auto;
-">
-Le client dispose de plusieurs sites logistiques dans la région.
-Dans le cadre de cette étude, le choix s’est porté sur le site implanté en Vendée,
-retenu comme référence pour le dimensionnement et l’analyse de l’installation frigorifique.
-</p>
-  
 <!-- PARTIE COMMUNE -->
 <div id="commun" class="section">
 
@@ -504,4 +468,4 @@ openZoom(img.src);
 </script>
 
 </body>
-</html>
+</html> 
