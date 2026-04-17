@@ -635,6 +635,56 @@ main{
   gap:16px;
 }
 
+.schema-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.image-wrap.rotate-90,
+.image-wrap.rotate-180{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.98);
+}
+
+.image-wrap.rotate-90{
+  min-height:360px;
+}
+
+.image-wrap.rotate-90 img.rotated-image{
+  width:auto;
+  height:86%;
+  max-height:none;
+  object-fit:contain;
+  transform:rotate(-90deg) scale(0.92);
+}
+
+.media-card:hover .image-wrap.rotate-90 img.rotated-image{
+  transform:rotate(-90deg) scale(0.96);
+}
+
+.image-wrap.rotate-180 img.rotated-image{
+  width:100%;
+  height:auto;
+  max-height:420px;
+  object-fit:contain;
+  transform:rotate(180deg);
+}
+
+.media-card:hover .image-wrap.rotate-180 img.rotated-image{
+  transform:rotate(180deg) scale(1.02);
+}
+
 .roles-grid{
   display:grid;
   grid-template-columns:repeat(4, minmax(0, 1fr));
@@ -832,6 +882,15 @@ main{
   box-shadow:var(--shadow);
 }
 
+.zoom-box img.rotated-display-90{
+  transform:rotate(-90deg);
+  max-height:65vh;
+}
+
+.zoom-box img.rotated-display-180{
+  transform:rotate(180deg);
+}
+
 .zoom-caption{
   text-align:center;
   color:#deeffd;
@@ -850,7 +909,8 @@ main{
 
   .compare-grid,
   .roles-grid,
-  .synthesis{
+  .synthesis,
+  .schema-grid{
     grid-template-columns:repeat(2, minmax(0, 1fr));
   }
 
@@ -875,7 +935,8 @@ main{
   .pump-grid,
   .panel-grid,
   .cost-grid,
-  .mini-gallery{
+  .mini-gallery,
+  .detail-grid{
     grid-template-columns:1fr;
   }
 
@@ -911,7 +972,9 @@ main{
   .roles-grid,
   .synthesis,
   .formula-grid,
-  .pump-grid{
+  .pump-grid,
+  .schema-grid,
+  .detail-grid{
     grid-template-columns:1fr;
   }
 
@@ -928,6 +991,10 @@ main{
 
   .pump-stats{
     grid-template-columns:1fr;
+  }
+
+  .image-wrap.rotate-90{
+    min-height:280px;
   }
 }
 
@@ -1385,37 +1452,7 @@ main{
         </article>
       </div>
 
-      <div class="panel-grid">
-        <article class="media-card reveal">
-          <div class="image-wrap contain">
-            <img src="assets/schema-principe-rtaf.png" alt="Schéma de principe RTAF" loading="lazy" class="zoomable" data-caption="Schéma de principe synoptique du RTAF Process">
-          </div>
-          <div class="media-info">
-            <h3>Schéma de principe</h3>
-            <p>Le synoptique illustre les échanges énergétiques, les circuits fluides et l'organisation globale de l'installation.</p>
-          </div>
-        </article>
-
-        <article class="media-card reveal">
-          <div class="image-wrap contain">
-            <img src="assets/nomenclature-rtaf.png" alt="Nomenclature du schéma" loading="lazy" class="zoomable" data-caption="Nomenclature du schéma de principe">
-          </div>
-          <div class="media-info">
-            <h3>Nomenclature</h3>
-            <p>La nomenclature identifie clairement les organes de sécurité, les échangeurs, les détendeurs, les capteurs et les lignes de service.</p>
-          </div>
-        </article>
-
-        <article class="media-card reveal">
-          <div class="image-wrap contain">
-            <img src="assets/diagramme-enthalpie.png" alt="Diagramme enthalpique" loading="lazy" class="zoomable" data-caption="Diagramme enthalpique du cycle">
-          </div>
-          <div class="media-info">
-            <h3>Cycle frigorifique</h3>
-            <p>Le diagramme enthalpique permet de visualiser les transformations thermodynamiques et de justifier le régime de fonctionnement retenu.</p>
-          </div>
-        </article>
-
+      <div class="split">
         <article class="media-card reveal">
           <div class="image-wrap contain">
             <img src="assets/implantation-rtaf.png" alt="Implantation Revit des groupes" loading="lazy" class="zoomable" data-caption="Implantation Revit des groupes froids et des ballons">
@@ -1423,16 +1460,6 @@ main{
           <div class="media-info">
             <h3>Implantation des équipements</h3>
             <p>La vue 3D met en évidence les groupes froids, les ballons de découplage et le cheminement des circuits chaud/froid dans une logique de maintenance accessible.</p>
-          </div>
-        </article>
-
-        <article class="media-card reveal">
-          <div class="image-wrap contain">
-            <img src="assets/schema-installation.png" alt="Schéma d'installation AutoCAD" loading="lazy" class="zoomable" data-caption="Schéma détaillé d'installation">
-          </div>
-          <div class="media-info">
-            <h3>Schéma détaillé</h3>
-            <p>Cette représentation complète la vue synoptique et permet de vérifier la cohérence de l'installation avant une étude plus fine.</p>
           </div>
         </article>
 
@@ -1446,6 +1473,28 @@ main{
             L'ensemble permet d'assurer à la fois la production de froid, la stabilité hydraulique et la valorisation
             de l'énergie récupérée, dans une logique d'optimisation énergétique globale.
           </p>
+        </article>
+      </div>
+
+      <div class="detail-grid">
+        <article class="media-card reveal">
+          <div class="image-wrap contain rotate-90">
+            <img src="assets/schema-installation.png" alt="Schéma d'installation AutoCAD" loading="lazy" class="zoomable rotated-image" data-caption="Schéma détaillé d'installation" data-rotate="90">
+          </div>
+          <div class="media-info">
+            <h3>Schéma détaillé</h3>
+            <p>Le schéma détaillé est présenté dans le bon sens pour lire plus facilement le réseau, les circuits et les liaisons entre les équipements.</p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap contain rotate-90">
+            <img src="assets/nomenclature-installation.png" alt="Nomenclature du schéma d'installation" loading="lazy" class="zoomable rotated-image" data-caption="Nomenclature du schéma d'installation" data-rotate="90">
+          </div>
+          <div class="media-info">
+            <h3>Nomenclature du schéma d'installation</h3>
+            <p>Cette nomenclature complète le schéma détaillé en identifiant les groupes, ballons, pompes, circuits glycolés et organes principaux de l'installation.</p>
+          </div>
         </article>
       </div>
     </section>
@@ -1485,13 +1534,54 @@ main{
 
       <div class="tab-shell reveal">
         <div class="tabs" role="tablist" aria-label="Sous-sections candidat">
-          <button class="tab-button active" data-tab-target="dimensionnement">Dimensionnement</button>
+          <button class="tab-button active" data-tab-target="schemas">Schémas & cycle</button>
+          <button class="tab-button" data-tab-target="dimensionnement">Dimensionnement</button>
           <button class="tab-button" data-tab-target="pompes">Pompes</button>
           <button class="tab-button" data-tab-target="regulation">Électricité & régulation</button>
           <button class="tab-button" data-tab-target="planning">Planning & devis</button>
         </div>
 
-        <section id="dimensionnement" class="tab-panel active" role="tabpanel">
+        <section id="schemas" class="tab-panel active" role="tabpanel">
+          <h3>Schémas de principe et cycle frigorifique</h3>
+          <p>
+            Ces trois documents appartiennent à la partie candidat N°1. Ils présentent l'architecture globale du RTAF Process,
+            la lecture des composants via la nomenclature et la compréhension thermodynamique du cycle retenu.
+          </p>
+
+          <div class="schema-grid">
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/schema-principe-rtaf.png" alt="Schéma de principe RTAF" loading="lazy" class="zoomable" data-caption="Schéma de principe synoptique du RTAF Process">
+              </div>
+              <div class="media-info">
+                <h3>Schéma de principe</h3>
+                <p>Le synoptique illustre les échanges énergétiques, les circuits fluides et l'organisation globale de l'installation.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/nomenclature-rtaf.png" alt="Nomenclature du schéma" loading="lazy" class="zoomable" data-caption="Nomenclature du schéma de principe">
+              </div>
+              <div class="media-info">
+                <h3>Nomenclature</h3>
+                <p>La nomenclature identifie clairement les organes de sécurité, les échangeurs, les détendeurs, les capteurs et les lignes de service.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/diagramme-enthalpie.png" alt="Diagramme enthalpique" loading="lazy" class="zoomable" data-caption="Diagramme enthalpique du cycle">
+              </div>
+              <div class="media-info">
+                <h3>Cycle frigorifique</h3>
+                <p>Le diagramme enthalpique permet de visualiser les transformations thermodynamiques et de justifier le régime de fonctionnement retenu.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="dimensionnement" class="tab-panel" role="tabpanel">
           <h3>Dimensionnement hydraulique</h3>
           <p>
             Les débits sont calculés à partir des puissances thermiques, des caractéristiques du fluide et des écarts de température.
@@ -1542,6 +1632,72 @@ main{
               <img src="assets/pui-elec.png" alt="Puissance électrique" loading="lazy" class="zoomable" data-caption="Calcul de la puissance électrique">
               <span>Conversion en puissance électrique en tenant compte du rendement global.</span>
             </figure>
+          </div>
+
+          <article class="quote-card" style="margin-top:18px;">
+            <h3>Courbes de pompes et lecture des résultats</h3>
+            <p>
+              Les sélections des pompes complètent directement le calcul hydraulique. Elles relient le débit demandé,
+              la HMT et la puissance électrique à chaque circuit froid ou chaud des groupes GF1 et GF2.
+            </p>
+            <p>
+              Le détail complet reste repris dans l'onglet Pompes, mais les visuels ci-dessous sont ajoutés ici
+              pour faire le lien immédiat entre la méthode de calcul et la sélection des équipements.
+            </p>
+          </article>
+
+          <div class="pump-grid" style="margin-top:18px;">
+            <article class="pump-card">
+              <h3>Pompe froid GF1</h3>
+              <p>Le circuit froid GF1 est dimensionné pour un débit élevé avec une HMT modérée, ce qui garantit un fonctionnement stable de l'évaporateur.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>189 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>4,02 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>12,36 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-froid-gf1.png" alt="Sélection pompe froid GF1" loading="lazy" class="zoomable" data-caption="Sélection de la pompe froid GF1">
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <h3>Pompe chaud GF1</h3>
+              <p>Le circuit de récupération de chaleur GF1 présente plus de pertes de charge, d'où une HMT plus haute et une puissance électrique supérieure.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>147,87 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>8,04 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>19,43 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-chaud-gf1.png" alt="Sélection pompe chaud GF1" loading="lazy" class="zoomable" data-caption="Sélection de la pompe chaud GF1">
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <h3>Pompe froid GF2</h3>
+              <p>Le réseau froid GF2 est plus favorable hydrauliquement, ce qui explique une HMT plus contenue et une puissance électrique plus faible.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>189 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>3,01 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>9,30 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-froid-gf2.png" alt="Sélection pompe froid GF2" loading="lazy" class="zoomable" data-caption="Sélection de la pompe froid GF2">
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <h3>Pompe chaud GF2</h3>
+              <p>GF2 chaud correspond au circuit le plus exigeant. La sélection retenue couvre les pertes de charge importantes avec une marge de sécurité cohérente.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>147,87 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>9,73 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>23,52 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-chaud-gf2.png" alt="Sélection pompe chaud GF2" loading="lazy" class="zoomable" data-caption="Sélection de la pompe chaud GF2">
+              </div>
+            </article>
           </div>
         </section>
 
@@ -1622,8 +1778,8 @@ main{
 
           <div class="panel-grid">
             <article class="media-card">
-              <div class="image-wrap contain">
-                <img src="assets/schema-elec-gf1.png" alt="Schéma électrique GF1" loading="lazy" class="zoomable" data-caption="Schéma électrique puissance et commande GF1">
+              <div class="image-wrap contain rotate-90">
+                <img src="assets/schema-elec-gf1.png" alt="Schéma électrique GF1" loading="lazy" class="zoomable rotated-image" data-caption="Schéma électrique puissance et commande GF1" data-rotate="90">
               </div>
               <div class="media-info">
                 <h3>Schéma électrique GF1</h3>
@@ -1632,8 +1788,8 @@ main{
             </article>
 
             <article class="media-card">
-              <div class="image-wrap contain">
-                <img src="assets/schema-elec-gf2.png" alt="Schéma électrique GF2" loading="lazy" class="zoomable" data-caption="Schéma électrique puissance et commande GF2">
+              <div class="image-wrap contain rotate-90">
+                <img src="assets/schema-elec-gf2.png" alt="Schéma électrique GF2" loading="lazy" class="zoomable rotated-image" data-caption="Schéma électrique puissance et commande GF2" data-rotate="90">
               </div>
               <div class="media-info">
                 <h3>Schéma électrique GF2</h3>
@@ -1642,8 +1798,8 @@ main{
             </article>
 
             <article class="media-card">
-              <div class="image-wrap contain">
-                <img src="assets/schema-regul.png" alt="Schéma de régulation" loading="lazy" class="zoomable" data-caption="Schéma de régulation avec automate CAREL BMESTO3LED">
+              <div class="image-wrap contain rotate-90">
+                <img src="assets/schema-regul.png" alt="Schéma de régulation" loading="lazy" class="zoomable rotated-image" data-caption="Schéma de régulation avec automate CAREL BMESTO3LED" data-rotate="90">
               </div>
               <div class="media-info">
                 <h3>Automate CAREL</h3>
@@ -1673,8 +1829,8 @@ main{
                 <div class="image-wrap contain">
                   <img src="assets/gantt-simple.png" alt="Planning simplifié" loading="lazy" class="zoomable" data-caption="Diagramme de Gantt simplifié du projet">
                 </div>
-                <div class="image-wrap contain">
-                  <img src="assets/gantt-detail.png" alt="Planning détaillé" loading="lazy" class="zoomable" data-caption="Diagramme de Gantt détaillé du projet">
+                <div class="image-wrap contain rotate-90">
+                  <img src="assets/gantt-detail.png" alt="Planning détaillé" loading="lazy" class="zoomable rotated-image" data-caption="Diagramme de Gantt détaillé du projet" data-rotate="90">
                 </div>
               </div>
               <div class="media-info">
@@ -1726,7 +1882,7 @@ main{
     <section id="synthese" class="section">
       <div class="section-head reveal">
         <span class="kicker">5. Synthèse finale</span>
-        <h2>Les points forts à faire ressortir devant le jury</h2>
+        <h2>Les points forts de ce projet</h2>
         <p>
           Ce projet montre une démarche complète : compréhension du besoin, choix des fluides, dimensionnement,
           lecture de documents techniques, cohérence économique et prise en compte de la réglementation.
@@ -1791,6 +1947,12 @@ document.querySelectorAll(".zoomable").forEach((image) => {
     zoomImage.src = image.src;
     zoomImage.alt = image.alt || "";
     zoomCaption.textContent = image.dataset.caption || image.alt || "";
+    zoomImage.classList.remove("rotated-display-90", "rotated-display-180");
+    if(image.dataset.rotate === "90"){
+      zoomImage.classList.add("rotated-display-90");
+    } else if(image.dataset.rotate === "180"){
+      zoomImage.classList.add("rotated-display-180");
+    }
     zoomModal.style.display = "flex";
     zoomModal.setAttribute("aria-hidden", "false");
   });
@@ -1800,6 +1962,7 @@ function closeZoom(){
   zoomModal.style.display = "none";
   zoomModal.setAttribute("aria-hidden", "true");
   zoomImage.src = "";
+  zoomImage.classList.remove("rotated-display-90", "rotated-display-180");
 }
 
 zoomModal.addEventListener("click", (event) => {
