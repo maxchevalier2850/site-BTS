@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ouest Frais | Projet BTS FED</title>
+<meta name="description" content="Présentation du projet BTS FED Option B - Installation frigorifique Ouest Frais.">
+<style>
+:root{
+  --bg:#07111b;
+  --bg-soft:#102131;
+  --panel:rgba(9, 22, 34, 0.72);
+  --panel-strong:rgba(11, 27, 42, 0.9);
+  --line:rgba(153, 205, 255, 0.12);
+  --line-strong:rgba(153, 205, 255, 0.26);
+  --text:#eef6ff;
+  --muted:#a7bdd2;
+  --cold:#74d9ff;
+  --cold-strong:#1aa8dc;
+  --heat:#ffbe6d;
+  --heat-strong:#ff9951;
+  --ok:#8de8c4;
+  --shadow:0 28px 70px rgba(0, 0, 0, 0.32);
+  --radius:28px;
+  --radius-sm:20px;
+  --max-width:1280px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Bahnschrift, "Trebuchet MS", "Segoe UI Variable", sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(26, 168, 220, 0.18), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(255, 190, 109, 0.16), transparent 24%),
+    linear-gradient(180deg, #09131d 0%, #07111b 54%, #050d16 100%);
+  min-height:100vh;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,0.55), transparent 90%);
+  pointer-events:none;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+a,
+button{
+  font:inherit;
+}
+
+.page-shell{
+  position:relative;
+  overflow:hidden;
+}
+
+.ambient{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(10px);
+  pointer-events:none;
+}
+
+.ambient.one{
+  top:140px;
+  left:-140px;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(26, 168, 220, 0.16), transparent 68%);
+}
+
+.ambient.two{
+  top:640px;
+  right:-100px;
+  width:260px;
+  height:260px;
+  background:radial-gradient(circle, rgba(255, 190, 109, 0.18), transparent 70%);
+}
+
+.topbar{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:24px 24px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand-lockup{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.brand-lockup img{
+  height:54px;
+  width:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 14px 26px rgba(0,0,0,0.25));
+}
+
+.brand-meta{
+  color:var(--muted);
+  font-size:0.95rem;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+}
+
+.topbar-side{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.topbar-side img{
+  height:48px;
+  width:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 14px 26px rgba(0,0,0,0.2));
+}
+
+.topbar-tag{
+  padding:10px 16px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  background:rgba(255,255,255,0.04);
+  color:#dbeaf8;
+}
+
+.hero{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:26px 24px 26px;
+}
+
+.hero-panel{
+  position:relative;
+  overflow:hidden;
+  padding:38px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:36px;
+  background:
+    linear-gradient(140deg, rgba(16, 33, 49, 0.96), rgba(9, 18, 28, 0.96) 60%, rgba(17, 38, 60, 0.92));
+  box-shadow:var(--shadow);
+}
+
+.hero-panel::before{
+  content:"";
+  position:absolute;
+  inset:auto auto -100px -90px;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(26, 168, 220, 0.22), transparent 66%);
+}
+
+.hero-panel::after{
+  content:"";
+  position:absolute;
+  inset:-140px -80px auto auto;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255, 190, 109, 0.2), transparent 68%);
+}
+
+.hero-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0, 1.02fr) minmax(400px, 0.98fr);
+  gap:30px;
+  align-items:center;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:16px;
+  padding:9px 15px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.09);
+  background:rgba(255,255,255,0.04);
+  color:#dbeafa;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-size:0.88rem;
+}
+
+.hero-copy h1{
+  margin:0;
+  font-size:clamp(2.9rem, 6vw, 5.2rem);
+  line-height:0.94;
+  letter-spacing:0.01em;
+}
+
+.hero-copy .blend{
+  background:linear-gradient(90deg, #ffffff, var(--cold), #dff8ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero-copy p{
+  max-width:640px;
+  margin:18px 0 0;
+  color:var(--muted);
+  line-height:1.78;
+  font-size:1.07rem;
+}
+
+.hero-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.pill{
+  padding:11px 15px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.05);
+  color:#e6f2fe;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:26px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:180px;
+  padding:15px 22px;
+  border:none;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:0.02em;
+  cursor:pointer;
+  transition:transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg, var(--cold), #c3f4ff);
+  color:#072133;
+  box-shadow:0 16px 36px rgba(26, 168, 220, 0.28);
+}
+
+.btn-secondary{
+  background:rgba(255,255,255,0.05);
+  color:var(--text);
+  border:1px solid rgba(255,255,255,0.09);
+}
+
+.hero-visual{
+  position:relative;
+}
+
+.hero-frame{
+  position:relative;
+  overflow:hidden;
+  border-radius:32px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:#0b1520;
+  box-shadow:var(--shadow);
+}
+
+.hero-frame img{
+  width:100%;
+  aspect-ratio:1.17 / 0.8;
+  object-fit:cover;
+}
+
+.floating-card{
+  position:absolute;
+  padding:16px 18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(8, 19, 30, 0.86);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(10px);
+}
+
+.floating-card strong{
+  display:block;
+  font-size:1.6rem;
+  line-height:1;
+}
+
+.floating-card span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:0.93rem;
+}
+
+.floating-card.top{
+  top:18px;
+  right:18px;
+}
+
+.floating-card.bottom{
+  left:20px;
+  bottom:18px;
+}
+
+.stats-band{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 24px 10px;
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:14px;
+}
+
+.stat-card{
+  padding:20px 18px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.07);
+  background:rgba(7, 18, 29, 0.8);
+  box-shadow:var(--shadow);
+}
+
+.stat-card strong{
+  display:block;
+  color:var(--cold);
+  font-size:1.8rem;
+  line-height:1.05;
+}
+
+.stat-card span{
+  display:block;
+  margin-top:8px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.dock-nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  background:linear-gradient(180deg, rgba(7, 16, 26, 0.94), rgba(7, 16, 26, 0.82));
+}
+
+.dock-nav ul{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:14px 24px;
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.dock-nav a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);
+  color:#dcecff;
+  text-decoration:none;
+  transition:transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.dock-nav a:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(116, 217, 255, 0.25);
+}
+
+main{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:24px 24px 70px;
+}
+
+.section{
+  scroll-margin-top:100px;
+  margin-top:42px;
+}
+
+.section-head{
+  max-width:820px;
+  margin-bottom:26px;
+}
+
+.section-head .kicker{
+  display:inline-flex;
+  margin-bottom:12px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  color:#d6e9fc;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-size:0.86rem;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:clamp(2rem, 3vw, 3rem);
+  line-height:1.02;
+}
+
+.section-head p{
+  margin:14px 0 0;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:1.02rem;
+}
+
+.grid{
+  display:grid;
+  gap:18px;
+}
+
+.bento{
+  grid-template-columns:1.15fr 0.85fr;
+}
+
+.story-card,
+.media-card,
+.insight-card,
+.quote-card,
+.tab-panel{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, var(--panel), var(--panel-strong));
+  box-shadow:var(--shadow);
+}
+
+.story-card,
+.quote-card{
+  padding:28px;
+}
+
+.story-card h3,
+.media-info h3,
+.insight-card h3,
+.quote-card h3,
+.tab-panel h3{
+  margin:0 0 12px;
+  font-size:1.45rem;
+}
+
+.story-card p,
+.media-info p,
+.insight-card p,
+.quote-card p,
+.tab-panel p{
+  margin:0 0 14px;
+  color:var(--muted);
+  line-height:1.78;
+}
+
+.story-card p:last-child,
+.media-info p:last-child,
+.insight-card p:last-child,
+.quote-card p:last-child,
+.tab-panel p:last-child{
+  margin-bottom:0;
+}
+
+.key-points{
+  display:grid;
+  gap:12px;
+  margin-top:18px;
+}
+
+.key-points div{
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  color:#e3f0fd;
+}
+
+.media-card{
+  overflow:hidden;
+}
+
+.image-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:inherit;
+}
+
+.image-wrap img{
+  width:100%;
+  height:100%;
+  max-height:420px;
+  object-fit:cover;
+  transition:transform 0.35s ease;
+  cursor:pointer;
+}
+
+.media-card:hover .image-wrap img{
+  transform:scale(1.025);
+}
+
+.image-wrap.contain img{
+  object-fit:contain;
+  background:rgba(255,255,255,0.98);
+}
+
+.media-info{
+  padding:20px 22px 22px;
+}
+
+.label-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.tiny-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  color:#d9ebfb;
+  font-size:0.86rem;
+}
+
+.tiny-tag.cold{
+  color:#dff8ff;
+  border-color:rgba(116, 217, 255, 0.25);
+}
+
+.tiny-tag.heat{
+  color:#fff1df;
+  border-color:rgba(255, 190, 109, 0.28);
+}
+
+.split{
+  display:grid;
+  grid-template-columns:1.04fr 0.96fr;
+  gap:18px;
+}
+
+.compare-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:16px;
+}
+
+.insight-card{
+  padding:18px;
+}
+
+.insight-card strong{
+  display:block;
+  margin-bottom:8px;
+  font-size:1.05rem;
+}
+
+.solution-banner{
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:18px;
+  margin-bottom:18px;
+}
+
+.metric-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
+
+.metric{
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+}
+
+.metric strong{
+  display:block;
+  font-size:1.45rem;
+  line-height:1.06;
+  color:#ffffff;
+}
+
+.metric span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+}
+
+.mini-gallery{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+}
+
+.schema-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.image-wrap.rotate-90,
+.image-wrap.rotate-180{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.98);
+}
+
+.image-wrap.rotate-90{
+  min-height:360px;
+}
+
+.image-wrap.rotate-90 img.rotated-image{
+  width:auto;
+  height:86%;
+  max-height:none;
+  object-fit:contain;
+  transform:rotate(-90deg) scale(0.92);
+}
+
+.media-card:hover .image-wrap.rotate-90 img.rotated-image{
+  transform:rotate(-90deg) scale(0.96);
+}
+
+.image-wrap.rotate-180 img.rotated-image{
+  width:100%;
+  height:auto;
+  max-height:420px;
+  object-fit:contain;
+  transform:rotate(180deg);
+}
+
+.media-card:hover .image-wrap.rotate-180 img.rotated-image{
+  transform:rotate(180deg) scale(1.02);
+}
+
+.roles-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
+
+.role-card{
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.role-card strong{
+  display:block;
+  margin-bottom:8px;
+}
+
+.tab-shell{
+  margin-top:18px;
+}
+
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.tab-button{
+  padding:12px 17px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  color:#dceeff;
+  cursor:pointer;
+  transition:transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.tab-button:hover,
+.tab-button.active{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg, rgba(116, 217, 255, 0.18), rgba(255,255,255,0.06));
+  border-color:rgba(116, 217, 255, 0.28);
+}
+
+.tab-panel{
+  display:none;
+  padding:28px;
+}
+
+.tab-panel.active{
+  display:block;
+}
+
+.formula-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
+
+.formula-card{
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+}
+
+.formula-card img{
+  width:100%;
+  height:190px;
+  object-fit:contain;
+  background:#f8fbff;
+  cursor:pointer;
+}
+
+.formula-card span{
+  display:block;
+  padding:12px 14px;
+  color:var(--muted);
+}
+
+.pump-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.pump-card{
+  padding:20px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  min-height:100%;
+}
+
+.pump-stats{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+  margin:16px 0;
+}
+
+.pump-stat{
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.07);
+}
+
+.pump-stat strong{
+  display:block;
+  font-size:1.05rem;
+}
+
+.equipment-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:-2px;
+}
+
+.equipment-chip{
+  display:inline-flex;
+  align-items:center;
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(116, 217, 255, 0.08);
+  border:1px solid rgba(116, 217, 255, 0.18);
+  color:#e5f6ff;
+  font-size:0.82rem;
+  letter-spacing:0.03em;
+}
+
+.visual-pair{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:12px;
+}
+
+.visual-card{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+}
+
+.visual-card .image-wrap{
+  border-radius:14px;
+}
+
+.visual-card .image-wrap img{
+  max-height:235px;
+}
+
+.visual-label{
+  display:block;
+  margin:0 0 10px;
+  color:#dceeff;
+  font-size:0.82rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+.ta-focus{
+  border-color:rgba(116, 217, 255, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(116, 217, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, var(--panel), var(--panel-strong));
+}
+
+#pompes > h3{
+  margin-bottom:12px;
+}
+
+#pompes > p{
+  max-width:940px;
+}
+
+#pompes .pump-grid{
+  align-items:stretch;
+  margin-top:22px;
+}
+
+#pompes .pump-card{
+  position:relative;
+  overflow:hidden;
+  border-color:rgba(116, 217, 255, 0.14);
+  background:linear-gradient(180deg, rgba(12, 27, 40, 0.92), rgba(9, 20, 31, 0.96));
+  box-shadow:0 18px 42px rgba(0, 0, 0, 0.22);
+  transition:transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+#pompes .media-card,
+#pompes .ta-focus{
+  transition:transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+#pompes .pump-card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:3px;
+  background:linear-gradient(90deg, var(--cold), rgba(255,255,255,0.18));
+}
+
+#pompes .pump-card:hover,
+#pompes .media-card:hover,
+#pompes .ta-focus:hover{
+  transform:translateY(-4px);
+  border-color:rgba(116, 217, 255, 0.24);
+  box-shadow:0 24px 50px rgba(0, 0, 0, 0.26);
+}
+
+#pompes .pump-card h3,
+#pompes .media-card h3{
+  margin:0;
+}
+
+#pompes .pump-card p{
+  margin:0;
+  color:#bed2e5;
+}
+
+#pompes .pump-stats{
+  margin:6px 0 2px;
+}
+
+#pompes .pump-stat{
+  background:rgba(255,255,255,0.055);
+  border-color:rgba(255,255,255,0.09);
+}
+
+#pompes .pump-stat span{
+  display:block;
+  margin-top:4px;
+  color:#a7c2d8;
+}
+
+#pompes .equipment-meta{
+  margin-bottom:2px;
+}
+
+#pompes .equipment-chip--brand{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(255,255,255,0.08);
+  color:#deeffd;
+}
+
+#pompes .equipment-chip--cold{
+  background:rgba(116, 217, 255, 0.1);
+  border-color:rgba(116, 217, 255, 0.18);
+  color:#ddf7ff;
+}
+
+#pompes .equipment-chip--heat{
+  background:rgba(255, 190, 109, 0.1);
+  border-color:rgba(255, 190, 109, 0.18);
+  color:#fff1de;
+}
+
+#pompes .equipment-chip--neutral{
+  background:rgba(141, 232, 196, 0.08);
+  border-color:rgba(141, 232, 196, 0.18);
+  color:#e8fff5;
+}
+
+#pompes .visual-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.025));
+  border-color:rgba(255,255,255,0.08);
+}
+
+#pompes .visual-label{
+  margin:0;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+#pompes .visual-card .image-wrap{
+  min-height:236px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  background:linear-gradient(180deg, rgba(250,253,255,0.98), rgba(238,244,250,0.98));
+}
+
+#pompes .visual-card .image-wrap img{
+  width:100%;
+  height:100%;
+  max-height:210px;
+  object-fit:contain;
+}
+
+#pompes .ta-focus{
+  border-color:rgba(116, 217, 255, 0.2);
+  box-shadow:0 20px 46px rgba(0, 0, 0, 0.22);
+}
+
+#pompes .ta-focus h3{
+  margin-bottom:14px;
+}
+
+#pompes .split{
+  align-items:stretch;
+}
+
+.panel-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.cost-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:14px;
+  margin:18px 0 20px;
+}
+
+.cost-card{
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.cost-card strong{
+  display:block;
+  margin-bottom:6px;
+  font-size:1.35rem;
+}
+
+.synthesis{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:16px;
+}
+
+.footer{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 24px 40px;
+  color:var(--muted);
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.zoom-modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(2, 8, 14, 0.88);
+  backdrop-filter:blur(8px);
+}
+
+.zoom-box{
+  max-width:min(1180px, 100%);
+  max-height:100%;
+  display:grid;
+  gap:14px;
+}
+
+.zoom-box img{
+  max-width:100%;
+  max-height:78vh;
+  object-fit:contain;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.96);
+  box-shadow:var(--shadow);
+}
+
+.zoom-box img.rotated-display-90{
+  transform:rotate(-90deg);
+  max-height:65vh;
+}
+
+.zoom-box img.rotated-display-180{
+  transform:rotate(180deg);
+}
+
+.zoom-caption{
+  text-align:center;
+  color:#deeffd;
+}
+
+.helper{
+  text-align:center;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+@media (max-width:1180px){
+  .stats-band{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+  }
+
+  .compare-grid,
+  .roles-grid,
+  .synthesis,
+  .schema-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .formula-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width:980px){
+  .hero-grid,
+  .bento,
+  .split,
+  .solution-banner{
+    grid-template-columns:1fr;
+  }
+
+  .hero-visual{
+    order:-1;
+  }
+
+  .stats-band,
+  .pump-grid,
+  .panel-grid,
+  .cost-grid,
+  .mini-gallery,
+  .detail-grid,
+  .visual-pair{
+    grid-template-columns:1fr;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+@media (max-width:760px){
+  .topbar,
+  .hero,
+  main,
+  .footer{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .hero-panel{
+    padding:24px;
+  }
+
+  .stats-band{
+    padding:0 16px 8px;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .dock-nav ul{
+    padding:12px 16px;
+  }
+
+  .compare-grid,
+  .roles-grid,
+  .synthesis,
+  .formula-grid,
+  .pump-grid,
+  .schema-grid,
+  .detail-grid,
+  .visual-pair{
+    grid-template-columns:1fr;
+  }
+
+  .story-card,
+  .quote-card,
+  .tab-panel{
+    padding:22px;
+  }
+
+  .floating-card{
+    position:static;
+    margin-top:14px;
+  }
+
+  .pump-stats{
+    grid-template-columns:1fr;
+  }
+
+  .image-wrap.rotate-90{
+    min-height:280px;
+  }
+}
+
+@media (max-width:540px){
+  .brand-lockup{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .topbar-side{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .hero-copy h1{
+    font-size:2.5rem;
+  }
+
+  .stats-band{
+    grid-template-columns:1fr;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+}
+
+.preview-ribbon{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg, rgba(116, 217, 255, 0.14), rgba(255, 190, 109, 0.12));
+  border:1px solid rgba(255,255,255,0.1);
+  color:#eff8ff;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  font-size:0.8rem;
+}
+
+.preview-ribbon strong{
+  color:var(--cold);
+}
+
+.jury-note-band{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+  margin:0 0 22px;
+}
+
+.jury-note{
+  padding:20px 22px;
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(13, 29, 43, 0.9), rgba(8, 18, 28, 0.94));
+  border:1px solid rgba(116, 217, 255, 0.12);
+  box-shadow:0 20px 40px rgba(0,0,0,0.18);
+}
+
+.jury-note strong{
+  display:block;
+  margin-bottom:8px;
+  color:#f0f8ff;
+  font-size:1.05rem;
+}
+
+.jury-note span{
+  display:block;
+  color:#b7cde0;
+  line-height:1.65;
+}
+
+.soutenance-banner{
+  margin:0 0 22px;
+  padding:26px 28px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at top right, rgba(255, 190, 109, 0.16), transparent 28%),
+    radial-gradient(circle at left, rgba(116, 217, 255, 0.14), transparent 32%),
+    linear-gradient(145deg, rgba(12, 28, 42, 0.96), rgba(7, 17, 28, 0.96));
+  box-shadow:0 28px 60px rgba(0,0,0,0.24);
+}
+
+.soutenance-banner h3{
+  margin:0 0 10px;
+  font-size:1.9rem;
+}
+
+.soutenance-banner p{
+  margin:0;
+  max-width:920px;
+  color:#d3e4f3;
+  line-height:1.8;
+}
+
+.soutenance-path{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+  margin-top:20px;
+}
+
+.soutenance-path .step{
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.07);
+}
+
+.soutenance-path .step strong{
+  display:block;
+  margin-bottom:6px;
+  color:#ffffff;
+}
+
+.soutenance-path .step span{
+  display:block;
+  color:#bad1e4;
+  line-height:1.55;
+}
+
+.preview-synthese-cards{
+  gap:18px;
+}
+
+.preview-synthese-cards .insight-card{
+  padding:24px;
+  background:linear-gradient(180deg, rgba(13, 29, 42, 0.94), rgba(9, 21, 32, 0.96));
+  border-color:rgba(255,255,255,0.08);
+}
+
+@media (max-width:980px){
+  .jury-note-band,
+  .soutenance-path{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <div class="ambient one"></div>
+  <div class="ambient two"></div>
+
+  <div class="topbar">
+    <div class="brand-lockup">
+      <img src="assets/logo-ouestfrais.png" alt="Logo Ouest Frais">
+      <div class="brand-meta">BTS FED Option B • Conduite de projet • Session 2024/2026</div>
+    </div>
+    <div class="topbar-side">
+      <div class="topbar-tag">Projet lot froid industriel • Montaigu-Vendée</div>
+      <img src="assets/logo-cci.png" alt="Logo CCI Formation">
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-panel reveal">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="preview-ribbon"><strong>Aperçu jury</strong> version soutenance premium</div>
+          <div class="eyebrow">Étude, conception et soutenance</div>
+          <h1>Projet <span class="blend">Ouest Frais</span><br>lot frigorifique</h1>
+          <p>
+            Conception d'une installation frigorifique multi-températures pour une plateforme logistique
+            alimentaire intégrant production positive, négative, récupération de chaleur, distribution hydraulique
+            et supervision de l'ensemble des équipements.
+          </p>
+          <div class="hero-pills">
+            <span class="pill">+2 / +4 °C</span>
+            <span class="pill">-25 °C</span>
+            <span class="pill">R1234ze + CO₂</span>
+            <span class="pill">Récupération de chaleur</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#contexte" class="btn btn-primary">Voir le projet</a>
+            <a href="#candidat" class="btn btn-secondary">Voir la partie candidat</a>
+          </div>
+
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-frame">
+            <img src="assets/entrepot-ouest-frais.png" alt="Vue générale du site Ouest Frais" loading="eager" class="zoomable" data-caption="Vue générale de la plateforme logistique Ouest Frais">
+          </div>
+          <div class="floating-card top">
+            <strong>500 000 kg</strong>
+            <span>capacité de stockage en positif à +2 °C</span>
+          </div>
+          <div class="floating-card bottom">
+            <strong>30 000 kg</strong>
+            <span>blocs de glace stockés dans la partie négative</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats-band">
+    <article class="stat-card reveal">
+      <strong>97</strong>
+      <span>salariés sur le site</span>
+    </article>
+    <article class="stat-card reveal">
+      <strong>22</strong>
+      <span>camions frigorifiques</span>
+    </article>
+    <article class="stat-card reveal">
+      <strong>5 600</strong>
+      <span>références stockées</span>
+    </article>
+    <article class="stat-card reveal">
+      <strong>2 100</strong>
+      <span>clients livrés</span>
+    </article>
+    <article class="stat-card reveal">
+      <strong>45 M€</strong>
+      <span>de chiffre d'affaires en 2025</span>
+    </article>
+  </section>
+
+  <nav class="dock-nav">
+    <ul>
+      <li><a href="#contexte">Contexte</a></li>
+      <li><a href="#commune">Étude commune</a></li>
+      <li><a href="#solution">Solution retenue</a></li>
+      <li><a href="#candidat">Partie candidat</a></li>
+      <li><a href="#synthese">Synthèse</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="contexte" class="section">
+      <div class="section-head reveal">
+        <span class="kicker">1. Présentation du projet</span>
+        <h2>Comprendre le site, le besoin et les contraintes</h2>
+        <p>
+          Ouest Frais est une entreprise française spécialisée dans la distribution alimentaire.
+          Le projet est implanté dans le parc d'activités des Marches de Bretagne à Montaigu, dans un site
+          logistique combinant chambres froides positives, chambre négative et zone de quai.
+        </p>
+      </div>
+
+      <div class="jury-note-band reveal">
+        <article class="jury-note">
+          <strong>Un besoin client concret</strong>
+          <span>Le projet répond à un besoin réel de stockage multi-températures sur un site logistique exigeant.</span>
+        </article>
+        <article class="jury-note">
+          <strong>Une réponse technique cohérente</strong>
+          <span>La solution retenue associe performance frigorifique, récupération de chaleur et exploitation lisible.</span>
+        </article>
+      </div>
+
+      <div class="grid bento">
+        <article class="story-card reveal">
+          <h3>Présentation du client</h3>
+          <p>
+            L'entreprise existe depuis 1999 et distribue des produits frais, surgelés et d'épicerie pour la restauration
+            traditionnelle, collective et les métiers de bouche. Le site travaille à grande échelle et impose donc une
+            maîtrise rigoureuse de la chaîne du froid.
+          </p>
+          <p>
+            L'entrepôt comprend deux quais de déchargement à +2 / +4 °C, deux chambres de stockage positives,
+            une chambre froide négative à -25 °C et une future chambre positive encore non réalisée.
+          </p>
+          <div class="key-points">
+            <div>Objectif principal : assurer une installation fiable, performante et conforme.</div>
+            <div>Enjeu métier : continuité de service, sécurité des personnes et suivi énergétique.</div>
+            <div>Logique de conception : simplicité d'exploitation, maintenance facilitée et composants standards.</div>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap">
+            <img src="assets/carte-localisation.jpg" alt="Carte de localisation du projet" loading="lazy" class="zoomable" data-caption="Localisation du projet Ouest Frais en Vendée">
+          </div>
+          <div class="media-info">
+            <div class="label-row">
+              <span class="tiny-tag">Implantation</span>
+              <span class="tiny-tag">Montaigu-Vendée</span>
+            </div>
+            <h3>Localisation du projet</h3>
+            <p>
+              Le site est implanté à Saint-Hilaire-de-Loulay, dans une zone d'activité logistique adaptée
+              aux flux de marchandises sous température dirigée.
+            </p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap contain">
+            <img src="assets/plan-site.png" alt="Plan du bâtiment" loading="lazy" class="zoomable" data-caption="Plan du bâtiment avec zones fonctionnelles">
+          </div>
+          <div class="media-info">
+            <div class="label-row">
+              <span class="tiny-tag">Plan du bâtiment</span>
+              <span class="tiny-tag">Répartition des volumes</span>
+            </div>
+            <h3>Lecture rapide du bâtiment</h3>
+            <p>
+              Le plan fait ressortir les volumes principaux : chambre positive de 2 064 m², chambre négative de 1 011 m²,
+              quai de chargement et stockage de 1 795 m², ainsi qu'une future chambre froide de 986 m².
+            </p>
+          </div>
+        </article>
+
+        <article class="story-card reveal">
+          <h3>Besoin du client</h3>
+          <p>
+            Le client souhaite disposer d'espaces de stockage réfrigéré à températures différentes,
+            avec une production positive à base de mono-propylène glycol et une production négative au CO₂.
+          </p>
+          <p>
+            Deux groupes froids à eau glycolée au R1234ze assurent le régime -2 °C / -7 °C côté positif,
+            avec récupération de chaleur pour le dégivrage. La partie négative est traitée par un groupe CO₂
+            sub-critique à détente directe pour un fonctionnement de -24 °C à -29 °C.
+          </p>
+          <p>
+            Le projet inclut également les raccordements électriques, la distribution des fluides, la régulation
+            et une supervision capable d'assurer le suivi global des performances.
+          </p>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap">
+            <img src="assets/plan-3d.jpg" alt="Vue 3D du site" loading="lazy" class="zoomable" data-caption="Vue 3D du bâtiment et de son implantation">
+          </div>
+          <div class="media-info">
+            <div class="label-row">
+              <span class="tiny-tag">Perspective 3D</span>
+              <span class="tiny-tag">Lecture volumétrique</span>
+            </div>
+            <h3>Vision architecturale du site</h3>
+            <p>
+              Cette vue 3D permet d'illustrer l'échelle du bâtiment, l'organisation des quais
+              et l'intégration du projet frigorifique dans un environnement logistique industriel.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <article class="quote-card reveal" style="margin-top:18px;">
+        <h3>Contraintes majeures à respecter</h3>
+        <div class="roles-grid">
+          <div class="role-card">
+            <strong>Technique</strong>
+            Implantation des équipements, cheminement des réseaux et accessibilité maintenance.
+          </div>
+          <div class="role-card">
+            <strong>Réglementaire</strong>
+            Respect des normes frigorifiques, de sécurité et des obligations environnementales.
+          </div>
+          <div class="role-card">
+            <strong>Économique</strong>
+            Maîtrise des coûts d'investissement et des coûts d'exploitation.
+          </div>
+          <div class="role-card">
+            <strong>Environnementale</strong>
+            Choix de fluides adaptés, réduction des émissions et amélioration de l'efficacité énergétique.
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="commune" class="section">
+      <div class="section-head reveal">
+        <span class="kicker">2. Étude commune</span>
+        <h2>Bilans, fluides et cadre réglementaire</h2>
+        <p>
+          Cette partie met en avant la méthode de calcul commune, la comparaison argumentée des fluides frigorigènes
+          et les normes à respecter pour garantir une installation sûre, durable et cohérente avec les exigences du site.
+        </p>
+      </div>
+
+      <div class="solution-banner">
+        <article class="story-card reveal">
+          <div class="label-row">
+            <span class="tiny-tag cold">Partie positive : R1234ze</span>
+            <span class="tiny-tag heat">Partie négative : CO₂</span>
+          </div>
+          <h3>Choix technique retenu</h3>
+          <p>
+            La solution choisie repose sur le R1234ze pour la partie positive et le CO₂ sub-critique pour la partie négative.
+            Ce choix offre un bon équilibre entre performance, compatibilité avec le site, conformité réglementaire
+            et maîtrise de l'impact environnemental.
+          </p>
+          <p>
+            Le R1234ze est pertinent pour les groupes à eau glycolée et la récupération de chaleur,
+            tandis que le CO₂ apporte une réponse solide pour la basse température avec un PRG très faible.
+          </p>
+        </article>
+
+        <article class="story-card reveal">
+          <h3>Méthode de bilan frigorifique</h3>
+          <p>
+            Les bilans prennent en compte les apports par les parois, les produits, le renouvellement d'air,
+            la ventilation, les charges internes, le dégivrage, l'éclairage, les machines et le personnel.
+          </p>
+          <p>
+            La puissance finale est sécurisée par un coefficient de 1,10 afin de conserver une marge de fonctionnement
+            et de fiabiliser le dimensionnement global.
+          </p>
+        </article>
+      </div>
+
+      <div class="split">
+        <article class="media-card reveal">
+          <div class="mini-gallery">
+            <div class="image-wrap contain">
+              <img src="assets/bilan-frigo.png" alt="Bilan frigorifique" loading="lazy" class="zoomable" data-caption="Bilan frigorifique global">
+            </div>
+            <div class="image-wrap contain">
+              <img src="assets/bilan-detail.png" alt="Détail du bilan frigorifique" loading="lazy" class="zoomable" data-caption="Détail de calcul du bilan frigorifique">
+            </div>
+          </div>
+          <div class="media-info">
+            <h3>Lecture des bilans</h3>
+            <p>
+              Les feuilles de calcul détaillent les hypothèses de charge pour chaque volume traité
+              et servent de base à la sélection des groupes et des régimes hydrauliques.
+            </p>
+          </div>
+        </article>
+
+        <article class="story-card reveal">
+          <h3>Contraintes et objectifs du système</h3>
+          <p>
+            Les objectifs définis pour le site sont clairs : continuité de service, sécurité des personnes et des biens,
+            optimisation énergétique et limitation de l'impact environnemental.
+          </p>
+          <p>
+            Le système doit rester lisible à exploiter, simple à maintenir et capable d'intégrer des extensions,
+            notamment avec la future chambre positive prévue sur le site.
+          </p>
+        </article>
+      </div>
+
+      <div class="compare-grid" style="margin-top:18px;">
+        <article class="media-card reveal">
+          <div class="image-wrap contain">
+            <img src="assets/tableau-r1234ze.png" alt="Comparatif R1234ze" loading="lazy" class="zoomable" data-caption="Avantages et limites du R1234ze">
+          </div>
+          <div class="media-info">
+            <h3>R1234ze</h3>
+            <p>PRG très faible, fluide compatible avec la partie positive, mais classé A2L et nécessitant une vigilance sur l'inflammabilité.</p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap contain">
+            <img src="assets/tableau-co2.png" alt="Comparatif CO2" loading="lazy" class="zoomable" data-caption="Avantages et limites du CO₂">
+          </div>
+          <div class="media-info">
+            <h3>CO₂</h3>
+            <p>PRG égal à 1, fluide naturel et ininflammable, mais demandant des équipements adaptés aux hautes pressions.</p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap contain">
+            <img src="assets/tableau-r290.png" alt="Comparatif R290" loading="lazy" class="zoomable" data-caption="Avantages et limites du R290">
+          </div>
+          <div class="media-info">
+            <h3>R290</h3>
+            <p>Très performant en froid positif, mais fortement inflammable, avec de fortes contraintes de charge et de sécurité.</p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap contain">
+            <img src="assets/tableau-nh3.png" alt="Comparatif NH3" loading="lazy" class="zoomable" data-caption="Avantages et limites du NH3">
+          </div>
+          <div class="media-info">
+            <h3>NH₃</h3>
+            <p>Très bon rendement et solution pérenne, mais toxicité élevée et implantation plus contraignante sur un site exploité.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="split" style="margin-top:18px;">
+        <article class="story-card reveal">
+          <h3>Réglementation et normes</h3>
+          <p>
+            Le projet s'appuie sur plusieurs cadres de référence : DESP 2014/68/UE pour les équipements sous pression,
+            EN 378 pour la sécurité des installations frigorifiques, législation F-Gaz pour la traçabilité des fluides
+            et contrôle d'étanchéité, ainsi que les obligations générales du Code du travail.
+          </p>
+          <p>
+            La conformité ne se limite pas à la mise en service : elle impacte aussi le suivi d'exploitation,
+            les inspections périodiques, la requalification et l'organisation de la maintenance.
+          </p>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="mini-gallery">
+            <div class="image-wrap contain">
+              <img src="assets/tableau-hfo.png" alt="Cadre HFO" loading="lazy" class="zoomable" data-caption="Cadre réglementaire HFO">
+            </div>
+            <div class="image-wrap contain">
+              <img src="assets/tableau-regle-1.png" alt="Règle réglementaire 1" loading="lazy" class="zoomable" data-caption="Synthèse réglementaire 1">
+            </div>
+            <div class="image-wrap contain">
+              <img src="assets/tableau-regle-2.png" alt="Règle réglementaire 2" loading="lazy" class="zoomable" data-caption="Synthèse réglementaire 2">
+            </div>
+          </div>
+          <div class="media-info">
+            <h3>Base documentaire réglementaire</h3>
+            <p>
+              Les tableaux ci-dessus servent de support rapide pour justifier le choix des fluides
+              et rappeler les exigences applicables au jury.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="solution" class="section">
+      <div class="section-head reveal">
+        <span class="kicker">3. Solution retenue</span>
+        <h2>Schéma de principe, implantation et sélection des groupes</h2>
+        <p>
+          La solution retenue s'articule autour de deux groupes Trane RTAF Process adaptés aux régimes négatifs,
+          d'une récupération de chaleur performante, d'une distribution hydraulique isolée et d'une implantation
+          pensée pour la maintenance et la stabilité du réseau.
+        </p>
+      </div>
+
+      <div class="solution-banner">
+        <article class="story-card reveal">
+          <div class="label-row">
+            <span class="tiny-tag cold">Trane Sintesis Prime RTAF</span>
+            <span class="tiny-tag heat">Total Heat Recovery</span>
+          </div>
+          <h3>Sélection informatique des groupes</h3>
+          <p>
+            La demande transmise à Trane portait sur deux groupes capables de produire une eau glycolée à -7 °C en sortie
+            et -2 °C en entrée, avec 33 % de MPG, pour une puissance de 475 kW par groupe et une récupération de chaleur.
+          </p>
+          <p>
+            La solution proposée répond au cahier des charges avec une marge utile sur la puissance frigorifique
+            et une récupération de chaleur très supérieure au besoin initial, ce qui renforce la valorisation énergétique.
+          </p>
+          <div class="metric-grid">
+            <div class="metric">
+              <strong>479,4 kW</strong>
+              <span>puissance frigorifique nette par groupe</span>
+            </div>
+            <div class="metric">
+              <strong>-7 / -3 °C</strong>
+              <span>régime froid retenu</span>
+            </div>
+            <div class="metric">
+              <strong>818,57 kW</strong>
+              <span>récupération totale de chaleur par groupe</span>
+            </div>
+            <div class="metric">
+              <strong>33 % MPG</strong>
+              <span>fluide secondaire côté positif</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="mini-gallery">
+            <div class="image-wrap contain">
+              <img src="assets/trane-select-1.png" alt="Sélection Trane page 1" loading="lazy" class="zoomable" data-caption="Sélection Trane - caractéristiques générales">
+            </div>
+            <div class="image-wrap contain">
+              <img src="assets/trane-select-2.png" alt="Sélection Trane page 2" loading="lazy" class="zoomable" data-caption="Sélection Trane - données acoustiques et électriques">
+            </div>
+          </div>
+          <div class="media-info">
+            <h3>Argumentaire de choix</h3>
+            <p>
+              La solution retenue est justifiée par sa fiabilité, sa compatibilité avec les contraintes du site,
+              sa conformité réglementaire et son bon compromis entre coût, performance et impact environnemental.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="split">
+        <article class="media-card reveal">
+          <div class="image-wrap contain">
+            <img src="assets/implantation-rtaf.png" alt="Implantation Revit des groupes" loading="lazy" class="zoomable" data-caption="Implantation Revit des groupes froids et des ballons">
+          </div>
+          <div class="media-info">
+            <h3>Implantation des équipements</h3>
+            <p>La vue 3D met en évidence les groupes froids, les ballons de découplage et le cheminement des circuits chaud/froid dans une logique de maintenance accessible.</p>
+          </div>
+        </article>
+
+        <article class="story-card reveal">
+          <h3>Lecture de l'implantation</h3>
+          <p>
+            L'implantation générale rassemble les groupes froids, un ballon de découplage côté eau glacée,
+            un second ballon dédié à la récupération de chaleur, les pompes de circulation et un réseau de tuyauterie inox isolé.
+          </p>
+          <p>
+            L'ensemble permet d'assurer à la fois la production de froid, la stabilité hydraulique et la valorisation
+            de l'énergie récupérée, dans une logique d'optimisation énergétique globale.
+          </p>
+        </article>
+      </div>
+
+      <div class="detail-grid">
+        <article class="media-card reveal">
+          <div class="image-wrap contain rotate-90">
+            <img src="assets/schema-installation.png" alt="Schéma d'installation AutoCAD" loading="lazy" class="zoomable rotated-image" data-caption="Schéma détaillé d'installation" data-rotate="90">
+          </div>
+          <div class="media-info">
+            <h3>Schéma détaillé</h3>
+            <p>Le schéma détaillé est présenté dans le bon sens pour lire plus facilement le réseau, les circuits et les liaisons entre les équipements.</p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="image-wrap contain rotate-90">
+            <img src="assets/nomenclature-installation.png" alt="Nomenclature du schéma d'installation" loading="lazy" class="zoomable rotated-image" data-caption="Nomenclature du schéma d'installation" data-rotate="90">
+          </div>
+          <div class="media-info">
+            <h3>Nomenclature du schéma d'installation</h3>
+            <p>Cette nomenclature complète le schéma détaillé en identifiant les groupes, ballons, pompes, circuits glycolés et organes principaux de l'installation.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="candidat" class="section">
+      <div class="section-head reveal">
+        <span class="kicker">4. Partie candidat</span>
+        <h2>Focus candidat N°1 : Maxime Chevalier</h2>
+        <p>
+          Cette partie présente la mission individuelle autour des skids de production R1234ze,
+          de la récupération de chaleur, de l'évacuation des calories, du dimensionnement hydraulique,
+          des schémas électriques et du chiffrage associé.
+        </p>
+      </div>
+
+      <article class="quote-card reveal">
+        <h3>Répartition du travail dans le groupe</h3>
+        <div class="roles-grid">
+          <div class="role-card">
+            <strong>Candidat N°1</strong>
+            Maxime Chevalier : skids de production R1234ze, récupération de chaleur et évacuation des calories.
+          </div>
+          <div class="role-card">
+            <strong>Candidat N°2</strong>
+            Pierre Oger : production R744 et distribution de MPG chaud vers le plancher chauffant négatif.
+          </div>
+          <div class="role-card">
+            <strong>Candidat N°3</strong>
+            David Chiron : distribution de MPG vers les postes positifs et gestion du dégivrage.
+          </div>
+          <div class="role-card">
+            <strong>Candidat N°4</strong>
+            Antonin Barbet : distribution du R744 vers la chambre négative et gestion du dégivrage associé.
+          </div>
+        </div>
+      </article>
+
+      <div class="tab-shell reveal">
+        <div class="tabs" role="tablist" aria-label="Sous-sections candidat">
+          <button class="tab-button active" data-tab-target="schemas">Schémas & cycle</button>
+          <button class="tab-button" data-tab-target="dimensionnement">Dimensionnement</button>
+          <button class="tab-button" data-tab-target="pompes">Pompes</button>
+          <button class="tab-button" data-tab-target="regulation">Électricité & régulation</button>
+          <button class="tab-button" data-tab-target="planning">Planning & devis</button>
+        </div>
+
+        <section id="schemas" class="tab-panel active" role="tabpanel">
+          <h3>Schémas de principe et cycle frigorifique</h3>
+          <p>
+            Ces trois documents appartiennent à la partie candidat N°1. Ils présentent l'architecture globale du RTAF Process,
+            la lecture des composants via la nomenclature et la compréhension thermodynamique du cycle retenu.
+          </p>
+
+          <div class="schema-grid">
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/schema-principe-rtaf.png" alt="Schéma de principe RTAF" loading="lazy" class="zoomable" data-caption="Schéma de principe synoptique du RTAF Process">
+              </div>
+              <div class="media-info">
+                <h3>Schéma de principe</h3>
+                <p>Le synoptique illustre les échanges énergétiques, les circuits fluides et l'organisation globale de l'installation.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/nomenclature-rtaf.png" alt="Nomenclature du schéma" loading="lazy" class="zoomable" data-caption="Nomenclature du schéma de principe">
+              </div>
+              <div class="media-info">
+                <h3>Nomenclature</h3>
+                <p>La nomenclature identifie clairement les organes de sécurité, les échangeurs, les détendeurs, les capteurs et les lignes de service.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/diagramme-enthalpie.png" alt="Diagramme enthalpique" loading="lazy" class="zoomable" data-caption="Diagramme enthalpique du cycle">
+              </div>
+              <div class="media-info">
+                <h3>Cycle frigorifique</h3>
+                <p>Le diagramme enthalpique permet de visualiser les transformations thermodynamiques et de justifier le régime de fonctionnement retenu.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="dimensionnement" class="tab-panel" role="tabpanel">
+          <h3>Dimensionnement hydraulique</h3>
+          <p>
+            Les débits sont calculés à partir des puissances thermiques, des caractéristiques du fluide et des écarts de température.
+            Les pertes linéaires sont déterminées avec un abaque hydraulique, puis complétées par une majoration de 15 % pour
+            représenter les pertes singulières. Un coefficient de sécurité de 1,12 est ensuite appliqué pour fiabiliser le résultat.
+          </p>
+          <p>
+            Cette méthode permet d'obtenir les pertes de charge globales, la HMT et les puissances hydrauliques et électriques
+            nécessaires à la sélection des pompes et des organes d'équilibrage.
+          </p>
+
+          <div class="split" style="margin-top:18px;">
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/abaque-pompe.png" alt="Abaque hydraulique de pompe" loading="lazy" class="zoomable" data-caption="Abaque hydraulique utilisé pour déterminer les pertes linéaires">
+              </div>
+              <div class="media-info">
+                <h3>Abaque de calcul</h3>
+                <p>Le débit, la vitesse et le diamètre intérieur permettent d'estimer les pertes de charge linéaires de chaque tronçon.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/pompe-chaud-gf1.png" alt="Exemple de tableau de calcul GF1 chaud" loading="lazy" class="zoomable" data-caption="Exemple de tableau de calcul des pertes de charge sur GF1 chaud">
+              </div>
+              <div class="media-info">
+                <h3>Exemple de calcul détaillé</h3>
+                <p>Les tableaux de dimensionnement regroupent longueurs, pertes linéaires, singularités et pertes totales pour chaque circuit.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="formula-grid">
+            <figure class="formula-card">
+              <img src="assets/formule-hmt.png" alt="Formule HMT" loading="lazy" class="zoomable" data-caption="Formule utilisée pour le calcul de la hauteur manométrique totale">
+              <span>Calcul de la HMT pour la sélection des pompes.</span>
+            </figure>
+            <figure class="formula-card">
+              <img src="assets/kv.png" alt="Formule Kv" loading="lazy" class="zoomable" data-caption="Formule de calcul du Kv">
+              <span>Dimensionnement des vannes d'équilibrage par le coefficient Kv.</span>
+            </figure>
+            <figure class="formula-card">
+              <img src="assets/pui-hydrau.png" alt="Puissance hydraulique" loading="lazy" class="zoomable" data-caption="Calcul de la puissance hydraulique">
+              <span>Détermination de la puissance hydraulique à partir du débit et de la HMT.</span>
+            </figure>
+            <figure class="formula-card">
+              <img src="assets/pui-elec.png" alt="Puissance électrique" loading="lazy" class="zoomable" data-caption="Calcul de la puissance électrique">
+              <span>Conversion en puissance électrique en tenant compte du rendement global.</span>
+            </figure>
+          </div>
+
+          <article class="quote-card" style="margin-top:18px;">
+            <h3>Courbes de pompes et lecture des résultats</h3>
+            <p>
+              Les sélections des pompes complètent directement le calcul hydraulique. Elles relient le débit demandé,
+              la HMT et la puissance électrique à chaque circuit froid ou chaud des groupes GF1 et GF2.
+            </p>
+            <p>
+              Le détail complet reste repris dans l'onglet Pompes, mais les visuels ci-dessous sont ajoutés ici
+              pour faire le lien immédiat entre la méthode de calcul et la sélection des équipements.
+            </p>
+          </article>
+
+          <div class="pump-grid" style="margin-top:18px;">
+            <article class="pump-card">
+              <h3>Pompe froid GF1</h3>
+              <p>Le circuit froid GF1 est dimensionné pour un débit élevé avec une HMT modérée, ce qui garantit un fonctionnement stable de l'évaporateur.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>189 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>4,02 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>12,36 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-froid-gf1.png" alt="Sélection pompe froid GF1" loading="lazy" class="zoomable" data-caption="Sélection de la pompe froid GF1">
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <h3>Pompe chaud GF1</h3>
+              <p>Le circuit de récupération de chaleur GF1 présente plus de pertes de charge, d'où une HMT plus haute et une puissance électrique supérieure.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>147,87 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>8,04 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>19,43 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-chaud-gf1.png" alt="Sélection pompe chaud GF1" loading="lazy" class="zoomable" data-caption="Sélection de la pompe chaud GF1">
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <h3>Pompe froid GF2</h3>
+              <p>Le réseau froid GF2 est plus favorable hydrauliquement, ce qui explique une HMT plus contenue et une puissance électrique plus faible.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>189 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>3,01 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>9,30 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-froid-gf2.png" alt="Sélection pompe froid GF2" loading="lazy" class="zoomable" data-caption="Sélection de la pompe froid GF2">
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <h3>Pompe chaud GF2</h3>
+              <p>GF2 chaud correspond au circuit le plus exigeant. La sélection retenue couvre les pertes de charge importantes avec une marge de sécurité cohérente.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>147,87 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>9,73 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>23,52 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="image-wrap contain">
+                <img src="assets/pompe-chaud-gf2.png" alt="Sélection pompe chaud GF2" loading="lazy" class="zoomable" data-caption="Sélection de la pompe chaud GF2">
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="pompes" class="tab-panel" role="tabpanel">
+          <h3>Analyse des pompes sélectionnées</h3>
+          <p>
+            Cette section regroupe, pour chaque circuit, la pompe réellement retenue et sa courbe de fonctionnement.
+            Le croisement entre le débit, la HMT et le point de service permet de vérifier que la sélection reste
+            cohérente avec les contraintes hydrauliques de GF1 et GF2.
+          </p>
+
+          <div class="pump-grid">
+            <article class="pump-card">
+              <div class="equipment-meta">
+                <span class="equipment-chip equipment-chip--brand">Grundfos</span>
+                <span class="equipment-chip equipment-chip--cold">Circuit froid</span>
+              </div>
+              <h3>Pompe froid GF1</h3>
+              <p>Elle assure la circulation de l'eau glycolée entre l'évaporateur et le réseau GF1. Le point de fonctionnement reste proche du rendement optimal, ce qui favorise un débit stable et une consommation maîtrisée.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>189 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>4,02 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>12,36 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="visual-pair">
+                <div class="visual-card">
+                  <span class="visual-label">Pompe retenue</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/image-pompe-froid-gf1.png" alt="Pompe froid GF1" loading="lazy" class="zoomable" data-caption="Pompe retenue pour le circuit froid GF1">
+                  </div>
+                </div>
+                <div class="visual-card">
+                  <span class="visual-label">Courbe de fonctionnement</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/courbes-pompe-froid-gf1.png" alt="Courbe de pompe froid GF1" loading="lazy" class="zoomable" data-caption="Courbe de fonctionnement de la pompe froid GF1">
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <div class="equipment-meta">
+                <span class="equipment-chip equipment-chip--brand">Grundfos</span>
+                <span class="equipment-chip equipment-chip--heat">Récupération de chaleur</span>
+              </div>
+              <h3>Pompe chaud GF1</h3>
+              <p>Dédiée à la récupération de chaleur, elle travaille avec une HMT plus élevée à cause des échangeurs et des accessoires du circuit chaud. Elle garantit un transfert thermique efficace vers le réseau tout en restant dans une zone de fonctionnement cohérente.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>147,87 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>8,04 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>19,43 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="visual-pair">
+                <div class="visual-card">
+                  <span class="visual-label">Pompe retenue</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/image-pompe-chaud-gf1.png" alt="Pompe chaud GF1" loading="lazy" class="zoomable" data-caption="Pompe retenue pour le circuit chaud GF1">
+                  </div>
+                </div>
+                <div class="visual-card">
+                  <span class="visual-label">Courbe de fonctionnement</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/courbes-pompe-chaud-gf1.png" alt="Courbe de pompe chaud GF1" loading="lazy" class="zoomable" data-caption="Courbe de fonctionnement de la pompe chaud GF1">
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <div class="equipment-meta">
+                <span class="equipment-chip equipment-chip--brand">Grundfos</span>
+                <span class="equipment-chip equipment-chip--cold">Circuit froid</span>
+              </div>
+              <h3>Pompe froid GF2</h3>
+              <p>Elle assure la même fonction que la pompe froid GF1, mais sur un réseau moins pénalisant hydrauliquement. Son point de fonctionnement se situe dans une zone favorable au rendement énergétique et à la stabilité du circuit.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>189 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>3,01 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>9,30 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="visual-pair">
+                <div class="visual-card">
+                  <span class="visual-label">Pompe retenue</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/image-pompe-froid-gf2.png" alt="Pompe froid GF2" loading="lazy" class="zoomable" data-caption="Pompe retenue pour le circuit froid GF2">
+                  </div>
+                </div>
+                <div class="visual-card">
+                  <span class="visual-label">Courbe de fonctionnement</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/courbes-pompe-froid-gf2.png" alt="Courbe de pompe froid GF2" loading="lazy" class="zoomable" data-caption="Courbe de fonctionnement de la pompe froid GF2">
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pump-card">
+              <div class="equipment-meta">
+                <span class="equipment-chip equipment-chip--brand">Grundfos</span>
+                <span class="equipment-chip equipment-chip--heat">Récupération de chaleur</span>
+              </div>
+              <h3>Pompe chaud GF2</h3>
+              <p>C'est la pompe la plus sollicitée de l'installation. Elle est retenue pour absorber les pertes de charge du circuit chaud GF2 tout en conservant une marge de sécurité compatible avec les variations de fonctionnement.</p>
+              <div class="pump-stats">
+                <div class="pump-stat"><strong>147,87 m³/h</strong><span>Débit</span></div>
+                <div class="pump-stat"><strong>9,73 mCE</strong><span>HMT</span></div>
+                <div class="pump-stat"><strong>23,52 kW</strong><span>Puissance électrique</span></div>
+              </div>
+              <div class="visual-pair">
+                <div class="visual-card">
+                  <span class="visual-label">Pompe retenue</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/image-pompe-chaud-gf2.png" alt="Pompe chaud GF2" loading="lazy" class="zoomable" data-caption="Pompe retenue pour le circuit chaud GF2">
+                  </div>
+                </div>
+                <div class="visual-card">
+                  <span class="visual-label">Courbe de fonctionnement</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/courbes-pompe-chaud-gf2.png" alt="Courbe de pompe chaud GF2" loading="lazy" class="zoomable" data-caption="Courbe de fonctionnement de la pompe chaud GF2">
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <article class="quote-card ta-focus" style="margin-top:18px;">
+            <div class="equipment-meta">
+              <span class="equipment-chip equipment-chip--neutral">Vanne d'équilibrage</span>
+              <span class="equipment-chip equipment-chip--neutral">DN 200 commun</span>
+            </div>
+            <h3>Dimensionnement des vannes TA</h3>
+            <p>
+              Le calcul conduit à des Kv théoriques de 149,88 pour le circuit GF1 chaud et de 298,01 pour le circuit GF2 froid.
+              L'abaque et le tableau de sélection montrent qu'une même vanne TA DN 200 peut être retenue sur les deux circuits.
+            </p>
+            <p>
+              La différence ne vient donc pas du modèle de vanne, mais du préréglage appliqué. C'est pour cette raison
+              qu'une seule photo suffit ici : le corps de vanne est identique, seul le réglage change pour adapter le débit.
+            </p>
+            <div class="key-points">
+              <div>GF1 chaud : Kv théorique 149,88 avec un réglage plus fermé.</div>
+              <div>GF2 froid : Kv théorique 298,01 avec un réglage plus ouvert.</div>
+              <div>Choix retenu : même vanne TA DN 200, réglée différemment selon le circuit.</div>
+            </div>
+          </article>
+
+          <div class="split" style="margin-top:18px;">
+            <article class="media-card">
+              <div class="equipment-meta" style="padding:20px 20px 0;">
+                <span class="equipment-chip equipment-chip--neutral">Dimensionnement</span>
+                <span class="equipment-chip equipment-chip--neutral">DN 200</span>
+              </div>
+              <div class="visual-pair" style="padding:14px 20px 0;">
+                <div class="visual-card">
+                  <span class="visual-label">Abaque</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/abaque-vanne-ta.png" alt="Abaque de sélection vanne TA" loading="lazy" class="zoomable" data-caption="Abaque de dimensionnement des vannes TA DN 200 à 400">
+                  </div>
+                </div>
+                <div class="visual-card">
+                  <span class="visual-label">Tableau de sélection</span>
+                  <div class="image-wrap contain">
+                    <img src="assets/tableau-vanne-ta.png" alt="Tableau de sélection vanne TA" loading="lazy" class="zoomable" data-caption="Tableau de sélection et de réglage des vannes TA">
+                  </div>
+                </div>
+              </div>
+              <div class="media-info">
+                <h3>Abaque et tableau de sélection</h3>
+                <p>L'abaque permet de relier le débit, le Kv et le diamètre nominal. Le tableau finalise ensuite le choix du DN 200 et le préréglage associé à chaque circuit.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="equipment-meta" style="padding:20px 20px 0;">
+                <span class="equipment-chip equipment-chip--neutral">Vanne TA</span>
+                <span class="equipment-chip equipment-chip--neutral">GF1 + GF2</span>
+              </div>
+              <div class="visual-card" style="margin:14px 20px 0;">
+                <span class="visual-label">Corps de vanne commun</span>
+                <div class="image-wrap contain">
+                  <img src="assets/vanne-ta.png" alt="Vanne TA DN 200" loading="lazy" class="zoomable" data-caption="Vanne TA DN 200 utilisée sur GF1 et GF2 avec des réglages différents">
+                </div>
+              </div>
+              <div class="media-info">
+                <h3>Vanne TA DN 200 commune à GF1 et GF2</h3>
+                <p>La vanne d'équilibrage retenue se caractérise par une bonne précision de réglage et une large plage d'utilisation sur les réseaux de chauffage et de refroidissement.</p>
+                <p>Dans ce projet, le même corps de vanne est utilisé sur GF1 et GF2. Seul le nombre de tours de réglage évolue pour approcher le Kv demandé sur chaque circuit.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="regulation" class="tab-panel" role="tabpanel">
+          <h3>Schémas électriques et logique de régulation</h3>
+          <p>
+            L'installation distingue clairement la puissance et la commande. Les pompes sont protégées individuellement,
+            pilotées par un automate CAREL et surveillées via voyants, alarmes, capteurs de température, pressostats
+            et flow switch. La logique prévoit aussi une alternance automatique des pompes A/B.
+          </p>
+          <p>
+            Cette architecture améliore la fiabilité, facilite le diagnostic et permet de n'autoriser le fonctionnement
+            que lorsque les conditions de sécurité et de besoin thermique sont réunies.
+          </p>
+
+          <div class="panel-grid">
+            <article class="media-card">
+              <div class="image-wrap contain rotate-90">
+                <img src="assets/schema-elec-gf1.png" alt="Schéma électrique GF1" loading="lazy" class="zoomable rotated-image" data-caption="Schéma électrique puissance et commande GF1" data-rotate="90">
+              </div>
+              <div class="media-info">
+                <h3>Schéma électrique GF1</h3>
+                <p>Distribution de puissance, protections, moteurs et séparation claire entre les circuits associés au groupe GF1.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain rotate-90">
+                <img src="assets/schema-elec-gf2.png" alt="Schéma électrique GF2" loading="lazy" class="zoomable rotated-image" data-caption="Schéma électrique puissance et commande GF2" data-rotate="90">
+              </div>
+              <div class="media-info">
+                <h3>Schéma électrique GF2</h3>
+                <p>Architecture équivalente pour GF2, avec sécurités individuelles et logique de secours en cas de défaut.</p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain rotate-90">
+                <img src="assets/schema-regul.png" alt="Schéma de régulation" loading="lazy" class="zoomable rotated-image" data-caption="Schéma de régulation avec automate CAREL BMESTO3LED" data-rotate="90">
+              </div>
+              <div class="media-info">
+                <h3>Automate CAREL</h3>
+                <p>Les sorties KM1 à KM8 pilotent les pompes doubles chaud/froid. Les seuils, temporisations et alarmes structurent la sécurité globale.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="key-points" style="margin-top:18px;">
+            <div>Alternance automatique des pompes de secours toutes les 24 h pour équilibrer l'usure.</div>
+            <div>Alarme manque de débit si le flow switch reste inactif plus de 30 s alors que le groupe est autorisé.</div>
+            <div>Commande conditionnée par l'autorisation générale, l'absence de défaut et la demande chaud ou froid.</div>
+          </div>
+        </section>
+
+        <section id="planning" class="tab-panel" role="tabpanel">
+          <h3>Planning prévisionnel et chiffrage</h3>
+          <p>
+            Le planning suit la chronologie logique d'un projet frigorifique industriel : études d'exécution,
+            approvisionnement, préparation de chantier, installation, essais et réception.
+            L'approvisionnement des équipements reste la phase la plus dimensionnante pour le délai global.
+          </p>
+
+          <div class="split" style="margin-top:18px;">
+            <article class="media-card">
+              <div class="mini-gallery">
+                <div class="image-wrap contain">
+                  <img src="assets/gantt-simple.png" alt="Planning simplifié" loading="lazy" class="zoomable" data-caption="Diagramme de Gantt simplifié du projet">
+                </div>
+                <div class="image-wrap contain rotate-90">
+                  <img src="assets/gantt-detail.png" alt="Planning détaillé" loading="lazy" class="zoomable rotated-image" data-caption="Diagramme de Gantt détaillé du projet" data-rotate="90">
+                </div>
+              </div>
+              <div class="media-info">
+                <h3>Lecture du planning</h3>
+                <p>
+                  Le Gantt prévisionnel couvre environ 26 semaines et met en évidence la place centrale de
+                  l'installation frigorifique ainsi que la mise en service en fin de séquence.
+                </p>
+              </div>
+            </article>
+
+            <article class="media-card">
+              <div class="image-wrap contain">
+                <img src="assets/devis.png" alt="Devis du projet" loading="lazy" class="zoomable" data-caption="Devis global du lot frigorifique">
+              </div>
+              <div class="media-info">
+                <h3>Analyse du devis</h3>
+                <p>
+                  Le chiffrage consolide les travaux préliminaires, la production d'eau glacée,
+                  l'électricité-régulation, la maintenance et la mise en service.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="cost-grid">
+            <div class="cost-card">
+              <strong>1 239 994,02 € HT</strong>
+              <span>montant de la solution technique chiffrée</span>
+            </div>
+            <div class="cost-card">
+              <strong>1 401 993,79 € HT</strong>
+              <span>montant global hors taxes avec honoraires et prorata</span>
+            </div>
+            <div class="cost-card">
+              <strong>1 682 392,55 € TTC</strong>
+              <span>montant total présenté dans le devis consolidé</span>
+            </div>
+          </div>
+
+          <p>
+            La production frigorifique représente la part principale du budget, ce qui est cohérent avec le poids
+            des groupes, des pompes, des réseaux et de la récupération de chaleur dans la performance globale du site.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <section id="synthese" class="section">
+      <div class="section-head reveal">
+        <span class="kicker">5. Synthèse finale</span>
+        <h2>Les points forts de ce projet</h2>
+        <p>
+          Ce projet montre une démarche complète : compréhension du besoin, choix des fluides, dimensionnement,
+          lecture de documents techniques, cohérence économique et prise en compte de la réglementation.
+        </p>
+      </div>
+
+      <div class="soutenance-banner reveal">
+        <h3>Le fil conducteur de la présentation</h3>
+        <p>
+          Cette synthèse met en avant la logique du projet : partir du besoin client, justifier les choix techniques,
+          montrer la cohérence du dimensionnement et conclure sur une réponse fiable, lisible et conforme.
+        </p>
+        <div class="soutenance-path">
+          <div class="step">
+            <strong>Besoin</strong>
+            <span>Compréhension du site, des températures et des volumes à traiter.</span>
+          </div>
+          <div class="step">
+            <strong>Choix</strong>
+            <span>Sélection argumentée des fluides, groupes, pompes et organes d'équilibrage.</span>
+          </div>
+          <div class="step">
+            <strong>Preuves</strong>
+            <span>Bilans, schémas, courbes, réglementations et chiffrage pour étayer la démonstration.</span>
+          </div>
+          <div class="step">
+            <strong>Conclusion</strong>
+            <span>Projet fiable, lisible, conforme et cohérent avec les besoins du client.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="synthesis preview-synthese-cards">
+        <article class="insight-card reveal">
+          <h3>Fiabilité</h3>
+          <p>Redondance des pompes, supervision, logique d'alternance et marges de sécurité sur le dimensionnement.</p>
+        </article>
+        <article class="insight-card reveal">
+          <h3>Performance</h3>
+          <p>Groupes adaptés aux basses températures, récupération de chaleur valorisée et réseau hydraulique optimisé.</p>
+        </article>
+        <article class="insight-card reveal">
+          <h3>Conformité</h3>
+          <p>Prise en compte des normes EN 378, DESP, F-Gaz et des exigences de sécurité liées aux fluides.</p>
+        </article>
+        <article class="insight-card reveal">
+          <h3>Lisibilité</h3>
+          <p>Schémas, plans, tableaux et planning permettent d'expliquer clairement le projet pendant la soutenance.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Présentation réalisée pour une lecture claire en soutenance BTS FED. Les textes sont synthétisés à partir du dossier de revue de projet et raccordés aux visuels du projet.
+  </footer>
+</div>
+
+<div class="zoom-modal" id="zoomModal" aria-hidden="true">
+  <div class="zoom-box">
+    <img id="zoomImage" alt="">
+    <div class="zoom-caption" id="zoomCaption"></div>
+    <div class="helper">Clique autour de l'image ou appuie sur Échap pour fermer.</div>
+  </div>
+</div>
+
+<script>
+const revealElements = document.querySelectorAll(".reveal");
+const zoomModal = document.getElementById("zoomModal");
+const zoomImage = document.getElementById("zoomImage");
+const zoomCaption = document.getElementById("zoomCaption");
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabPanels = document.querySelectorAll(".tab-panel");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.14 });
+
+revealElements.forEach((element) => observer.observe(element));
+
+document.querySelectorAll(".zoomable").forEach((image) => {
+  image.addEventListener("click", () => {
+    zoomImage.src = image.src;
+    zoomImage.alt = image.alt || "";
+    zoomCaption.textContent = image.dataset.caption || image.alt || "";
+    zoomImage.classList.remove("rotated-display-90", "rotated-display-180");
+    if(image.dataset.rotate === "90"){
+      zoomImage.classList.add("rotated-display-90");
+    } else if(image.dataset.rotate === "180"){
+      zoomImage.classList.add("rotated-display-180");
+    }
+    zoomModal.style.display = "flex";
+    zoomModal.setAttribute("aria-hidden", "false");
+  });
+});
+
+function closeZoom(){
+  zoomModal.style.display = "none";
+  zoomModal.setAttribute("aria-hidden", "true");
+  zoomImage.src = "";
+  zoomImage.classList.remove("rotated-display-90", "rotated-display-180");
+}
+
+zoomModal.addEventListener("click", (event) => {
+  if(event.target === zoomModal){
+    closeZoom();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if(event.key === "Escape"){
+    closeZoom();
+  }
+});
+
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.tabTarget;
+    tabButtons.forEach((item) => item.classList.remove("active"));
+    tabPanels.forEach((panel) => panel.classList.remove("active"));
+    button.classList.add("active");
+    document.getElementById(target).classList.add("active");
+  });
+});
+</script>
+</body>
+</html>
