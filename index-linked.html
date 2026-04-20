@@ -1223,6 +1223,120 @@ main{
     width:100%;
   }
 }
+
+.preview-ribbon{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg, rgba(116, 217, 255, 0.14), rgba(255, 190, 109, 0.12));
+  border:1px solid rgba(255,255,255,0.1);
+  color:#eff8ff;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  font-size:0.8rem;
+}
+
+.preview-ribbon strong{
+  color:var(--cold);
+}
+
+.jury-note-band{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+  margin:0 0 22px;
+}
+
+.jury-note{
+  padding:20px 22px;
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(13, 29, 43, 0.9), rgba(8, 18, 28, 0.94));
+  border:1px solid rgba(116, 217, 255, 0.12);
+  box-shadow:0 20px 40px rgba(0,0,0,0.18);
+}
+
+.jury-note strong{
+  display:block;
+  margin-bottom:8px;
+  color:#f0f8ff;
+  font-size:1.05rem;
+}
+
+.jury-note span{
+  display:block;
+  color:#b7cde0;
+  line-height:1.65;
+}
+
+.soutenance-banner{
+  margin:0 0 22px;
+  padding:26px 28px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at top right, rgba(255, 190, 109, 0.16), transparent 28%),
+    radial-gradient(circle at left, rgba(116, 217, 255, 0.14), transparent 32%),
+    linear-gradient(145deg, rgba(12, 28, 42, 0.96), rgba(7, 17, 28, 0.96));
+  box-shadow:0 28px 60px rgba(0,0,0,0.24);
+}
+
+.soutenance-banner h3{
+  margin:0 0 10px;
+  font-size:1.9rem;
+}
+
+.soutenance-banner p{
+  margin:0;
+  max-width:920px;
+  color:#d3e4f3;
+  line-height:1.8;
+}
+
+.soutenance-path{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+  margin-top:20px;
+}
+
+.soutenance-path .step{
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.07);
+}
+
+.soutenance-path .step strong{
+  display:block;
+  margin-bottom:6px;
+  color:#ffffff;
+}
+
+.soutenance-path .step span{
+  display:block;
+  color:#bad1e4;
+  line-height:1.55;
+}
+
+.preview-synthese-cards{
+  gap:18px;
+}
+
+.preview-synthese-cards .insight-card{
+  padding:24px;
+  background:linear-gradient(180deg, rgba(13, 29, 42, 0.94), rgba(9, 21, 32, 0.96));
+  border-color:rgba(255,255,255,0.08);
+}
+
+@media (max-width:980px){
+  .jury-note-band,
+  .soutenance-path{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -1245,6 +1359,7 @@ main{
     <div class="hero-panel reveal">
       <div class="hero-grid">
         <div class="hero-copy">
+          <div class="preview-ribbon"><strong>Soutenance premium</strong> présentation finale du projet</div>
           <div class="eyebrow">Étude, conception et soutenance</div>
           <h1>Projet <span class="blend">Ouest Frais</span><br>lot frigorifique</h1>
           <p>
@@ -1262,6 +1377,7 @@ main{
             <a href="#contexte" class="btn btn-primary">Voir le projet</a>
             <a href="#candidat" class="btn btn-secondary">Voir la partie candidat</a>
           </div>
+
         </div>
 
         <div class="hero-visual">
@@ -1324,6 +1440,17 @@ main{
           Le projet est implanté dans le parc d'activités des Marches de Bretagne à Montaigu, dans un site
           logistique combinant chambres froides positives, chambre négative et zone de quai.
         </p>
+      </div>
+
+      <div class="jury-note-band reveal">
+        <article class="jury-note">
+          <strong>Un besoin client concret</strong>
+          <span>Le projet répond à un besoin réel de stockage multi-températures sur un site logistique exigeant.</span>
+        </article>
+        <article class="jury-note">
+          <strong>Une réponse technique cohérente</strong>
+          <span>La solution retenue associe performance frigorifique, récupération de chaleur et exploitation lisible.</span>
+        </article>
       </div>
 
       <div class="grid bento">
@@ -2217,7 +2344,33 @@ main{
         </p>
       </div>
 
-      <div class="synthesis">
+      <div class="soutenance-banner reveal">
+        <h3>Le fil conducteur de la présentation</h3>
+        <p>
+          Cette synthèse met en avant la logique du projet : partir du besoin client, justifier les choix techniques,
+          montrer la cohérence du dimensionnement et conclure sur une réponse fiable, lisible et conforme.
+        </p>
+        <div class="soutenance-path">
+          <div class="step">
+            <strong>Besoin</strong>
+            <span>Compréhension du site, des températures et des volumes à traiter.</span>
+          </div>
+          <div class="step">
+            <strong>Choix</strong>
+            <span>Sélection argumentée des fluides, groupes, pompes et organes d'équilibrage.</span>
+          </div>
+          <div class="step">
+            <strong>Preuves</strong>
+            <span>Bilans, schémas, courbes, réglementations et chiffrage pour étayer la démonstration.</span>
+          </div>
+          <div class="step">
+            <strong>Conclusion</strong>
+            <span>Projet fiable, lisible, conforme et cohérent avec les besoins du client.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="synthesis preview-synthese-cards">
         <article class="insight-card reveal">
           <h3>Fiabilité</h3>
           <p>Redondance des pompes, supervision, logique d'alternance et marges de sécurité sur le dimensionnement.</p>
